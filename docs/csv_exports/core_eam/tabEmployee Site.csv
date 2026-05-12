@@ -1,0 +1,11 @@
+name,creation,modified,modified_by,owner,docstatus,idx,employee,site,department,_user_tags,_comments,_assign,_liked_by,default
+"EMPS-00014','2025-10-17 07:30:43.102780','2025-10-17 07:35:33.937919','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00003','SITE-0001','DEPT-0005',NULL,NULL,NULL,NULL,1"
+"EMPS-00015','2025-10-17 07:36:13.029360','2025-10-17 07:36:13.029360','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00002','SITE-0001','DEPT-0002',NULL,NULL,NULL,NULL,1"
+"EMPS-00016','2025-10-17 07:37:06.351203','2025-10-17 07:37:06.351203','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00001','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"
+"EMPS-00017','2025-10-17 07:37:56.345898','2025-10-17 07:37:56.345898','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00011','SITE-0001','DEPT-0005',NULL,NULL,NULL,NULL,1"
+"EMPS-00018','2025-10-17 08:25:32.301985','2025-10-17 08:25:32.301985','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00012','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"
+"EMPS-00019','2025-10-17 08:26:04.774742','2025-10-17 08:26:04.774742','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00013','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"
+"EMPS-00020','2025-10-17 08:26:28.787539','2025-10-17 08:26:28.787539','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00014','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"
+"EMPS-00021','2025-10-17 08:27:05.895064','2025-10-17 08:27:05.895064','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00015','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"
+"EMPS-00022','2025-10-17 08:27:29.116289','2025-10-17 08:27:29.116289','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00016','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"
+"EMPS-00023','2025-10-17 08:27:57.375517','2025-10-17 08:27:57.375517','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'EMP-00017','SITE-0001','DEPT-0006',NULL,NULL,NULL,NULL,1"

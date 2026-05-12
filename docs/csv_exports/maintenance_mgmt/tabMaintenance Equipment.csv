@@ -1,0 +1,3 @@
+name,creation,modified,modified_by,owner,docstatus,idx,maintenance_activity,asset_class,required_qty,required_hours,_user_tags,_comments,_assign,_liked_by,equipment
+"MTEQP-00002','2025-10-24 09:54:06.989864','2025-10-24 09:54:06.989864','benrod.dagsan@metpower-operation.net','benrod.dagsan@metpower-operation.net',0,0,'MTACT-00004',NULL,1,1.000000000,NULL,NULL,NULL,NULL,'EQP-00021"
+"MTEQP-00003','2025-10-24 09:56:12.291603','2025-10-24 09:56:12.291603','benrod.dagsan@metpower-operation.net','benrod.dagsan@metpower-operation.net',0,0,'MTACT-00005',NULL,1,1.000000000,NULL,NULL,NULL,NULL,'EQP-00021"

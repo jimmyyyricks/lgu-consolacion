@@ -1,0 +1,6 @@
+name,creation,modified,modified_by,owner,docstatus,idx,store_name,_user_tags,_comments,_assign,_liked_by,location,location_name,site
+"STR-00001','2025-08-11 11:22:22.374962','2025-08-11 11:22:22.374962','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,10,'Store 1',NULL,NULL,NULL,NULL,'LOC-00043','Biogas Warehouse_Pol',NULL"
+"STR-00002','2025-09-03 14:11:13.786306','2025-10-27 14:06:15.597124','kbontia@cubeworks.com.ph','kristine.panaguiton@metpower-operation.net',0,60,'Container 1',NULL,NULL,NULL,NULL,'LOC-00043','Biogas Warehouse_Pol','SITE-0001"
+"STR-00003','2025-09-03 14:11:49.849621','2025-10-27 14:08:51.108973','kbontia@cubeworks.com.ph','kristine.panaguiton@metpower-operation.net',0,83,'Container 2',NULL,NULL,NULL,NULL,'LOC-00043','Biogas Warehouse_Pol','SITE-0001"
+"STR-00004','2025-09-03 14:12:10.741677','2025-10-27 14:06:32.039981','kbontia@cubeworks.com.ph','kristine.panaguiton@metpower-operation.net',0,276,'Container 3',NULL,NULL,NULL,NULL,'LOC-00043','Biogas Warehouse_Pol','SITE-0001"
+"STR-00005','2025-09-03 14:12:46.106492','2025-10-27 14:07:23.475162','kbontia@cubeworks.com.ph','kristine.panaguiton@metpower-operation.net',0,64,'Container 4',NULL,NULL,NULL,NULL,'LOC-00043','Biogas Warehouse_Pol','SITE-0001"

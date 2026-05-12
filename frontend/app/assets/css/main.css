@@ -1,0 +1,165 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "@nu-grid/nuxt/css";
+
+/* Print-friendly styles (FE#25) */
+@media print {
+  /* Hide navigation, sidebar, action buttons */
+  nav,
+  aside,
+  .sidebar,
+  /* [data-sidebar],
+  [data-topbar], */
+  button,
+  .btn,
+  [role="tablist"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Full width content */
+  main,
+  .main-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Clean backgrounds */
+  body,
+  .bg-white,
+  .bg-gray-50,
+  .dark\:bg-gray-900 {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Show all form fields as text */
+  input,
+  select,
+  textarea {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* Avoid page breaks inside cards */
+  .card,
+  .border,
+  .rounded-lg {
+    break-inside: avoid;
+    border-color: #ccc !important;
+  }
+
+  /* Ensure links show URL */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
+  }
+}
+
+/* Responsive mobile layout (FE#24) */
+@media (max-width: 768px) {
+  /* Collapse sidebar on mobile */
+  /* [data-sidebar],
+  aside.sidebar,
+  nav.sidebar {
+    position: fixed;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+  [data-sidebar].open,
+  aside.sidebar.open,
+  nav.sidebar.open {
+    transform: translateX(0);
+  } */
+
+  /* Stack form fields vertically */
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Full-width tables with horizontal scroll */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Larger touch targets */
+  button,
+  .btn,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Stack header actions */
+  .flex.gap-2 {
+    flex-wrap: wrap;
+  }
+
+  /* Reduce padding on mobile */
+  .p-6 {
+    padding: 1rem !important;
+  }
+  .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* Custom color palette for Nuxt UI */
+:root {
+  --ui-color-primary-50: #fef2f2;
+  --ui-color-primary-100: #fee2e2;
+  --ui-color-primary-200: #fecaca;
+  --ui-color-primary-300: #fca5a5;
+  --ui-color-primary-400: #f87171;
+  --ui-color-primary-500: #F57056;
+  --ui-color-primary-600: #dc2626;
+  --ui-color-primary-700: #b91c1c;
+  --ui-color-primary-800: #991b1b;
+  --ui-color-primary-900: #7f1d1d;
+  --ui-color-primary-950: #450a0a;
+
+  --ui-color-secondary-50: #fefce8;
+  --ui-color-secondary-100: #fef9c3;
+  --ui-color-secondary-200: #fef08a;
+  --ui-color-secondary-300: #fde047;
+  --ui-color-secondary-400: #facc15;
+  --ui-color-secondary-500: #F6B82B;
+  --ui-color-secondary-600: #ca8a04;
+  --ui-color-secondary-700: #a16207;
+  --ui-color-secondary-800: #854d0e;
+  --ui-color-secondary-900: #713f12;
+  --ui-color-secondary-950: #422006;
+}
+
+/* Darker disabled form fields - using Nuxt UI theming in app.config.ts instead */
+
+/* Calendar disabled styling */
+.u-calendar:disabled,
+.u-calendar[disabled],
+.u-calendar [aria-disabled="true"],
+.u-calendar [disabled] {
+  background-color: rgb(243 244 246) !important; /* gray-100 */
+  color: rgb(107 114 128) !important; /* gray-500 */
+  pointer-events: none !important;
+}
+
+.dark .u-calendar:disabled,
+.dark .u-calendar[disabled],
+.dark .u-calendar [aria-disabled="true"],
+.dark .u-calendar [disabled] {
+  background-color: rgb(31 41 55) !important; /* gray-800 */
+  color: rgb(156 163 175) !important; /* gray-400 */
+  pointer-events: none !important;
+}

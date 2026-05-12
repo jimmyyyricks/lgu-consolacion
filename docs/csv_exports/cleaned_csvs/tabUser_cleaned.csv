@@ -1,0 +1,24 @@
+username,email,full_name,first_name,last_name,contact_number,department,site,employee_id,is_active,is_superuser
+administrator,admin@example.com,Administrator,Administrator,NULL,NULL,,NULL,,1,0
+dani_balabad,balabadani1048@gmail.com,Danny Balaba,Danny,Balaba,NULL,,NULL,,1,0
+benrod_dagsan,benrod.dagsan@metpower-operation.net,Benrod Dagsan,Benrod Dagsan,NULL,NULL,,NULL,,1,0
+bryl_dolor,bryl.dolor@metpower-operation.net,Bryl Dolor,Bryl Dolor,NULL,NULL,,NULL,,1,0
+ronald_cebritas,cebritasronald@gmail.com,Ronald Cebritas,Ronald,Cebritas,NULL,,NULL,,1,0
+crisel_mark,crisel.nunez@metpower-operation.net,Crisel Mark Nunez,Crisel Mark,Nunez,NULL,,NULL,,1,0
+eam,eam_manager@gmail.com,EAM,EAM,NULL,NULL,,NULL,,1,0
+met_notifications,eam.notifications@metpower-operation.net,MET Notifications,MET Notifications,NULL,NULL,,NULL,,1,0
+edmer_arevalo,edmer.arevalo@metpower-operation.net,Edmer Arevalo,Edmer,Arevalo,NULL,,NULL,,1,0
+joyc_emerson,emersonjoyc@gmail.com,Emerson Costinar,Emerson,Costinar,NULL,,NULL,,1,0
+enrico_morato,enrico.morato@metpower-operation.net,Enrico Morato,Enrico,Morato,NULL,,NULL,,1,0
+rapeler_genaro,genarorapeler@gmail.com,Rapeler Genaro,Rapeler,Genaro,NULL,,NULL,,1,0
+glaiza_batalon,glaiza.batalon@metpower-operation.net,Glaiza Batalon,Glaiza Batalon,NULL,NULL,,NULL,,1,0
+guest,guest@example.com,Guest,Guest,NULL,NULL,,NULL,,1,0
+carlo_ibdao,ibdaocarlo@gmail.com,Carlo Ibdao,Carlo,Ibdao,NULL,,NULL,,1,0
+jimmy_ricks_grajo,jrgrajo@cubeworks.com.ph,Jimmy Ricks Grajo,Jimmy Ricks Grajo,NULL,NULL,,NULL,,1,0
+krizia,kbontia@cubeworks.com.ph,Krizia Bontia,Krizia,Bontia,NULL,,NULL,,1,0
+kristine_panaguiton,kristine.panaguiton@metpower-operation.net,Kristine Panaguiton,Kristine Panaguiton,NULL,NULL,,NULL,,1,0
+michael_ponce,michaelponce848@gmail.com,Michael Ponce,Michael,Ponce,NULL,,NULL,,1,0
+michael_ceniza,mikec@cubeworksinnovation.com,Michael Ceniza,Michael Ceniza,,NULL,,,,1,0
+ronnie_guilaran,ronnie.guilaran@metpower-operation.net,Ronie Guilaran,Ronie,Guilaran,NULL,,NULL,,1,0
+jerry_tupino,tupinojerry@gmail.com,Jerry Tupino,Jerry,Tupino,NULL,,NULL,,1,0
+victoria_montano,victoria.montano@metpower-operation.net,Ma. Victoria Montano,Ma. Victoria,Montano,NULL,,NULL,,1,0

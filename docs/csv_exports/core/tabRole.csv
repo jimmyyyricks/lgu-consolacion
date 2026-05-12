@@ -1,0 +1,38 @@
+name,creation,modified,modified_by,owner,docstatus,idx,role_name,home_page,restrict_to_domain,disabled,is_custom,desk_access,two_factor_auth,_user_tags,_comments,_assign,_liked_by
+
+
+
+
+"Asset Approver','2025-07-28 16:22:24.173868','2025-07-28 16:22:24.173868','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Asset Approver','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Asset Manager','2025-05-13 11:34:28.587202','2025-05-13 13:55:07.265529','kbontia@cubeworks.com.ph','Administrator',0,0,'Asset Manager',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+
+
+
+"General Manager','2025-08-19 07:25:14.010270','2025-08-19 07:25:14.010270','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'General Manager','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Guest','2025-05-06 14:28:41.437320','2025-05-06 14:28:41.437320','Administrator','Administrator',0,0,'Guest',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+
+
+
+"Maintenance Lead','2025-07-07 13:56:24.249675','2025-07-07 13:57:02.283120','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Maintenance Lead','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Maintenance Manager','2025-05-06 14:28:48.784450','2025-05-06 14:28:48.784450','Administrator','Administrator',0,0,'Maintenance Manager',NULL,NULL,0,0,1,0,NULL,NULL,NULL,NULL"
+"Maintenance Planner','2025-07-03 09:47:42.349928','2025-07-03 09:47:42.349928','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Maintenance Planner','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Maintenance Request Approver','2025-08-07 09:30:41.867727','2025-08-07 09:30:52.996083','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Maintenance Request Approver','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Maintenance User','2025-05-06 14:28:48.740506','2025-05-06 14:28:48.740506','Administrator','Administrator',0,0,'Maintenance User',NULL,NULL,0,0,1,0,NULL,NULL,NULL,NULL"
+
+"Plant Manager','2025-07-03 09:48:19.998856','2025-07-03 09:48:19.998856','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Plant Manager','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+
+"Purchase Approver','2025-08-07 09:25:03.456405','2025-08-07 09:25:03.456405','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Purchase Approver','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Purchase Manager','2025-05-06 14:28:48.779173','2025-05-06 14:28:48.779173','Administrator','Administrator',0,0,'Purchase Manager',NULL,NULL,0,0,1,0,NULL,NULL,NULL,NULL"
+"Purchase Master Manager','2025-05-06 14:28:48.785831','2025-05-06 14:28:48.785831','Administrator','Administrator',0,0,'Purchase Master Manager',NULL,NULL,0,0,1,0,NULL,NULL,NULL,NULL"
+"Purchase User','2025-05-06 14:28:46.709831','2025-05-06 14:28:46.709831','Administrator','Administrator',0,0,'Purchase User',NULL,NULL,0,0,1,0,NULL,NULL,NULL,NULL"
+"Purchaser','2025-08-19 07:25:35.718123','2025-08-19 07:25:35.718123','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Purchaser','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Purchasing Coordinator','2025-07-03 09:48:46.931111','2025-07-07 13:56:56.913118','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Purchasing Coordinator','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+
+"Requestor','2025-08-19 07:24:10.235904','2025-08-19 07:24:28.899272','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Requestor','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"System Manager','2025-05-06 14:28:41.461088','2025-05-06 14:28:41.461088','Administrator','Administrator',0,0,'System Manager',NULL,NULL,0,0,1,0,NULL,NULL,NULL,NULL"
+"Technician','2025-09-11 12:05:38.747029','2025-09-11 12:05:38.747029','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Technician','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Warehouse Approver','2025-10-14 22:46:53.388774','2025-10-14 22:46:53.388774','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Warehouse Approver','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Warehouse Coordinator','2025-07-03 09:49:18.591262','2025-07-03 09:49:18.591262','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Warehouse Coordinator','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Warehouse Operator','2025-10-14 21:29:30.281611','2025-10-14 22:44:51.674055','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Warehouse Operator','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Work Management Approver','2025-08-07 09:32:24.726789','2025-08-07 09:32:24.726789','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Work Management Approver','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"
+"Work Order Activity Approver','2025-08-07 09:32:36.099920','2025-08-07 09:32:36.099920','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,0,'Work Order Activity Approver','/frontend',NULL,0,0,0,0,NULL,NULL,NULL,NULL"

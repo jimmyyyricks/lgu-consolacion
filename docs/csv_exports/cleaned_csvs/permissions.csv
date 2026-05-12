@@ -1,0 +1,1131 @@
+role_name,entity_name,can_read,can_create,can_update,can_delete,in_sidebar
+General Manager,Asset,True,True,True,True,True
+General Manager,Asset Class,True,True,True,True,True
+General Manager,Asset Class Availability,False,False,False,False,False
+General Manager,Asset Class Property,True,True,True,True,True
+General Manager,Asset Dashboard,True,False,False,False,False
+General Manager,Asset Position,True,True,True,True,True
+General Manager,Asset Property,True,True,True,True,True
+General Manager,Breakdown,False,False,False,False,False
+General Manager,Disposed,True,True,True,True,True
+General Manager,Equipment,True,True,True,True,True
+General Manager,Equipment Availability,False,False,False,False,False
+General Manager,Equipment Availability Details,False,False,False,False,False
+General Manager,Equipment Group,True,True,True,True,True
+General Manager,Equipment Schedule,False,False,False,False,False
+General Manager,Equipment Schedule Details,False,False,False,False,False
+General Manager,Incident Employee,True,True,True,True,True
+General Manager,Incident,True,True,True,True,True
+General Manager,Location,True,True,True,True,True
+General Manager,Location Type,True,False,False,False,False
+General Manager,Position,True,True,True,True,True
+General Manager,Position Relation,True,True,True,True,True
+General Manager,PNID Layouts,True,True,True,True,True
+General Manager,Property,True,True,True,True,True
+General Manager,Property Type,True,False,False,False,False
+General Manager,System,True,True,True,True,True
+General Manager,System Type,True,False,False,False,False
+General Manager,Checklist,True,True,True,True,True
+General Manager,Checklist Details,True,True,True,True,True
+General Manager,Maintenance Activity,True,True,True,True,True
+General Manager,Maintenance Calendar,True,True,True,True,True
+General Manager,Maintenance Condition,True,True,True,True,True
+General Manager,Maintenance Dashboard,True,True,True,True,True
+General Manager,Maintenance Equipment,True,True,True,True,True
+General Manager,Maintenance Interval,True,True,True,True,True
+General Manager,Maintenance Order,True,True,True,True,True
+General Manager,Maintenance Order Detail,True,True,True,True,True
+General Manager,Maintenance Parts,True,True,True,True,True
+General Manager,Maintenance Plan,True,True,True,True,True
+General Manager,Maintenance Request,True,True,True,True,True
+General Manager,Maintenance Trade,True,True,True,True,True
+General Manager,Planned Maintenance Activity,True,True,True,True,True
+General Manager,Sensor,True,True,True,True,True
+General Manager,SensorData,True,False,True,False,False
+General Manager,Category of Failure,True,True,True,True,True
+General Manager,Work Management Dashboard,True,False,False,False,False
+General Manager,Work Order,True,True,True,True,True
+General Manager,Work Order Activity,True,True,True,True,True
+General Manager,Work Order Activity Logs,True,True,True,True,True
+General Manager,Work Order Checklist,True,True,True,True,True
+General Manager,Work Order Checklist Detail,True,True,True,True,True
+General Manager,Work Order Equipment,True,True,True,True,True
+General Manager,Work Order Equipment Assignment,False,False,False,False,False
+General Manager,Work Order Equipment Actual Hours,True,True,True,True,True
+General Manager,Work Order Labor,True,True,True,True,True
+General Manager,Work Order Labor Assignment,False,False,False,False,False
+General Manager,Work Order Labor Actual Hours,True,True,True,True,True
+General Manager,Work Order Parts,True,True,True,True,True
+General Manager,Work Order Parts Reservation,False,False,False,False,False
+General Manager,Bin,True,True,True,True,True
+General Manager,Currency,True,True,True,True,True
+General Manager,Inspection,True,True,True,True,True
+General Manager,Inventory,True,True,True,True,True
+General Manager,Inventory Adjustment,True,True,True,True,True
+General Manager,Inventory Adjustment Line,True,True,True,True,True
+General Manager,Item,True,True,True,True,True
+General Manager,Item Class,True,True,True,True,True
+General Manager,Item Issue,True,True,True,True,True
+General Manager,Item Issue Line,True,True,True,True,True
+General Manager,Item Return,True,True,True,True,True
+General Manager,Item Return Line,True,True,True,True,True
+General Manager,Procurement Dashboard,True,False,False,False,False
+General Manager,Purchase Receipt,True,True,True,True,True
+General Manager,Purchase Request,True,True,True,True,True
+General Manager,Purchase Request Line,True,True,True,True,True
+General Manager,Purchase Return,True,True,True,True,True
+General Manager,Putaway,True,True,True,True,True
+General Manager,Reason Code,True,True,True,True,True
+General Manager,RFQ Log,True,True,True,True,True
+General Manager,Stock Count,True,True,True,True,True
+General Manager,Stock Count Line,True,True,True,True,True
+General Manager,Stock Count Task,False,False,False,False,False
+General Manager,Stock Ledger Entry,False,False,False,False,False
+General Manager,Store,True,True,True,True,True
+General Manager,Transfer,True,True,True,True,True
+General Manager,Transfer Receipt,True,True,True,True,True
+General Manager,Unit of Measure,True,True,True,True,True
+General Manager,Vendor,True,True,True,True,True
+General Manager,Zone,True,True,True,True,True
+General Manager,Account,True,True,True,True,True
+General Manager,Annual Budget,True,True,True,True,True
+General Manager,Contractor,False,True,True,True,True
+General Manager,Cost Code,True,True,True,True,True
+General Manager,Department,True,True,True,True,True
+General Manager,Employee,True,True,True,True,True
+General Manager,Employee Site,True,True,True,True,True
+General Manager,Holiday,False,False,False,False,False
+General Manager,Labor,True,True,True,True,True
+General Manager,Labor Availability,False,False,False,False,False
+General Manager,Labor Availability Details,False,False,False,False,False
+General Manager,Labor Group,True,True,True,True,True
+General Manager,Leave Application,False,False,False,False,False
+General Manager,Leave Type,False,False,False,False,False
+General Manager,Manufacturer,True,True,True,True,True
+General Manager,Model,True,True,True,True,True
+General Manager,Note,True,True,True,True,True
+General Manager,Organization,True,True,True,True,True
+General Manager,Request Activity Type,True,False,False,False,False
+General Manager,Site,True,True,True,True,True
+General Manager,Trade,True,True,True,True,True
+General Manager,Trade Availability,False,False,False,False,False
+General Manager,Trade Labor,True,True,True,True,True
+General Manager,Work Schedule,False,False,False,False,False
+General Manager,Work Schedule Details,False,False,False,False,False
+Plant Manager,Asset,True,True,True,True,True
+Plant Manager,Asset Class,True,True,True,True,True
+Plant Manager,Asset Class Availability,False,False,False,False,False
+Plant Manager,Asset Class Property,True,True,True,True,True
+Plant Manager,Asset Dashboard,True,False,False,False,False
+Plant Manager,Asset Position,True,True,True,True,True
+Plant Manager,Asset Property,True,True,True,True,True
+Plant Manager,Breakdown,False,False,False,False,False
+Plant Manager,Disposed,True,True,True,True,True
+Plant Manager,Equipment,True,True,True,True,True
+Plant Manager,Equipment Availability,False,False,False,False,False
+Plant Manager,Equipment Availability Details,False,False,False,False,False
+Plant Manager,Equipment Group,True,True,True,True,True
+Plant Manager,Equipment Schedule,False,False,False,False,False
+Plant Manager,Equipment Schedule Details,False,False,False,False,False
+Plant Manager,Incident Employee,True,True,True,True,True
+Plant Manager,Incident,True,True,True,True,True
+Plant Manager,Location,True,True,True,True,True
+Plant Manager,Location Type,True,False,False,False,False
+Plant Manager,Position,True,True,True,True,True
+Plant Manager,Position Relation,True,True,True,True,True
+Plant Manager,PNID Layouts,True,True,True,True,True
+Plant Manager,Property,True,True,True,True,True
+Plant Manager,Property Type,False,False,False,False,False
+Plant Manager,System,True,True,True,True,True
+Plant Manager,System Type,False,False,False,False,False
+Plant Manager,Checklist,True,True,True,True,True
+Plant Manager,Checklist Details,True,True,True,True,True
+Plant Manager,Maintenance Activity,True,True,True,True,True
+Plant Manager,Maintenance Calendar,True,True,True,True,True
+Plant Manager,Maintenance Condition,True,True,True,True,True
+Plant Manager,Maintenance Dashboard,True,True,True,True,True
+Plant Manager,Maintenance Equipment,True,True,True,True,True
+Plant Manager,Maintenance Interval,True,True,True,True,True
+Plant Manager,Maintenance Order,True,True,True,True,True
+Plant Manager,Maintenance Order Detail,True,True,True,True,True
+Plant Manager,Maintenance Parts,True,True,True,True,True
+Plant Manager,Maintenance Plan,True,True,True,True,True
+Plant Manager,Maintenance Request,True,True,True,True,True
+Plant Manager,Maintenance Trade,True,True,True,True,True
+Plant Manager,Planned Maintenance Activity,True,True,True,True,True
+Plant Manager,Sensor,True,True,True,True,True
+Plant Manager,SensorData,True,False,True,False,False
+Plant Manager,Category of Failure,True,True,True,True,True
+Plant Manager,Work Management Dashboard,True,False,False,False,False
+Plant Manager,Work Order,True,True,True,True,True
+Plant Manager,Work Order Activity,True,True,True,True,True
+Plant Manager,Work Order Activity Logs,True,True,True,True,True
+Plant Manager,Work Order Checklist,True,True,True,True,True
+Plant Manager,Work Order Checklist Detail,True,True,True,True,True
+Plant Manager,Work Order Equipment,True,True,True,True,True
+Plant Manager,Work Order Equipment Assignment,False,False,False,False,False
+Plant Manager,Work Order Equipment Actual Hours,True,True,True,True,True
+Plant Manager,Work Order Labor,True,True,True,True,True
+Plant Manager,Work Order Labor Assignment,False,False,False,False,False
+Plant Manager,Work Order Labor Actual Hours,True,True,True,True,True
+Plant Manager,Work Order Parts,True,True,True,True,True
+Plant Manager,Work Order Parts Reservation,False,False,False,False,False
+Plant Manager,Bin,True,True,True,True,True
+Plant Manager,Currency,True,True,True,True,True
+Plant Manager,Inspection,True,True,True,True,True
+Plant Manager,Inventory,True,True,True,True,True
+Plant Manager,Inventory Adjustment,True,True,True,True,True
+Plant Manager,Inventory Adjustment Line,True,True,True,True,True
+Plant Manager,Item,True,True,True,True,True
+Plant Manager,Item Class,True,True,True,True,True
+Plant Manager,Item Issue,True,True,True,True,True
+Plant Manager,Item Issue Line,True,True,True,True,True
+Plant Manager,Item Return,True,True,True,True,True
+Plant Manager,Item Return Line,True,True,True,True,True
+Plant Manager,Procurement Dashboard,True,False,False,False,False
+Plant Manager,Purchase Receipt,True,True,True,True,True
+Plant Manager,Purchase Request,True,True,True,True,True
+Plant Manager,Purchase Request Line,True,True,True,True,True
+Plant Manager,Purchase Return,True,True,True,True,True
+Plant Manager,Putaway,True,True,True,True,True
+Plant Manager,Reason Code,True,True,True,True,True
+Plant Manager,RFQ Log,True,True,True,True,True
+Plant Manager,Stock Count,True,True,True,True,True
+Plant Manager,Stock Count Line,True,True,True,True,True
+Plant Manager,Stock Count Task,False,False,False,False,False
+Plant Manager,Stock Ledger Entry,False,False,False,False,False
+Plant Manager,Store,True,True,True,True,True
+Plant Manager,Transfer,True,True,True,True,True
+Plant Manager,Transfer Receipt,True,True,True,True,True
+Plant Manager,Unit of Measure,True,True,True,True,True
+Plant Manager,Vendor,True,True,True,True,True
+Plant Manager,Zone,True,True,True,True,True
+Plant Manager,Account,True,True,True,True,True
+Plant Manager,Annual Budget,True,True,True,True,True
+Plant Manager,Contractor,True,True,True,True,True
+Plant Manager,Cost Code,True,True,True,True,True
+Plant Manager,Department,True,True,True,True,True
+Plant Manager,Employee,True,True,True,True,True
+Plant Manager,Employee Site,True,True,True,True,True
+Plant Manager,Holiday,False,False,False,False,False
+Plant Manager,Labor,True,True,True,True,True
+Plant Manager,Labor Availability,False,False,False,False,False
+Plant Manager,Labor Availability Details,False,False,False,False,False
+Plant Manager,Labor Group,True,True,True,True,True
+Plant Manager,Leave Application,False,False,False,False,False
+Plant Manager,Leave Type,False,False,False,False,False
+Plant Manager,Manufacturer,True,True,True,True,True
+Plant Manager,Model,True,True,True,True,True
+Plant Manager,Note,True,True,True,True,True
+Plant Manager,Organization,True,True,True,True,True
+Plant Manager,Request Activity Type,True,False,False,False,False
+Plant Manager,Site,True,True,True,True,True
+Plant Manager,Trade,True,True,True,True,True
+Plant Manager,Trade Availability,False,False,False,False,False
+Plant Manager,Trade Labor,True,True,True,True,True
+Plant Manager,Work Schedule,False,False,False,False,False
+Plant Manager,Work Schedule Details,False,False,False,False,False
+Maintenance Planner,Asset,True,True,True,False,True
+Maintenance Planner,Asset Class,True,True,True,False,True
+Maintenance Planner,Asset Class Availability,False,False,False,False,False
+Maintenance Planner,Asset Class Property,True,True,True,False,True
+Maintenance Planner,Asset Dashboard,True,False,False,False,False
+Maintenance Planner,Asset Position,True,True,True,False,True
+Maintenance Planner,Asset Property,True,True,True,False,True
+Maintenance Planner,Breakdown,False,False,False,False,False
+Maintenance Planner,Disposed,True,True,True,False,True
+Maintenance Planner,Equipment,True,True,True,False,True
+Maintenance Planner,Equipment Availability,False,False,False,False,False
+Maintenance Planner,Equipment Availability Details,False,False,False,False,False
+Maintenance Planner,Equipment Group,True,True,True,False,True
+Maintenance Planner,Equipment Schedule,False,False,False,False,False
+Maintenance Planner,Equipment Schedule Details,False,False,False,False,False
+Maintenance Planner,Incident Employee,True,True,True,False,True
+Maintenance Planner,Incident,True,True,True,False,True
+Maintenance Planner,Location,True,True,True,False,True
+Maintenance Planner,Location Type,True,False,False,False,False
+Maintenance Planner,Position,True,True,True,False,True
+Maintenance Planner,Position Relation,True,True,True,False,True
+Maintenance Planner,PNID Layouts,True,True,True,True,True
+Maintenance Planner,Property,True,True,True,False,True
+Maintenance Planner,Property Type,True,False,False,False,False
+Maintenance Planner,System,True,True,True,False,True
+Maintenance Planner,System Type,True,False,False,False,False
+Maintenance Planner,Checklist,True,True,True,False,True
+Maintenance Planner,Checklist Details,True,True,True,False,True
+Maintenance Planner,Maintenance Activity,True,True,True,False,True
+Maintenance Planner,Maintenance Calendar,True,True,True,False,True
+Maintenance Planner,Maintenance Condition,True,True,True,False,True
+Maintenance Planner,Maintenance Dashboard,True,False,False,False,False
+Maintenance Planner,Maintenance Equipment,True,True,True,False,True
+Maintenance Planner,Maintenance Interval,True,True,True,False,True
+Maintenance Planner,Maintenance Order,True,True,True,False,True
+Maintenance Planner,Maintenance Order Detail,True,True,True,False,True
+Maintenance Planner,Maintenance Parts,True,True,True,False,True
+Maintenance Planner,Maintenance Plan,True,True,True,False,True
+Maintenance Planner,Maintenance Request,True,True,True,False,True
+Maintenance Planner,Maintenance Trade,True,True,True,False,True
+Maintenance Planner,Planned Maintenance Activity,True,True,True,False,True
+Maintenance Planner,Sensor,True,True,False,False,False
+Maintenance Planner,SensorData,True,False,False,False,False
+Maintenance Planner,Category of Failure,True,True,True,False,True
+Maintenance Planner,Work Management Dashboard,True,False,False,False,False
+Maintenance Planner,Work Order,True,True,True,False,True
+Maintenance Planner,Work Order Activity,True,True,True,False,True
+Maintenance Planner,Work Order Activity Logs,True,True,True,False,True
+Maintenance Planner,Work Order Checklist,True,True,True,False,True
+Maintenance Planner,Work Order Checklist Detail,True,True,True,False,True
+Maintenance Planner,Work Order Equipment,True,True,True,False,True
+Maintenance Planner,Work Order Equipment Assignment,False,False,False,False,False
+Maintenance Planner,Work Order Equipment Actual Hours,True,True,True,False,True
+Maintenance Planner,Work Order Labor,True,True,True,False,True
+Maintenance Planner,Work Order Labor Assignment,False,False,False,False,False
+Maintenance Planner,Work Order Labor Actual Hours,True,True,True,False,True
+Maintenance Planner,Work Order Parts,True,True,True,False,True
+Maintenance Planner,Work Order Parts Reservation,False,False,False,False,False
+Maintenance Planner,Bin,True,False,False,False,False
+Maintenance Planner,Currency,True,False,False,False,False
+Maintenance Planner,Inspection,False,False,False,False,False
+Maintenance Planner,Inventory,True,True,True,False,True
+Maintenance Planner,Inventory Adjustment,False,False,False,False,False
+Maintenance Planner,Inventory Adjustment Line,False,False,False,False,False
+Maintenance Planner,Item,True,False,False,False,False
+Maintenance Planner,Item Class,False,False,False,False,False
+Maintenance Planner,Item Issue,True,True,True,False,True
+Maintenance Planner,Item Issue Line,True,True,True,False,True
+Maintenance Planner,Item Return,True,True,True,False,True
+Maintenance Planner,Item Return Line,True,True,True,False,True
+Maintenance Planner,Procurement Dashboard,False,False,False,False,False
+Maintenance Planner,Purchase Receipt,False,False,False,False,False
+Maintenance Planner,Purchase Request,True,True,True,False,True
+Maintenance Planner,Purchase Request Line,True,True,True,False,True
+Maintenance Planner,Purchase Return,False,False,False,False,False
+Maintenance Planner,Putaway,True,True,True,False,True
+Maintenance Planner,Reason Code,False,False,False,False,False
+Maintenance Planner,RFQ Log,False,False,False,False,False
+Maintenance Planner,Stock Count,False,False,False,False,False
+Maintenance Planner,Stock Count Line,False,False,False,False,False
+Maintenance Planner,Stock Count Task,False,False,False,False,False
+Maintenance Planner,Stock Ledger Entry,False,False,False,False,False
+Maintenance Planner,Store,True,False,False,False,False
+Maintenance Planner,Transfer,True,True,True,False,True
+Maintenance Planner,Transfer Receipt,False,False,False,False,False
+Maintenance Planner,Unit of Measure,True,False,False,False,False
+Maintenance Planner,Vendor,True,False,False,False,False
+Maintenance Planner,Zone,True,False,False,False,False
+Maintenance Planner,Account,True,False,False,False,False
+Maintenance Planner,Annual Budget,False,False,False,False,False
+Maintenance Planner,Contractor,True,True,True,False,True
+Maintenance Planner,Cost Code,True,False,False,False,False
+Maintenance Planner,Department,True,False,False,False,False
+Maintenance Planner,Employee,True,True,True,False,True
+Maintenance Planner,Employee Site,True,True,True,False,True
+Maintenance Planner,Holiday,False,False,False,False,False
+Maintenance Planner,Labor,True,True,True,False,True
+Maintenance Planner,Labor Availability,False,False,False,False,False
+Maintenance Planner,Labor Availability Details,False,False,False,False,False
+Maintenance Planner,Labor Group,True,True,True,False,True
+Maintenance Planner,Leave Application,False,False,False,False,False
+Maintenance Planner,Leave Type,False,False,False,False,False
+Maintenance Planner,Manufacturer,True,True,True,False,True
+Maintenance Planner,Model,True,True,True,False,True
+Maintenance Planner,Note,True,False,False,False,False
+Maintenance Planner,Organization,True,False,False,False,False
+Maintenance Planner,Request Activity Type,True,False,False,False,False
+Maintenance Planner,Site,True,False,False,False,False
+Maintenance Planner,Trade,True,True,True,False,True
+Maintenance Planner,Trade Availability,False,False,False,False,False
+Maintenance Planner,Trade Labor,True,True,True,False,True
+Maintenance Planner,Work Schedule,False,False,False,False,False
+Maintenance Planner,Work Schedule Details,False,False,False,False,False
+Maintenance Lead,Asset,True,True,True,False,True
+Maintenance Lead,Asset Class,True,False,False,False,False
+Maintenance Lead,Asset Class Availability,False,False,False,False,False
+Maintenance Lead,Asset Class Property,True,False,False,False,False
+Maintenance Lead,Asset Dashboard,True,False,False,False,False
+Maintenance Lead,Asset Position,True,False,False,False,False
+Maintenance Lead,Asset Property,True,True,True,False,True
+Maintenance Lead,Breakdown,False,False,False,False,False
+Maintenance Lead,Disposed,True,True,True,False,True
+Maintenance Lead,Equipment,True,True,True,False,True
+Maintenance Lead,Equipment Availability,False,False,False,False,False
+Maintenance Lead,Equipment Availability Details,False,False,False,False,False
+Maintenance Lead,Equipment Group,True,True,True,False,True
+Maintenance Lead,Equipment Schedule,False,False,False,False,False
+Maintenance Lead,Equipment Schedule Details,False,False,False,False,False
+Maintenance Lead,Incident Employee,True,True,True,False,True
+Maintenance Lead,Incident,True,True,True,False,True
+Maintenance Lead,Location,True,False,False,False,False
+Maintenance Lead,Location Type,True,False,False,False,False
+Maintenance Lead,Position,True,False,False,False,False
+Maintenance Lead,Position Relation,True,False,False,False,False
+Maintenance Lead,PNID Layouts,True,True,True,True,True
+Maintenance Lead,Property,True,False,False,False,False
+Maintenance Lead,Property Type,True,False,False,False,False
+Maintenance Lead,System,True,False,False,False,False
+Maintenance Lead,System Type,True,False,False,False,False
+Maintenance Lead,Checklist,True,True,True,False,True
+Maintenance Lead,Checklist Details,True,True,True,False,True
+Maintenance Lead,Maintenance Activity,True,True,True,False,True
+Maintenance Lead,Maintenance Calendar,True,True,True,False,True
+Maintenance Lead,Maintenance Condition,True,True,True,False,True
+Maintenance Lead,Maintenance Dashboard,True,False,False,False,False
+Maintenance Lead,Maintenance Equipment,True,True,True,False,True
+Maintenance Lead,Maintenance Interval,True,True,True,False,True
+Maintenance Lead,Maintenance Order,True,True,True,False,True
+Maintenance Lead,Maintenance Order Detail,True,True,True,False,True
+Maintenance Lead,Maintenance Parts,True,True,True,False,True
+Maintenance Lead,Maintenance Plan,True,True,True,False,True
+Maintenance Lead,Maintenance Request,True,True,True,False,True
+Maintenance Lead,Maintenance Trade,True,True,True,False,True
+Maintenance Lead,Planned Maintenance Activity,True,True,True,False,True
+Maintenance Lead,Sensor,True,False,False,False,False
+Maintenance Lead,SensorData,True,False,False,False,False
+Maintenance Lead,Category of Failure,True,False,False,False,False
+Maintenance Lead,Work Management Dashboard,True,False,False,False,False
+Maintenance Lead,Work Order,True,True,True,False,True
+Maintenance Lead,Work Order Activity,True,True,True,False,True
+Maintenance Lead,Work Order Activity Logs,True,True,True,False,True
+Maintenance Lead,Work Order Checklist,True,True,True,False,True
+Maintenance Lead,Work Order Checklist Detail,True,True,True,False,True
+Maintenance Lead,Work Order Equipment,True,True,True,False,True
+Maintenance Lead,Work Order Equipment Assignment,False,False,False,False,False
+Maintenance Lead,Work Order Equipment Actual Hours,True,True,True,False,True
+Maintenance Lead,Work Order Labor,True,True,True,False,True
+Maintenance Lead,Work Order Labor Assignment,False,False,False,False,False
+Maintenance Lead,Work Order Labor Actual Hours,True,True,True,False,True
+Maintenance Lead,Work Order Parts,True,True,True,False,True
+Maintenance Lead,Work Order Parts Reservation,False,False,False,False,False
+Maintenance Lead,Bin,True,False,False,False,False
+Maintenance Lead,Currency,True,False,False,False,False
+Maintenance Lead,Inspection,False,False,False,False,False
+Maintenance Lead,Inventory,True,True,True,False,True
+Maintenance Lead,Inventory Adjustment,False,False,False,False,False
+Maintenance Lead,Inventory Adjustment Line,False,False,False,False,False
+Maintenance Lead,Item,True,False,False,False,False
+Maintenance Lead,Item Class,False,False,False,False,False
+Maintenance Lead,Item Issue,False,False,False,False,False
+Maintenance Lead,Item Issue Line,False,False,False,False,False
+Maintenance Lead,Item Return,False,False,False,False,False
+Maintenance Lead,Item Return Line,False,False,False,False,False
+Maintenance Lead,Procurement Dashboard,True,False,False,False,False
+Maintenance Lead,Purchase Receipt,True,False,False,False,False
+Maintenance Lead,Purchase Request,True,True,True,False,True
+Maintenance Lead,Purchase Request Line,True,True,True,False,True
+Maintenance Lead,Purchase Return,True,True,True,False,True
+Maintenance Lead,Putaway,False,False,False,False,False
+Maintenance Lead,Reason Code,False,False,False,False,False
+Maintenance Lead,RFQ Log,False,False,False,False,False
+Maintenance Lead,Stock Count,False,False,False,False,False
+Maintenance Lead,Stock Count Line,False,False,False,False,False
+Maintenance Lead,Stock Count Task,False,False,False,False,False
+Maintenance Lead,Stock Ledger Entry,False,False,False,False,False
+Maintenance Lead,Store,True,False,False,False,False
+Maintenance Lead,Transfer,True,True,True,False,True
+Maintenance Lead,Transfer Receipt,False,False,False,False,False
+Maintenance Lead,Unit of Measure,True,False,False,False,False
+Maintenance Lead,Vendor,True,False,False,False,False
+Maintenance Lead,Zone,True,False,False,False,False
+Maintenance Lead,Account,True,False,False,False,False
+Maintenance Lead,Annual Budget,False,False,False,False,False
+Maintenance Lead,Contractor,True,True,True,False,True
+Maintenance Lead,Cost Code,True,False,False,False,False
+Maintenance Lead,Department,True,False,False,False,False
+Maintenance Lead,Employee,True,False,False,False,False
+Maintenance Lead,Employee Site,True,False,False,False,False
+Maintenance Lead,Holiday,False,False,False,False,False
+Maintenance Lead,Labor,True,True,True,False,True
+Maintenance Lead,Labor Availability,False,False,False,False,False
+Maintenance Lead,Labor Availability Details,False,False,False,False,False
+Maintenance Lead,Labor Group,True,True,True,False,True
+Maintenance Lead,Leave Application,False,False,False,False,False
+Maintenance Lead,Leave Type,False,False,False,False,False
+Maintenance Lead,Manufacturer,True,True,True,False,True
+Maintenance Lead,Model,True,True,True,False,True
+Maintenance Lead,Note,True,False,False,False,False
+Maintenance Lead,Organization,False,False,False,False,False
+Maintenance Lead,Request Activity Type,True,False,False,False,False
+Maintenance Lead,Site,True,False,False,False,False
+Maintenance Lead,Trade,True,True,True,False,True
+Maintenance Lead,Trade Availability,False,False,False,False,False
+Maintenance Lead,Trade Labor,True,True,True,False,True
+Maintenance Lead,Work Schedule,False,False,False,False,False
+Maintenance Lead,Work Schedule Details,False,False,False,False,False
+Purchasing Coordinator,Asset,True,True,True,False,True
+Purchasing Coordinator,Asset Class,True,False,False,False,False
+Purchasing Coordinator,Asset Class Availability,False,False,False,False,False
+Purchasing Coordinator,Asset Class Property,True,False,False,False,False
+Purchasing Coordinator,Asset Dashboard,True,False,False,False,False
+Purchasing Coordinator,Asset Position,False,False,False,False,False
+Purchasing Coordinator,Asset Property,True,False,False,False,False
+Purchasing Coordinator,Breakdown,False,False,False,False,False
+Purchasing Coordinator,Disposed,False,False,False,False,False
+Purchasing Coordinator,Equipment,True,False,False,False,False
+Purchasing Coordinator,Equipment Availability,False,False,False,False,False
+Purchasing Coordinator,Equipment Availability Details,False,False,False,False,False
+Purchasing Coordinator,Equipment Group,False,False,False,False,False
+Purchasing Coordinator,Equipment Schedule,False,False,False,False,False
+Purchasing Coordinator,Equipment Schedule Details,False,False,False,False,False
+Purchasing Coordinator,Incident Employee,False,False,False,False,False
+Purchasing Coordinator,Incident,False,False,False,False,False
+Purchasing Coordinator,Location,True,False,False,False,False
+Purchasing Coordinator,Location Type,True,False,False,False,False
+Purchasing Coordinator,Position,False,False,False,False,False
+Purchasing Coordinator,Position Relation,False,False,False,False,False
+Purchasing Coordinator,PNID Layouts,False,False,False,False,False
+Purchasing Coordinator,Property,True,False,False,False,False
+Purchasing Coordinator,Property Type,True,False,False,False,False
+Purchasing Coordinator,System,True,False,False,False,False
+Purchasing Coordinator,System Type,True,False,False,False,False
+Purchasing Coordinator,Checklist,False,False,False,False,False
+Purchasing Coordinator,Checklist Details,False,False,False,False,False
+Purchasing Coordinator,Maintenance Activity,False,False,False,False,False
+Purchasing Coordinator,Maintenance Calendar,False,False,False,False,False
+Purchasing Coordinator,Maintenance Condition,False,False,False,False,False
+Purchasing Coordinator,Maintenance Dashboard,False,False,False,False,False
+Purchasing Coordinator,Maintenance Equipment,False,False,False,False,False
+Purchasing Coordinator,Maintenance Interval,False,False,False,False,False
+Purchasing Coordinator,Maintenance Order,False,False,False,False,False
+Purchasing Coordinator,Maintenance Order Detail,False,False,False,False,False
+Purchasing Coordinator,Maintenance Parts,False,False,False,False,False
+Purchasing Coordinator,Maintenance Plan,False,False,False,False,False
+Purchasing Coordinator,Maintenance Request,False,False,False,False,False
+Purchasing Coordinator,Maintenance Trade,False,False,False,False,False
+Purchasing Coordinator,Planned Maintenance Activity,False,False,False,False,False
+Purchasing Coordinator,Sensor,False,False,False,False,False
+Purchasing Coordinator,SensorData,False,False,False,False,False
+Purchasing Coordinator,Category of Failure,False,False,False,False,False
+Purchasing Coordinator,Work Management Dashboard,False,False,False,False,False
+Purchasing Coordinator,Work Order,False,False,False,False,False
+Purchasing Coordinator,Work Order Activity,False,False,False,False,False
+Purchasing Coordinator,Work Order Activity Logs,False,False,False,False,False
+Purchasing Coordinator,Work Order Checklist,False,False,False,False,False
+Purchasing Coordinator,Work Order Checklist Detail,False,False,False,False,False
+Purchasing Coordinator,Work Order Equipment,False,False,False,False,False
+Purchasing Coordinator,Work Order Equipment Assignment,False,False,False,False,False
+Purchasing Coordinator,Work Order Equipment Actual Hours,False,False,False,False,False
+Purchasing Coordinator,Work Order Labor,False,False,False,False,False
+Purchasing Coordinator,Work Order Labor Assignment,False,False,False,False,False
+Purchasing Coordinator,Work Order Labor Actual Hours,False,False,False,False,False
+Purchasing Coordinator,Work Order Parts,False,False,False,False,False
+Purchasing Coordinator,Work Order Parts Reservation,False,False,False,False,False
+Purchasing Coordinator,Bin,True,False,False,False,False
+Purchasing Coordinator,Currency,True,True,True,False,True
+Purchasing Coordinator,Inspection,True,True,True,False,True
+Purchasing Coordinator,Inventory,True,False,False,False,False
+Purchasing Coordinator,Inventory Adjustment,False,False,False,False,False
+Purchasing Coordinator,Inventory Adjustment Line,False,False,False,False,False
+Purchasing Coordinator,Item,True,True,True,False,True
+Purchasing Coordinator,Item Class,False,False,False,False,False
+Purchasing Coordinator,Item Issue,False,False,False,False,False
+Purchasing Coordinator,Item Issue Line,False,False,False,False,False
+Purchasing Coordinator,Item Return,False,False,False,False,False
+Purchasing Coordinator,Item Return Line,False,False,False,False,False
+Purchasing Coordinator,Procurement Dashboard,True,False,False,False,False
+Purchasing Coordinator,Purchase Receipt,True,True,True,False,True
+Purchasing Coordinator,Purchase Request,True,True,True,False,True
+Purchasing Coordinator,Purchase Request Line,True,True,True,False,True
+Purchasing Coordinator,Purchase Return,True,True,True,False,True
+Purchasing Coordinator,Putaway,False,False,False,False,False
+Purchasing Coordinator,Reason Code,False,False,False,False,False
+Purchasing Coordinator,RFQ Log,True,True,True,False,True
+Purchasing Coordinator,Stock Count,False,False,False,False,False
+Purchasing Coordinator,Stock Count Line,False,False,False,False,False
+Purchasing Coordinator,Stock Count Task,False,False,False,False,False
+Purchasing Coordinator,Stock Ledger Entry,False,False,False,False,False
+Purchasing Coordinator,Store,True,False,False,False,False
+Purchasing Coordinator,Transfer,True,True,True,False,True
+Purchasing Coordinator,Transfer Receipt,True,True,True,False,True
+Purchasing Coordinator,Unit of Measure,True,False,False,False,False
+Purchasing Coordinator,Vendor,True,True,True,False,True
+Purchasing Coordinator,Zone,True,False,False,False,False
+Purchasing Coordinator,Account,True,True,True,False,True
+Purchasing Coordinator,Annual Budget,True,True,True,False,True
+Purchasing Coordinator,Contractor,True,True,True,False,True
+Purchasing Coordinator,Cost Code,True,True,True,False,True
+Purchasing Coordinator,Department,True,True,True,False,True
+Purchasing Coordinator,Employee,True,False,False,False,False
+Purchasing Coordinator,Employee Site,True,False,False,False,False
+Purchasing Coordinator,Holiday,False,False,False,False,False
+Purchasing Coordinator,Labor,False,False,False,False,False
+Purchasing Coordinator,Labor Availability,False,False,False,False,False
+Purchasing Coordinator,Labor Availability Details,False,False,False,False,False
+Purchasing Coordinator,Labor Group,False,False,False,False,False
+Purchasing Coordinator,Leave Application,False,False,False,False,False
+Purchasing Coordinator,Leave Type,False,False,False,False,False
+Purchasing Coordinator,Manufacturer,False,False,False,False,False
+Purchasing Coordinator,Model,False,False,False,False,False
+Purchasing Coordinator,Note,True,False,False,False,False
+Purchasing Coordinator,Organization,True,True,True,False,True
+Purchasing Coordinator,Request Activity Type,False,False,False,False,False
+Purchasing Coordinator,Site,True,True,True,False,True
+Purchasing Coordinator,Trade,False,False,False,False,False
+Purchasing Coordinator,Trade Availability,False,False,False,False,False
+Purchasing Coordinator,Trade Labor,False,False,False,False,False
+Purchasing Coordinator,Work Schedule,False,False,False,False,False
+Purchasing Coordinator,Work Schedule Details,False,False,False,False,False
+Purchaser,Asset,False,False,False,False,False
+Purchaser,Asset Class,False,False,False,False,False
+Purchaser,Asset Class Availability,False,False,False,False,False
+Purchaser,Asset Class Property,False,False,False,False,False
+Purchaser,Asset Dashboard,False,False,False,False,False
+Purchaser,Asset Position,False,False,False,False,False
+Purchaser,Asset Property,False,False,False,False,False
+Purchaser,Breakdown,False,False,False,False,False
+Purchaser,Disposed,False,False,False,False,False
+Purchaser,Equipment,False,False,False,False,False
+Purchaser,Equipment Availability,False,False,False,False,False
+Purchaser,Equipment Availability Details,False,False,False,False,False
+Purchaser,Equipment Group,False,False,False,False,False
+Purchaser,Equipment Schedule,False,False,False,False,False
+Purchaser,Equipment Schedule Details,False,False,False,False,False
+Purchaser,Incident Employee,False,False,False,False,False
+Purchaser,Incident,False,False,False,False,False
+Purchaser,Location,False,False,False,False,False
+Purchaser,Location Type,False,False,False,False,False
+Purchaser,Position,False,False,False,False,False
+Purchaser,Position Relation,False,False,False,False,False
+Purchaser,PNID Layouts,False,False,False,False,False
+Purchaser,Property,False,False,False,False,False
+Purchaser,Property Type,False,False,False,False,False
+Purchaser,System,False,False,False,False,False
+Purchaser,System Type,False,False,False,False,False
+Purchaser,Checklist,False,False,False,False,False
+Purchaser,Checklist Details,False,False,False,False,False
+Purchaser,Maintenance Activity,False,False,False,False,False
+Purchaser,Maintenance Calendar,False,False,False,False,False
+Purchaser,Maintenance Condition,False,False,False,False,False
+Purchaser,Maintenance Dashboard,False,False,False,False,False
+Purchaser,Maintenance Equipment,False,False,False,False,False
+Purchaser,Maintenance Interval,False,False,False,False,False
+Purchaser,Maintenance Order,False,False,False,False,False
+Purchaser,Maintenance Order Detail,False,False,False,False,False
+Purchaser,Maintenance Parts,False,False,False,False,False
+Purchaser,Maintenance Plan,False,False,False,False,False
+Purchaser,Maintenance Request,False,False,False,False,False
+Purchaser,Maintenance Trade,False,False,False,False,False
+Purchaser,Planned Maintenance Activity,False,False,False,False,False
+Purchaser,Sensor,False,False,False,False,False
+Purchaser,SensorData,False,False,False,False,False
+Purchaser,Category of Failure,False,False,False,False,False
+Purchaser,Work Management Dashboard,False,False,False,False,False
+Purchaser,Work Order,False,False,False,False,False
+Purchaser,Work Order Activity,False,False,False,False,False
+Purchaser,Work Order Activity Logs,False,False,False,False,False
+Purchaser,Work Order Checklist,False,False,False,False,False
+Purchaser,Work Order Checklist Detail,False,False,False,False,False
+Purchaser,Work Order Equipment,False,False,False,False,False
+Purchaser,Work Order Equipment Assignment,False,False,False,False,False
+Purchaser,Work Order Equipment Actual Hours,False,False,False,False,False
+Purchaser,Work Order Labor,False,False,False,False,False
+Purchaser,Work Order Labor Assignment,False,False,False,False,False
+Purchaser,Work Order Labor Actual Hours,False,False,False,False,False
+Purchaser,Work Order Parts,False,False,False,False,False
+Purchaser,Work Order Parts Reservation,False,False,False,False,False
+Purchaser,Bin,False,False,False,False,False
+Purchaser,Currency,True,False,False,False,False
+Purchaser,Inspection,True,True,True,False,True
+Purchaser,Inventory,False,False,False,False,False
+Purchaser,Inventory Adjustment,False,False,False,False,False
+Purchaser,Inventory Adjustment Line,False,False,False,False,False
+Purchaser,Item,True,False,False,False,False
+Purchaser,Item Class,False,False,False,False,False
+Purchaser,Item Issue,False,False,False,False,False
+Purchaser,Item Issue Line,False,False,False,False,False
+Purchaser,Item Return,False,False,False,False,False
+Purchaser,Item Return Line,False,False,False,False,False
+Purchaser,Procurement Dashboard,True,False,False,False,False
+Purchaser,Purchase Receipt,True,False,False,False,False
+Purchaser,Purchase Request,True,True,True,False,True
+Purchaser,Purchase Request Line,True,True,True,False,True
+Purchaser,Purchase Return,True,True,True,False,True
+Purchaser,Putaway,False,False,False,False,False
+Purchaser,Reason Code,False,False,False,False,False
+Purchaser,RFQ Log,True,True,False,False,False
+Purchaser,Stock Count,False,False,False,False,False
+Purchaser,Stock Count Line,False,False,False,False,False
+Purchaser,Stock Count Task,False,False,False,False,False
+Purchaser,Stock Ledger Entry,False,False,False,False,False
+Purchaser,Store,False,False,False,False,False
+Purchaser,Transfer,True,True,True,False,True
+Purchaser,Transfer Receipt,True,True,True,False,True
+Purchaser,Unit of Measure,True,False,False,False,False
+Purchaser,Vendor,True,True,True,False,True
+Purchaser,Zone,True,False,False,False,False
+Purchaser,Account,True,False,False,False,False
+Purchaser,Annual Budget,False,False,False,False,False
+Purchaser,Contractor,True,False,False,False,False
+Purchaser,Cost Code,True,False,False,False,False
+Purchaser,Department,True,False,False,False,False
+Purchaser,Employee,True,False,False,False,False
+Purchaser,Employee Site,True,False,False,False,False
+Purchaser,Holiday,False,False,False,False,False
+Purchaser,Labor,False,False,False,False,False
+Purchaser,Labor Availability,False,False,False,False,False
+Purchaser,Labor Availability Details,False,False,False,False,False
+Purchaser,Labor Group,False,False,False,False,False
+Purchaser,Leave Application,False,False,False,False,False
+Purchaser,Leave Type,False,False,False,False,False
+Purchaser,Manufacturer,False,False,False,False,False
+Purchaser,Model,False,False,False,False,False
+Purchaser,Note,True,False,False,False,False
+Purchaser,Organization,True,False,False,False,False
+Purchaser,Request Activity Type,False,False,False,False,False
+Purchaser,Site,True,False,False,False,False
+Purchaser,Trade,False,False,False,False,False
+Purchaser,Trade Availability,False,False,False,False,False
+Purchaser,Trade Labor,False,False,False,False,False
+Purchaser,Work Schedule,False,False,False,False,False
+Purchaser,Work Schedule Details,False,False,False,False,False
+Warehouse Coordinator,Asset,True,True,True,False,True
+Warehouse Coordinator,Asset Class,True,False,False,False,False
+Warehouse Coordinator,Asset Class Availability,False,False,False,False,False
+Warehouse Coordinator,Asset Class Property,True,False,False,False,False
+Warehouse Coordinator,Asset Dashboard,False,False,False,False,False
+Warehouse Coordinator,Asset Position,False,False,False,False,False
+Warehouse Coordinator,Asset Property,True,False,False,False,False
+Warehouse Coordinator,Breakdown,False,False,False,False,False
+Warehouse Coordinator,Disposed,False,False,False,False,False
+Warehouse Coordinator,Equipment,True,True,True,False,True
+Warehouse Coordinator,Equipment Availability,False,False,False,False,False
+Warehouse Coordinator,Equipment Availability Details,False,False,False,False,False
+Warehouse Coordinator,Equipment Group,False,False,False,False,False
+Warehouse Coordinator,Equipment Schedule,False,False,False,False,False
+Warehouse Coordinator,Equipment Schedule Details,False,False,False,False,False
+Warehouse Coordinator,Incident Employee,False,False,False,False,False
+Warehouse Coordinator,Incident,False,False,False,False,False
+Warehouse Coordinator,Location,False,False,False,False,False
+Warehouse Coordinator,Location Type,False,False,False,False,False
+Warehouse Coordinator,Position,False,False,False,False,False
+Warehouse Coordinator,Position Relation,False,False,False,False,False
+Warehouse Coordinator,PNID Layouts,False,False,False,False,False
+Warehouse Coordinator,Property,False,False,False,False,False
+Warehouse Coordinator,Property Type,False,False,False,False,False
+Warehouse Coordinator,System,False,False,False,False,False
+Warehouse Coordinator,System Type,False,False,False,False,False
+Warehouse Coordinator,Checklist,False,False,False,False,False
+Warehouse Coordinator,Checklist Details,False,False,False,False,False
+Warehouse Coordinator,Maintenance Activity,False,False,False,False,False
+Warehouse Coordinator,Maintenance Calendar,False,False,False,False,False
+Warehouse Coordinator,Maintenance Condition,False,False,False,False,False
+Warehouse Coordinator,Maintenance Dashboard,False,False,False,False,False
+Warehouse Coordinator,Maintenance Equipment,False,False,False,False,False
+Warehouse Coordinator,Maintenance Interval,False,False,False,False,False
+Warehouse Coordinator,Maintenance Order,False,False,False,False,False
+Warehouse Coordinator,Maintenance Order Detail,False,False,False,False,False
+Warehouse Coordinator,Maintenance Parts,False,False,False,False,False
+Warehouse Coordinator,Maintenance Plan,False,False,False,False,False
+Warehouse Coordinator,Maintenance Request,False,False,False,False,False
+Warehouse Coordinator,Maintenance Trade,False,False,False,False,False
+Warehouse Coordinator,Planned Maintenance Activity,False,False,False,False,False
+Warehouse Coordinator,Sensor,False,False,False,False,False
+Warehouse Coordinator,SensorData,False,False,False,False,False
+Warehouse Coordinator,Category of Failure,False,False,False,False,False
+Warehouse Coordinator,Work Management Dashboard,True,False,False,False,False
+Warehouse Coordinator,Work Order,True,False,False,False,False
+Warehouse Coordinator,Work Order Activity,True,False,False,False,False
+Warehouse Coordinator,Work Order Activity Logs,False,False,False,False,False
+Warehouse Coordinator,Work Order Checklist,False,False,False,False,False
+Warehouse Coordinator,Work Order Checklist Detail,False,False,False,False,False
+Warehouse Coordinator,Work Order Equipment,True,True,True,False,True
+Warehouse Coordinator,Work Order Equipment Assignment,False,False,False,False,False
+Warehouse Coordinator,Work Order Equipment Actual Hours,False,False,False,False,False
+Warehouse Coordinator,Work Order Labor,True,False,False,False,False
+Warehouse Coordinator,Work Order Labor Assignment,False,False,False,False,False
+Warehouse Coordinator,Work Order Labor Actual Hours,False,False,False,False,False
+Warehouse Coordinator,Work Order Parts,True,True,True,False,True
+Warehouse Coordinator,Work Order Parts Reservation,False,False,False,False,False
+Warehouse Coordinator,Bin,True,True,True,False,True
+Warehouse Coordinator,Currency,True,True,True,False,True
+Warehouse Coordinator,Inspection,True,True,True,False,True
+Warehouse Coordinator,Inventory,True,True,True,False,True
+Warehouse Coordinator,Inventory Adjustment,True,True,True,False,True
+Warehouse Coordinator,Inventory Adjustment Line,True,True,True,False,True
+Warehouse Coordinator,Item,True,True,True,False,True
+Warehouse Coordinator,Item Class,True,True,True,False,True
+Warehouse Coordinator,Item Issue,True,True,True,False,True
+Warehouse Coordinator,Item Issue Line,True,True,True,False,True
+Warehouse Coordinator,Item Return,True,True,True,False,True
+Warehouse Coordinator,Item Return Line,True,True,True,False,True
+Warehouse Coordinator,Procurement Dashboard,True,False,False,False,False
+Warehouse Coordinator,Purchase Receipt,True,True,True,False,True
+Warehouse Coordinator,Purchase Request,True,True,True,False,True
+Warehouse Coordinator,Purchase Request Line,True,True,True,False,True
+Warehouse Coordinator,Purchase Return,True,True,True,False,True
+Warehouse Coordinator,Putaway,True,True,True,False,True
+Warehouse Coordinator,Reason Code,True,True,True,False,True
+Warehouse Coordinator,RFQ Log,True,True,True,False,True
+Warehouse Coordinator,Stock Count,True,True,True,False,True
+Warehouse Coordinator,Stock Count Line,True,True,True,False,True
+Warehouse Coordinator,Stock Count Task,False,False,False,False,False
+Warehouse Coordinator,Stock Ledger Entry,False,False,False,False,False
+Warehouse Coordinator,Store,True,True,True,False,True
+Warehouse Coordinator,Transfer,True,True,True,False,True
+Warehouse Coordinator,Transfer Receipt,True,True,True,False,True
+Warehouse Coordinator,Unit of Measure,True,True,True,False,True
+Warehouse Coordinator,Vendor,True,True,True,False,True
+Warehouse Coordinator,Zone,True,True,True,False,True
+Warehouse Coordinator,Account,True,False,False,False,False
+Warehouse Coordinator,Annual Budget,False,False,False,False,False
+Warehouse Coordinator,Contractor,True,True,True,False,True
+Warehouse Coordinator,Cost Code,True,False,False,False,False
+Warehouse Coordinator,Department,True,False,False,False,False
+Warehouse Coordinator,Employee,True,False,False,False,False
+Warehouse Coordinator,Employee Site,True,False,False,False,False
+Warehouse Coordinator,Holiday,False,False,False,False,False
+Warehouse Coordinator,Labor,False,False,False,False,False
+Warehouse Coordinator,Labor Availability,False,False,False,False,False
+Warehouse Coordinator,Labor Availability Details,False,False,False,False,False
+Warehouse Coordinator,Labor Group,False,False,False,False,False
+Warehouse Coordinator,Leave Application,False,False,False,False,False
+Warehouse Coordinator,Leave Type,False,False,False,False,False
+Warehouse Coordinator,Manufacturer,False,False,False,False,False
+Warehouse Coordinator,Model,False,False,False,False,False
+Warehouse Coordinator,Note,True,False,False,False,False
+Warehouse Coordinator,Organization,True,False,False,False,False
+Warehouse Coordinator,Request Activity Type,False,False,False,False,False
+Warehouse Coordinator,Site,True,False,False,False,False
+Warehouse Coordinator,Trade,False,False,False,False,False
+Warehouse Coordinator,Trade Availability,False,False,False,False,False
+Warehouse Coordinator,Trade Labor,False,False,False,False,False
+Warehouse Coordinator,Work Schedule,False,False,False,False,False
+Warehouse Coordinator,Work Schedule Details,False,False,False,False,False
+Warehouse Operator,Asset,True,False,False,False,False
+Warehouse Operator,Asset Class,True,False,False,False,False
+Warehouse Operator,Asset Class Availability,False,False,False,False,False
+Warehouse Operator,Asset Class Property,True,False,False,False,False
+Warehouse Operator,Asset Dashboard,False,False,False,False,False
+Warehouse Operator,Asset Position,False,False,False,False,False
+Warehouse Operator,Asset Property,False,False,False,False,False
+Warehouse Operator,Breakdown,False,False,False,False,False
+Warehouse Operator,Disposed,False,False,False,False,False
+Warehouse Operator,Equipment,True,False,False,False,False
+Warehouse Operator,Equipment Availability,False,False,False,False,False
+Warehouse Operator,Equipment Availability Details,False,False,False,False,False
+Warehouse Operator,Equipment Group,False,False,False,False,False
+Warehouse Operator,Equipment Schedule,False,False,False,False,False
+Warehouse Operator,Equipment Schedule Details,False,False,False,False,False
+Warehouse Operator,Incident Employee,False,False,False,False,False
+Warehouse Operator,Incident,False,False,False,False,False
+Warehouse Operator,Location,True,False,False,False,False
+Warehouse Operator,Location Type,False,False,False,False,False
+Warehouse Operator,Position,False,False,False,False,False
+Warehouse Operator,Position Relation,False,False,False,False,False
+Warehouse Operator,PNID Layouts,False,False,False,False,False
+Warehouse Operator,Property,False,False,False,False,False
+Warehouse Operator,Property Type,False,False,False,False,False
+Warehouse Operator,System,False,False,False,False,False
+Warehouse Operator,System Type,False,False,False,False,False
+Warehouse Operator,Checklist,False,False,False,False,False
+Warehouse Operator,Checklist Details,False,False,False,False,False
+Warehouse Operator,Maintenance Activity,False,False,False,False,False
+Warehouse Operator,Maintenance Calendar,False,False,False,False,False
+Warehouse Operator,Maintenance Condition,False,False,False,False,False
+Warehouse Operator,Maintenance Dashboard,False,False,False,False,False
+Warehouse Operator,Maintenance Equipment,False,False,False,False,False
+Warehouse Operator,Maintenance Interval,False,False,False,False,False
+Warehouse Operator,Maintenance Order,False,False,False,False,False
+Warehouse Operator,Maintenance Order Detail,False,False,False,False,False
+Warehouse Operator,Maintenance Parts,False,False,False,False,False
+Warehouse Operator,Maintenance Plan,False,False,False,False,False
+Warehouse Operator,Maintenance Request,False,False,False,False,False
+Warehouse Operator,Maintenance Trade,False,False,False,False,False
+Warehouse Operator,Planned Maintenance Activity,False,False,False,False,False
+Warehouse Operator,Sensor,False,False,False,False,False
+Warehouse Operator,SensorData,False,False,False,False,False
+Warehouse Operator,Category of Failure,False,False,False,False,False
+Warehouse Operator,Work Management Dashboard,True,False,False,False,False
+Warehouse Operator,Work Order,True,False,False,False,False
+Warehouse Operator,Work Order Activity,True,False,False,False,False
+Warehouse Operator,Work Order Activity Logs,False,False,False,False,False
+Warehouse Operator,Work Order Checklist,False,False,False,False,False
+Warehouse Operator,Work Order Checklist Detail,False,False,False,False,False
+Warehouse Operator,Work Order Equipment,True,True,True,False,True
+Warehouse Operator,Work Order Equipment Assignment,False,False,False,False,False
+Warehouse Operator,Work Order Equipment Actual Hours,False,False,False,False,False
+Warehouse Operator,Work Order Labor,True,False,False,False,False
+Warehouse Operator,Work Order Labor Assignment,False,False,False,False,False
+Warehouse Operator,Work Order Labor Actual Hours,False,False,False,False,False
+Warehouse Operator,Work Order Parts,True,True,True,False,True
+Warehouse Operator,Work Order Parts Reservation,False,False,False,False,False
+Warehouse Operator,Bin,True,False,False,False,False
+Warehouse Operator,Currency,True,False,False,False,False
+Warehouse Operator,Inspection,True,False,False,False,False
+Warehouse Operator,Inventory,True,True,True,False,True
+Warehouse Operator,Inventory Adjustment,False,False,False,False,False
+Warehouse Operator,Inventory Adjustment Line,False,False,False,False,False
+Warehouse Operator,Item,True,True,True,False,True
+Warehouse Operator,Item Class,True,True,True,False,True
+Warehouse Operator,Item Issue,True,True,True,False,True
+Warehouse Operator,Item Issue Line,True,True,True,False,True
+Warehouse Operator,Item Return,True,True,True,False,True
+Warehouse Operator,Item Return Line,True,True,True,False,True
+Warehouse Operator,Procurement Dashboard,True,False,False,False,False
+Warehouse Operator,Purchase Receipt,True,True,True,False,True
+Warehouse Operator,Purchase Request,True,True,True,False,True
+Warehouse Operator,Purchase Request Line,True,True,True,False,True
+Warehouse Operator,Purchase Return,True,True,True,False,True
+Warehouse Operator,Putaway,True,True,True,False,True
+Warehouse Operator,Reason Code,False,False,False,False,False
+Warehouse Operator,RFQ Log,True,False,False,False,False
+Warehouse Operator,Stock Count,False,False,False,False,False
+Warehouse Operator,Stock Count Line,False,False,False,False,False
+Warehouse Operator,Stock Count Task,False,False,False,False,False
+Warehouse Operator,Stock Ledger Entry,False,False,False,False,False
+Warehouse Operator,Store,True,False,False,False,False
+Warehouse Operator,Transfer,True,True,True,False,True
+Warehouse Operator,Transfer Receipt,True,False,False,False,False
+Warehouse Operator,Unit of Measure,True,False,False,False,False
+Warehouse Operator,Vendor,True,False,False,False,False
+Warehouse Operator,Zone,True,False,False,False,False
+Warehouse Operator,Account,True,False,False,False,False
+Warehouse Operator,Annual Budget,False,False,False,False,False
+Warehouse Operator,Contractor,False,False,False,False,False
+Warehouse Operator,Cost Code,True,False,False,False,False
+Warehouse Operator,Department,True,False,False,False,False
+Warehouse Operator,Employee,True,False,False,False,False
+Warehouse Operator,Employee Site,True,False,False,False,False
+Warehouse Operator,Holiday,False,False,False,False,False
+Warehouse Operator,Labor,False,False,False,False,False
+Warehouse Operator,Labor Availability,False,False,False,False,False
+Warehouse Operator,Labor Availability Details,False,False,False,False,False
+Warehouse Operator,Labor Group,False,False,False,False,False
+Warehouse Operator,Leave Application,False,False,False,False,False
+Warehouse Operator,Leave Type,False,False,False,False,False
+Warehouse Operator,Manufacturer,False,False,False,False,False
+Warehouse Operator,Model,False,False,False,False,False
+Warehouse Operator,Note,True,False,False,False,False
+Warehouse Operator,Organization,True,False,False,False,False
+Warehouse Operator,Request Activity Type,False,False,False,False,False
+Warehouse Operator,Site,True,False,False,False,False
+Warehouse Operator,Trade,False,False,False,False,False
+Warehouse Operator,Trade Availability,False,False,False,False,False
+Warehouse Operator,Trade Labor,False,False,False,False,False
+Warehouse Operator,Work Schedule,False,False,False,False,False
+Warehouse Operator,Work Schedule Details,False,False,False,False,False
+Requestor,Asset,True,False,False,False,False
+Requestor,Asset Class,True,False,False,False,False
+Requestor,Asset Class Availability,False,False,False,False,False
+Requestor,Asset Class Property,True,False,False,False,False
+Requestor,Asset Dashboard,True,False,False,False,False
+Requestor,Asset Position,True,False,False,False,False
+Requestor,Asset Property,True,False,False,False,False
+Requestor,Breakdown,False,False,False,False,False
+Requestor,Disposed,False,False,False,False,False
+Requestor,Equipment,True,False,False,False,False
+Requestor,Equipment Availability,False,False,False,False,False
+Requestor,Equipment Availability Details,False,False,False,False,False
+Requestor,Equipment Group,False,False,False,False,False
+Requestor,Equipment Schedule,False,False,False,False,False
+Requestor,Equipment Schedule Details,False,False,False,False,False
+Requestor,Incident Employee,True,True,True,False,True
+Requestor,Incident,True,True,True,False,True
+Requestor,Location,True,False,False,False,False
+Requestor,Location Type,False,False,False,False,False
+Requestor,Position,True,False,False,False,False
+Requestor,Position Relation,True,False,False,False,False
+Requestor,PNID Layouts,True,True,True,True,True
+Requestor,Property,True,False,False,False,False
+Requestor,Property Type,False,False,False,False,False
+Requestor,System,True,False,False,False,False
+Requestor,System Type,False,False,False,False,False
+Requestor,Checklist,False,False,False,False,False
+Requestor,Checklist Details,False,False,False,False,False
+Requestor,Maintenance Activity,False,False,False,False,False
+Requestor,Maintenance Calendar,False,False,False,False,False
+Requestor,Maintenance Condition,False,False,False,False,False
+Requestor,Maintenance Dashboard,True,False,False,False,False
+Requestor,Maintenance Equipment,False,False,False,False,False
+Requestor,Maintenance Interval,False,False,False,False,False
+Requestor,Maintenance Order,False,False,False,False,False
+Requestor,Maintenance Order Detail,False,False,False,False,False
+Requestor,Maintenance Parts,False,False,False,False,False
+Requestor,Maintenance Plan,False,False,False,False,False
+Requestor,Maintenance Request,True,True,True,False,True
+Requestor,Maintenance Trade,False,False,False,False,False
+Requestor,Planned Maintenance Activity,True,False,False,False,False
+Requestor,Sensor,False,False,False,False,False
+Requestor,SensorData,False,False,False,False,False
+Requestor,Category of Failure,False,False,False,False,False
+Requestor,Work Management Dashboard,False,False,False,False,False
+Requestor,Work Order,False,False,False,False,False
+Requestor,Work Order Activity,False,False,False,False,False
+Requestor,Work Order Activity Logs,False,False,False,False,False
+Requestor,Work Order Checklist,False,False,False,False,False
+Requestor,Work Order Checklist Detail,False,False,False,False,False
+Requestor,Work Order Equipment,False,False,False,False,False
+Requestor,Work Order Equipment Assignment,False,False,False,False,False
+Requestor,Work Order Equipment Actual Hours,False,False,False,False,False
+Requestor,Work Order Labor,False,False,False,False,False
+Requestor,Work Order Labor Assignment,False,False,False,False,False
+Requestor,Work Order Labor Actual Hours,False,False,False,False,False
+Requestor,Work Order Parts,False,False,False,False,False
+Requestor,Work Order Parts Reservation,False,False,False,False,False
+Requestor,Bin,True,False,False,False,False
+Requestor,Currency,False,False,False,False,False
+Requestor,Inspection,False,False,False,False,False
+Requestor,Inventory,True,False,False,False,False
+Requestor,Inventory Adjustment,False,False,False,False,False
+Requestor,Inventory Adjustment Line,False,False,False,False,False
+Requestor,Item,True,False,False,False,False
+Requestor,Item Class,True,False,False,False,False
+Requestor,Item Issue,False,False,False,False,False
+Requestor,Item Issue Line,False,False,False,False,False
+Requestor,Item Return,False,False,False,False,False
+Requestor,Item Return Line,False,False,False,False,False
+Requestor,Procurement Dashboard,True,False,False,False,False
+Requestor,Purchase Receipt,True,False,False,False,False
+Requestor,Purchase Request,True,True,True,False,True
+Requestor,Purchase Request Line,True,True,True,False,True
+Requestor,Purchase Return,True,True,True,False,True
+Requestor,Putaway,False,False,False,False,False
+Requestor,Reason Code,False,False,False,False,False
+Requestor,RFQ Log,True,False,False,False,False
+Requestor,Stock Count,False,False,False,False,False
+Requestor,Stock Count Line,False,False,False,False,False
+Requestor,Stock Count Task,False,False,False,False,False
+Requestor,Stock Ledger Entry,False,False,False,False,False
+Requestor,Store,True,False,False,False,False
+Requestor,Transfer,False,False,False,False,False
+Requestor,Transfer Receipt,False,False,False,False,False
+Requestor,Unit of Measure,True,False,False,False,False
+Requestor,Vendor,True,False,False,False,False
+Requestor,Zone,True,False,False,False,False
+Requestor,Account,True,False,False,False,False
+Requestor,Annual Budget,False,False,False,False,False
+Requestor,Contractor,False,False,False,False,False
+Requestor,Cost Code,True,False,False,False,False
+Requestor,Department,True,False,False,False,False
+Requestor,Employee,True,False,False,False,False
+Requestor,Employee Site,True,False,False,False,False
+Requestor,Holiday,False,False,False,False,False
+Requestor,Labor,False,False,False,False,False
+Requestor,Labor Availability,False,False,False,False,False
+Requestor,Labor Availability Details,False,False,False,False,False
+Requestor,Labor Group,False,False,False,False,False
+Requestor,Leave Application,False,False,False,False,False
+Requestor,Leave Type,False,False,False,False,False
+Requestor,Manufacturer,False,False,False,False,False
+Requestor,Model,False,False,False,False,False
+Requestor,Note,True,False,False,False,False
+Requestor,Organization,False,False,False,False,False
+Requestor,Request Activity Type,False,False,False,False,False
+Requestor,Site,True,False,False,False,False
+Requestor,Trade,False,False,False,False,False
+Requestor,Trade Availability,False,False,False,False,False
+Requestor,Trade Labor,False,False,False,False,False
+Requestor,Work Schedule,False,False,False,False,False
+Requestor,Work Schedule Details,False,False,False,False,False
+Technician,Asset,True,False,False,False,False
+Technician,Asset Class,False,False,False,False,False
+Technician,Asset Class Availability,False,False,False,False,False
+Technician,Asset Class Property,False,False,False,False,False
+Technician,Asset Dashboard,True,False,False,False,False
+Technician,Asset Position,True,False,False,False,False
+Technician,Asset Property,True,False,False,False,False
+Technician,Breakdown,False,False,False,False,False
+Technician,Disposed,False,False,False,False,False
+Technician,Equipment,True,False,False,False,False
+Technician,Equipment Availability,False,False,False,False,False
+Technician,Equipment Availability Details,False,False,False,False,False
+Technician,Equipment Group,True,False,False,False,False
+Technician,Equipment Schedule,False,False,False,False,False
+Technician,Equipment Schedule Details,False,False,False,False,False
+Technician,Incident Employee,True,True,True,False,True
+Technician,Incident,True,True,True,False,True
+Technician,Location,True,False,False,False,False
+Technician,Location Type,False,False,False,False,False
+Technician,Position,True,False,False,False,False
+Technician,Position Relation,True,False,False,False,False
+Technician,PNID Layouts,True,True,True,False,True
+Technician,Property,False,False,False,False,False
+Technician,Property Type,False,False,False,False,False
+Technician,System,False,False,False,False,False
+Technician,System Type,False,False,False,False,False
+Technician,Checklist,True,False,False,False,False
+Technician,Checklist Details,True,False,False,False,False
+Technician,Maintenance Activity,False,False,False,False,False
+Technician,Maintenance Calendar,False,False,False,False,False
+Technician,Maintenance Condition,False,False,False,False,False
+Technician,Maintenance Dashboard,False,False,False,False,False
+Technician,Maintenance Equipment,False,False,False,False,False
+Technician,Maintenance Interval,False,False,False,False,False
+Technician,Maintenance Order,False,False,False,False,False
+Technician,Maintenance Order Detail,False,False,False,False,False
+Technician,Maintenance Parts,False,False,False,False,False
+Technician,Maintenance Plan,False,False,False,False,False
+Technician,Maintenance Request,False,False,False,False,False
+Technician,Maintenance Trade,False,False,False,False,False
+Technician,Planned Maintenance Activity,False,False,False,False,False
+Technician,Sensor,False,False,False,False,False
+Technician,SensorData,False,False,False,False,False
+Technician,Category Of Failure,True,False,False,False,False
+Technician,Work Management Dashboard,True,False,False,False,False
+Technician,Work Order,True,True,True,False,True
+Technician,Work Order Activity,True,True,True,False,True
+Technician,Work Order Activity Logs,True,True,True,False,True
+Technician,Work Order Checklist,True,True,True,False,True
+Technician,Work Order Checklist Detail,True,True,True,False,True
+Technician,Work Order Equipment,True,True,True,False,True
+Technician,Work Order Equipment Assignment,False,False,False,False,False
+Technician,Work Order Equipment Actual Hours,True,True,True,False,True
+Technician,Work Order Labor,True,True,True,False,True
+Technician,Work Order Labor Assignment,False,False,False,False,False
+Technician,Work Order Labor Actual Hours,True,True,True,False,True
+Technician,Work Order Parts,True,True,True,False,True
+Technician,Work Order Parts Reservation,False,False,False,False,False
+Technician,Bin,True,False,False,False,False
+Technician,Currency,False,False,False,False,False
+Technician,Inspection,False,False,False,False,False
+Technician,Inventory,True,False,False,False,False
+Technician,Inventory Adjustment,False,False,False,False,False
+Technician,Inventory Adjustment Line,False,False,False,False,False
+Technician,Item,True,False,False,False,False
+Technician,Item Class,False,False,False,False,False
+Technician,Item Issue,True,False,False,False,False
+Technician,Item Issue Line,True,False,False,False,False
+Technician,Item Return,True,False,False,False,False
+Technician,Item Return Line,True,False,False,False,False
+Technician,Procurement Dashboard,False,False,False,False,False
+Technician,Purchase Receipt,True,False,False,False,False
+Technician,Purchase Request,True,True,False,False,False
+Technician,Purchase Request Line,True,False,False,False,False
+Technician,Purchase Return,False,False,False,False,False
+Technician,Putaway,False,False,False,False,False
+Technician,Reason Code,False,False,False,False,False
+Technician,RFQ Log,False,False,False,False,False
+Technician,Stock Count,False,False,False,False,False
+Technician,Stock Count Line,False,False,False,False,False
+Technician,Stock Count Task,False,False,False,False,False
+Technician,Stock Ledger Entry,False,False,False,False,False
+Technician,Store,True,False,False,False,False
+Technician,Transfer,False,False,False,False,False
+Technician,Transfer Receipt,False,False,False,False,False
+Technician,Unit Of Measure,True,False,False,False,False
+Technician,Vendor,True,False,False,False,False
+Technician,Zone,True,False,False,False,False
+Technician,Account,False,False,False,False,False
+Technician,Annual Budget,False,False,False,False,False
+Technician,Contractor,False,False,False,False,False
+Technician,Cost Code,True,False,False,False,False
+Technician,Department,True,False,False,False,False
+Technician,Employee,True,False,False,False,False
+Technician,Employee Site,True,False,False,False,False
+Technician,Holiday,False,False,False,False,False
+Technician,Labor,True,False,False,False,False
+Technician,Labor Availability,False,False,False,False,False
+Technician,Labor Availability Details,False,False,False,False,False
+Technician,Labor Group,False,False,False,False,False
+Technician,Leave Application,False,False,False,False,False
+Technician,Leave Type,False,False,False,False,False
+Technician,Manufacturer,False,False,False,False,False
+Technician,Model,False,False,False,False,False
+Technician,Note,False,False,False,False,False
+Technician,Organization,False,False,False,False,False
+Technician,Request Activity Type,False,False,False,False,False
+Technician,Site,True,False,False,False,False
+Technician,Trade,True,False,False,False,False
+Technician,Trade Availability,False,False,False,False,False
+Technician,Trade Labor,True,False,False,False,False
+Technician,Work Schedule,False,False,False,False,False
+Technician,Work Schedule Details,False,False,False,False,False
