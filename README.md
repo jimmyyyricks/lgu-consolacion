@@ -1,93 +1,45 @@
-# EAM System
+# LGU Consolacion Website
 
-A metadata-driven **Enterprise Asset Management** system built with **FastAPI + SQLAlchemy** (backend) and **Nuxt 4 + Nuxt UI** (frontend), following Clean Architecture principles.
+A modern municipal website for the **Municipality of Consolacion** built with **Nuxt 4 + Nuxt UI** (frontend), featuring responsive design and comprehensive civic services information.
 
 ## Features
 
-- **Metadata-driven** — Entity definitions (`.json`) drive models, API, forms, and validation automatically.
-- **Clean Architecture** — Domain → Application → Infrastructure → API layers with protocol-based DI.
-- **Modular** — Entities grouped into domain modules (`core_eam`, `asset_management`, `maintenance_mgmt`, `work_mgmt`, `purchasing_stores`).
-- **Generic CRUD API** — Single router set (`/api/entity/{name}`) handles all entities.
-- **Workflow Engine** — State-machine workflows with role-based transition control.
-- **RBAC** — Role-based entity-level permissions (read/create/update/delete/select/export/import).
-- **Forge CLI** — Code generation, migrations, and system management from the terminal.
-- **One-Command Install** — `./install.sh` prompts for credentials upfront, generates unique DB credentials, installs all dependencies, and creates the first administrator—ready to log in immediately.
+- **Modern Design** — Clean, responsive interface built with Nuxt 4 and Nuxt UI components.
+- **Custom Theme** — Branded color scheme (#F57056 primary coral, #F6B82B secondary golden).
+- **Typography** — Domine font for hero sections with professional municipal appearance.
+- **Responsive Layout** — Mobile-first design that works seamlessly across all devices.
+- **Component Architecture** — Modular Vue components for services, contact, news, and hero sections.
+- **Performance Optimized** — Fast loading with proper font optimization and asset management.
+- **Accessibility** — Semantic HTML5 structure with proper ARIA labels and keyboard navigation.
 
 ## Prerequisites
 
-| Dependency | Version | Notes                   |
-| ---------- | ------- | ----------------------- |
-| Python     | ≥ 3.10  |                         |
-| Node.js    | ≥ 20    | via nvm recommended     |
-| pnpm       | ≥ 10    | `npm i -g pnpm`         |
-| PostgreSQL | ≥ 14    | Required for production |
+| Dependency | Version | Notes               |
+| ---------- | ------- | ------------------- |
+| Node.js    | ≥ 20    | via nvm recommended |
+| pnpm       | ≥ 10    | `npm i -g pnpm`     |
 
 ## Quick Start
 
-### 1. Clone and run the installer
+### 1. Clone and install dependencies
 
 ```bash
-git clone <repo-url> eam-system && cd eam-system
-./install.sh
+git clone git@github.com:jimmyyyricks/lgu-consolacion.git
+cd lgu-consolacion
+cd frontend
+pnpm install
 ```
 
-The installer will:
-
-- Prompt for PostgreSQL superuser credentials (host, port, username, password)
-- Prompt for administrator account details (username, email, full name, password)
-- Generate unique database credentials and `.env` file
-- Install backend and frontend dependencies
-- Create the PostgreSQL role and database
-- Create all database tables and seed core reference data
-- Create the administrator account
-
-**PostgreSQL prompt guidance:**
-
-- Enter the PostgreSQL superuser credentials that are allowed to create roles and databases.
-- On many servers this means: host `localhost`, port `5432`, username `postgres`, and the actual password for that PostgreSQL user.
-- Do not just press Enter for everything unless you know the server is configured for passwordless peer or trust authentication.
-- Leaving the password blank tells the installer to try OS peer auth via `postgresql:///postgres`, which usually works only on some local development machines or servers where the current Unix user is already mapped to a PostgreSQL superuser.
-- If you do not know these credentials, ask the server or database administrator before continuing.
-
-**Note:** Both credential prompts happen upfront so the install runs unattended.
-
-### 2. Start the app
+### 2. Start the development server
 
 ```bash
-./run.sh
+cd frontend
+pnpm dev
 ```
 
-The browser will open to the login page. Log in with the administrator credentials you entered during install.
+The browser will open to `http://localhost:3000` displaying the LGU Consolacion website.
 
-### 3. (Optional) Manual admin creation
-
-If you prefer to create the administrator account in the browser after install:
-
-```bash
-./install.sh --skip-admin
-```
-
-Then access `/setup` directly to create the first admin. Note: `./run.sh` does **not** auto-redirect to `/setup` anymore — you must navigate to it manually.
-
-### Non-interactive install (CI/automation)
-
-To bypass the interactive prompts and provide credentials via command-line flags:
-
-```bash
-./install.sh \
-	--admin-username admin \
-	--admin-email admin@example.com \
-	--admin-full-name "System Administrator" \
-	--admin-password "MySecurePassword123"
-```
-
-Pre-supply the PostgreSQL bootstrap URL to skip that prompt:
-
-```bash
-DATABASE_BOOTSTRAP_URL=postgresql://postgres:password@localhost/postgres ./install.sh
-```
-
-### Production build
+### 3. Build for production
 
 ```bash
 cd frontend
@@ -96,43 +48,87 @@ pnpm build
 node .output/server/index.mjs
 ```
 
-## Data Seeding
+## Project Structure
 
-Seed scripts live in `backend/scripts/seeds/`. Run from the `backend/` directory:
-
-```bash
-# 1. Seed masterfiles from Excel
-python scripts/seeds/seed_masterfiles_workbooks.py
-
-# 2. Reset workflow catalog
-python scripts/seeds/reset_workflow_catalog.py
-
-# 3. Seed workflows from Excel
-python scripts/seeds/seed_workflows_from_excel.py
-
-# 4. Seed roles & permissions
-python scripts/seeds/seed_roles_permissions.py
+```
+lgu-consolacion/
+├── frontend/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── lgu/           # LGU-specific components
+│   │   │   │   ├── LguHero.vue
+│   │   │   │   ├── LguServices.vue
+│   │   │   │   ├── LguContact.vue
+│   │   │   │   └── LguNews.vue
+│   │   │   └── ...
+│   │   ├── layouts/
+│   │   │   └── default.vue    # Main layout with header/footer
+│   │   ├── pages/
+│   │   │   └── index.vue      # Home page
+│   │   └── assets/
+│   │       ├── css/
+│   │       └── images/
+│   ├── public/
+│   │   ├── fonts/             # Custom fonts (Domine)
+│   │   └── images/
+│   ├── nuxt.config.ts
+│   ├── app.config.ts
+│   └── package.json
+├── .gitignore
+├── install.sh
+├── run.sh
+└── README.md
 ```
 
-See [docs/SEEDING_GUIDE.md](docs/SEEDING_GUIDE.md) for the full seeding order.
+## Components
 
-## Documentation
+### LguHero
 
-- [Architecture Overview](docs/ARCHITECTURE.md)
-- [Backend Coding Standards](docs/backend/CODING_STANDARDS.md)
-- [Forge CLI Guide](backend/app/README.md)
-- [Testing Guide](docs/TESTING_GUIDE.md)
-- [Seeding Guide](docs/SEEDING_GUIDE.md)
-- [Database Credentials](docs/DATABASE_CREDENTIALS.md)
+- Main hero section with municipality branding
+- Custom Domine font typography
+- Responsive design with image carousel
+- Call-to-action buttons for services and contact
 
-## Environment Variables
+### LguServices
 
-The `./install.sh` script automatically generates `backend/.env` with unique database credentials each installation. You typically don't need to manually configure it.
+- Comprehensive municipal services display
+- Grid layout with service cards
+- Icons and descriptions for each service
 
-For advanced scenarios, see [`.env.example`](.env.example) for all available variables. The only required variable is `DATABASE_URL`, which is auto-generated by the installer.
+### LguContact
+
+- Contact information and office details
+- Individual cards for each contact method
+- Phone numbers and address information
+
+### LguNews
+
+- Latest news and announcements
+- Blog post layout with horizontal orientation
+- "View All News" navigation
+
+## Customization
+
+### Colors
+
+The website uses a custom color theme defined in `app.config.ts`:
+
+- **Primary**: `#F57056` (coral red)
+- **Secondary**: `#F6B82B` (golden yellow)
+- **Neutral**: `slate`
+
+### Typography
+
+- **Domine**: Custom serif font for hero titles
+- **Inter**: System sans-serif for body text
+
+### Images
+
+- **Hero Images**: Place in `frontend/public/images/`
+- **Logo**: Update favicon and branding assets
 
 ## Tech Stack
 
-**Backend:** Python 3.10+, FastAPI, SQLAlchemy 2.0, Alembic, Pydantic, Socket.IO, Jinja2, aiosmtplib
+**Frontend:** Nuxt 4, Vue 3, Nuxt UI 4, Pinia, Tailwind CSS 4, VueUse, Nuxt Fonts
 
-**Frontend:** Nuxt 4, Vue 3, Nuxt UI 4, Pinia, Tailwind CSS 4, VueUse, Cytoscape.js, Socket.IO Client
+**Development:** pnpm, TypeScript, ESLint, Playwright (E2E Testing)
