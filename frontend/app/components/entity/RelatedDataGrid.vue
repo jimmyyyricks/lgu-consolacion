@@ -8,6 +8,7 @@ import type {
   FieldMeta,
 } from "~/composables/useApiTypes";
 import { matchesCondition } from "~/composables/useFormState";
+import { useAuthStore } from "~/stores/auth";
 
 interface Props {
   parentEntity: string;
@@ -75,7 +76,10 @@ const lookupVersions: Record<string, number> = reactive({});
 const lookupLabelCache: Record<string, Record<string, string>> = reactive({});
 const linkFetchInFlight = new Set<string>();
 
-const cachedMetaKey = computed(() => `meta:entity:v2:${props.childEntity}`);
+const auth = useAuthStore();
+const userPrefix = computed(() => auth.user?.id ? `user:${auth.user.id}:` : "");
+
+const cachedMetaKey = computed(() => `${userPrefix.value}meta:entity:v2:${props.childEntity}`);
 
 const resolvedChildMeta = computed<EntityMeta | null>(() => {
   if (props.childMeta) return props.childMeta;
@@ -591,7 +595,11 @@ const columns = computed<NuGridColumn<Record<string, any>>[]>(() => {
       header:
         field.name === "workflow_state" ? "Status" : getColumnHeader(field),
       size: getColumnSize(field),
-      enableEditing: !field.readonly,
+      enableEditing: (row: { original: Record<string, any> }) => {
+        if (field.readonly) return false;
+        const isNewRow = String(row.original?.id).startsWith("__new__");
+        return isNewRow ? props.canAdd : props.editable;
+      },
       enableSorting: false,
       enableResizing: true,
       enableHiding: false,
@@ -1095,14 +1103,14 @@ onUnmounted(() => {
       class="flex flex-wrap items-center gap-2 px-5 py-4.5 border border-muted rounded-t-lg"
     >
       <UButton
-        v-if="editable && canAdd && !loading && !metadataLoading"
+        v-if="canAdd && !loading && !metadataLoading"
         icon="i-lucide-plus"
         size="md"
         @click="addRow"
       >
         Add Record
       </UButton>
-      <USkeleton v-else-if="editable && canAdd" class="h-8 w-28" />
+      <USkeleton v-else-if="canAdd" class="h-8 w-28" />
       <UButton
         variant="outline"
         icon="i-lucide-refresh-cw"
@@ -1184,7 +1192,7 @@ onUnmounted(() => {
                 resizeMode: 'shift',
               }"
               :editing="
-                editable
+                (editable || canAdd)
                   ? {
                       enabled: true,
                       startClicks: 'double',

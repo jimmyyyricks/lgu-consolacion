@@ -6,13 +6,12 @@ export default defineNuxtConfig({
     appManifest: false,
   },
   
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt', '@pinia/nuxt', '@nu-grid/nuxt', '@nuxt/image', '@nuxt/fonts'],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt', '@pinia/nuxt', '@nu-grid/nuxt'],
 
   icon: {
     collections: ['lucide', 'simple-icons']
   },
 
-  
   colorMode: {
     preference: 'light',
     fallback: 'light'
@@ -38,7 +37,7 @@ export default defineNuxtConfig({
       apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api'
     }
   },
-  
+
   vite: {
     build: {
       chunkSizeWarningLimit: 1000,

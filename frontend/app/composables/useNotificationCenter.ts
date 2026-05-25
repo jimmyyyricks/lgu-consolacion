@@ -5,92 +5,78 @@
  * entity changes, etc.) with unread count and persistence.
  */
 
-const STORAGE_KEY = "lgu_notifications";
-const MAX_NOTIFICATIONS = 50;
+const STORAGE_KEY = 'eam_notifications'
+const MAX_NOTIFICATIONS = 50
 
 export interface AppNotification {
-  id: string;
-  title: string;
-  description?: string;
-  entity?: string;
-  recordId?: string;
-  type: "info" | "success" | "warning" | "error";
-  read: boolean;
-  createdAt: string;
+  id: string
+  title: string
+  description?: string
+  entity?: string
+  recordId?: string
+  type: 'info' | 'success' | 'warning' | 'error'
+  read: boolean
+  createdAt: string
 }
 
 function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6)
 }
 
 export const useNotificationCenter = () => {
-  const notifications = useState<AppNotification[]>("app_notifications", () => {
-    if (!import.meta.client) return [];
+  const notifications = useState<AppNotification[]>('app_notifications', () => {
+    if (!import.meta.client) return []
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
+      const raw = localStorage.getItem(STORAGE_KEY)
+      return raw ? JSON.parse(raw) : []
     } catch {
-      return [];
+      return []
     }
-  });
+  })
 
-  const unreadCount = computed(
-    () => notifications.value.filter((n) => !n.read).length,
-  );
+  const unreadCount = computed(() => notifications.value.filter(n => !n.read).length)
 
   function persist() {
-    if (!import.meta.client) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notifications.value));
+    if (!import.meta.client) return
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notifications.value))
   }
 
-  function add(
-    notification: Omit<AppNotification, "id" | "read" | "createdAt">,
-  ) {
+  function add(notification: Omit<AppNotification, 'id' | 'read' | 'createdAt'>) {
     notifications.value.unshift({
       ...notification,
       id: generateId(),
       read: false,
       createdAt: new Date().toISOString(),
-    });
+    })
     // Trim to max
     if (notifications.value.length > MAX_NOTIFICATIONS) {
-      notifications.value = notifications.value.slice(0, MAX_NOTIFICATIONS);
+      notifications.value = notifications.value.slice(0, MAX_NOTIFICATIONS)
     }
-    persist();
+    persist()
   }
 
   function markRead(id: string) {
-    const n = notifications.value.find((n) => n.id === id);
+    const n = notifications.value.find(n => n.id === id)
     if (n) {
-      n.read = true;
-      persist();
+      n.read = true
+      persist()
     }
   }
 
   function markAllRead() {
-    notifications.value.forEach((n) => {
-      n.read = true;
-    });
-    persist();
+    notifications.value.forEach(n => { n.read = true })
+    persist()
   }
 
   function remove(id: string) {
-    notifications.value = notifications.value.filter((n) => n.id !== id);
-    persist();
+    notifications.value = notifications.value.filter(n => n.id !== id)
+    persist()
   }
 
   function clearAll() {
-    notifications.value = [];
-    persist();
+    notifications.value = []
+    persist()
   }
 
-  return {
-    notifications,
-    unreadCount,
-    add,
-    markRead,
-    markAllRead,
-    remove,
-    clearAll,
-  };
-};
+  return { notifications, unreadCount, add, markRead, markAllRead, remove, clearAll }
+}

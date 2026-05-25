@@ -2,6 +2,7 @@
 import { h, resolveComponent } from "vue";
 import type { EntityMeta, FieldMeta } from "~/composables/useApiTypes";
 import { useCacheStore } from "~/stores/cache";
+import { useAuthStore } from "~/stores/auth";
 import { useFormState } from "~/composables/useFormState";
 import { useRelatedTabMode } from "~/composables/useRelatedTabMode";
 import { resolveCellValue } from "~/utils/cellFormat";
@@ -776,8 +777,10 @@ const handleSave = async () => {
         });
       }
       const cache = useCacheStore();
+      const auth = useAuthStore();
+      const userPrefix = auth.user?.id ? `user:${auth.user.id}:` : "";
       cache.invalidatePrefix(`entity:options:${entityName.value}`);
-      cache.invalidatePrefix(`meta:entity:v2:${entityName.value}`);
+      cache.invalidatePrefix(`${userPrefix}meta:entity:v2:${entityName.value}`);
       if (isNew.value && response.data?.id) {
         router.replace(`/${entityName.value}/${response.data.id}`);
       } else {
@@ -1017,7 +1020,7 @@ definePageMeta({
               variant="solid"
               size="md"
               :color="currentWorkflowStateColor"
-              :disabled="saving || loading || workflowLoading"
+              :disabled="saving || loading || workflowLoading || workflowMenuItems.length === 0"
               :loading="workflowLoading"
             >
               {{ currentWorkflowStateLabel || "Workflow" }}
@@ -1028,7 +1031,7 @@ definePageMeta({
             variant="solid"
             size="md"
             :color="currentWorkflowStateColor"
-            :disabled="saving || loading || workflowLoading"
+            :disabled="saving || loading || workflowLoading || workflowMenuItems.length === 0"
             :loading="workflowLoading"
           >
             {{ currentWorkflowStateLabel || "Workflow" }}

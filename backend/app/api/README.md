@@ -16,7 +16,7 @@ api/
 │   ├── base.py             # ActionRequest, ActionResponse, WorkflowRequest, ListResponse
 │   ├── role.py             # RoleCreate, RoleUpdate
 │   └── user.py             # UserCreate, UserUpdate
-├── entries/                # Generic entity CRUD kernel (12 routes — handle all entities)
+├── entries/                # Generic entity CRUD kernel (handle all entities)
 │   ├── entity_crud.py      # POST create, PUT update, DELETE, bulk delete
 │   ├── entity_list.py      # GET list (with filters, sort, pagination), GET detail
 │   ├── entity_workflow.py  # POST workflow action, GET workflow progress
@@ -35,11 +35,9 @@ api/
 │   ├── favorites.py        # User favorites
 │   ├── tags.py             # Entity tags
 │   ├── timeline.py         # Activity timeline
-│   ├── stock_count.py      # Inventory stock count
 │   ├── diagram.py          # Entity relationship diagrams
 │   ├── reports.py          # Reporting system
 │   ├── operational_dashboard.py  # KPI dashboard
-│   ├── pm_calendar/        # Preventive maintenance calendar
 │   └── notifications/      # Notification inbox
 ├── system/                 # Infrastructure / admin endpoints
 │   ├── auth.py             # POST /login, POST /logout
@@ -61,7 +59,7 @@ api/
 │       ├── permissions.py  # Permission matrix
 │       ├── api_keys.py     # API key management
 │       ├── sessions.py     # Active session management
-│       ├── model_editor.py # Entity model editor (DEVELOPER_MODE only)
+│       ├── model_editor.py # Entity model editor
 │       └── ordering.py     # Module / entity ordering
 └── services/               # Backward-compat shims (re-exports to features/)
     ├── email.py
@@ -75,8 +73,6 @@ api/
 This file is the **single wiring point** for the entire application. Every route receives services through `Depends()` — never via direct instantiation.
 
 ```python
-# api/dependencies.py
-
 async def get_entity_service(
     db: AsyncSession = Depends(get_db),
     current_user: CurrentUser = Depends(get_current_user_from_token),
@@ -86,35 +82,19 @@ async def get_entity_service(
     return EntityService(entity_repo, rbac)
 ```
 
-**Using a service in a route:**
-
-```python
-from app.api.dependencies import get_entity_service
-from app.application.services.entity_service import EntityService
-
-@router.get("/entity/{entity_name}/{record_id}")
-async def get_detail(
-    entity_name: str,
-    record_id: str,
-    svc: EntityService = Depends(get_entity_service),
-    current_user: CurrentUser = Depends(get_current_user_from_token),
-):
-    return await svc.get_detail(entity_name, record_id, user=current_user)
-```
-
 ---
 
 ## Router Groups (`router.py`)
 
 Routes are grouped by concern and assembled in `router.py`:
 
-| Group     | Prefix          | Description                                    |
-| --------- | --------------- | ---------------------------------------------- |
-| `ENTRY`   | `/api/entity`   | Generic CRUD kernel — handles all entities     |
-| `SYSTEM`  | `/api`          | Auth, meta, workflow, admin, health            |
-| `SERVICE` | `/api`          | Backward-compat shims                          |
-| `APP`     | `/api`          | Cross-domain (dashboard, stock-count, reports) |
-| `FEATURE` | `/api/features` | Product features (search, PM calendar, etc.)   |
+| Group | Prefix | Description |
+|---|---|---|
+| `ENTRY` | `/api/entity` | Generic CRUD kernel — handles all entities |
+| `SYSTEM` | `/api` | Auth, meta, workflow, admin, health |
+| `SERVICE` | `/api` | Backward-compat shims |
+| `APP` | `/api` | Cross-domain features |
+| `FEATURE` | `/api/features` | Product features |
 
 ---
 
@@ -140,7 +120,7 @@ GET  /api/entity/{entity_name}/{record_id}/print → print preview data
 
 ## Schemas (`schemas/`)
 
-Pydantic models for HTTP request bodies and response shapes. Canonical definitions live here; `app/schemas/` are re-export shims for legacy compatibility.
+Pydantic models for HTTP request bodies and response shapes.
 
 ```python
 from app.api.schemas.base import ActionRequest, WorkflowRequest
@@ -163,41 +143,6 @@ class WorkflowRequest(BaseModel):
 3. **Keep route handlers thin** — validate input, call one service method, return the result
 4. **Register the route** in `router.py` in the correct group
 
-```python
-# api/features/my_feature.py
-"""
-API Layer: My Feature
-Clean Architecture Layer: API
-Responsibility: HTTP endpoints for my feature. Delegates to MyFeatureService.
-"""
-from fastapi import APIRouter, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.database import get_db
-from app.core.security import CurrentUser, get_current_user_from_token
-
-router = APIRouter(prefix="/my-feature", tags=["my-feature"])
-
-@router.get("/")
-async def list_my_things(
-    db: AsyncSession = Depends(get_db),
-    current_user: CurrentUser = Depends(get_current_user_from_token),
-):
-    # Thin handler — delegate to service
-    svc = MyFeatureService(db)
-    return await svc.list_things(user=current_user)
-```
-
-Then in `router.py`:
-
-```python
-from app.api.features.my_feature import router as my_feature_router
-
-APP_ROUTE_MODULES = [
-    ...,
-    ("app.api.features.my_feature", "/api"),
-]
-```
-
 ---
 
 ## Authentication
@@ -213,17 +158,15 @@ async def protected(current_user: CurrentUser = Depends(get_current_user_from_to
         raise ForbiddenError("Superadmin only")
 ```
 
-For admin-only endpoints, `current_user.role == "SystemManager"` or `current_user.is_superadmin`.
-
 ---
 
 ## Rules for This Layer
 
-| Rule                                        | Detail                                                                            |
-| ------------------------------------------- | --------------------------------------------------------------------------------- |
-| **No business logic in route handlers**     | Handlers call one service method and return; never write `if/else` business rules |
-| **No direct DB queries**                    | Always call a service; never use `db.execute(select(...))` in route files         |
-| **All DI via `dependencies.py`**            | Never import and call infrastructure classes from routes                          |
-| **Thin handlers**                           | A route handler should be ≤ 10 lines                                              |
-| **Schemas own validation**                  | Use Pydantic models for all request body validation                               |
-| **Error handling via `@handle_api_errors`** | Use the decorator; do not write try/except in handlers                            |
+| Rule | Detail |
+|---|---|
+| **No business logic in route handlers** | Handlers call one service method and return |
+| **No direct DB queries** | Always call a service |
+| **All DI via `dependencies.py`** | Never import and call infrastructure classes from routes |
+| **Thin handlers** | A route handler should be ≤ 10 lines |
+| **Schemas own validation** | Use Pydantic models for all request body validation |
+| **Error handling via `@handle_api_errors`** | Use the decorator; do not write try/except in handlers |

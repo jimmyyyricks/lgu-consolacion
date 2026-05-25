@@ -1,4 +1,4 @@
-# EAM Backend — Architecture Guide
+# Backend — FastAPI Nuxt Starter
 
 > **For new developers:** Read this document first, then navigate to the layer README that matches your task.
 
@@ -40,7 +40,7 @@ backend/app/
 ├── domain/                 # LAYER 1 — Innermost layer
 │   ├── README.md
 │   ├── exceptions.py       # Business exception hierarchy
-│   └── protocols/          # 15 typed Protocol interfaces (dependency inversion)
+│   └── protocols/          # typed Protocol interfaces (dependency inversion)
 │
 ├── core/                   # LAYER 2 — Foundation (config, security, ORM base)
 │   ├── README.md
@@ -48,7 +48,7 @@ backend/app/
 │   ├── database.py         # SQLAlchemy async engine + session
 │   ├── security.py         # JWT auth, CurrentUser
 │   ├── base_model.py       # ORM base with id/created_at/updated_at
-│   ├── exceptions.py       # HTTP exception wrappers (404, 400, 403…)
+│   ├── exceptions.py       # HTTP exception wrappers
 │   ├── error_handlers.py   # @handle_api_errors decorator
 │   ├── feature_flags.py    # Runtime feature toggles
 │   ├── loader.py           # Dynamic module import
@@ -63,12 +63,12 @@ backend/app/
 │   ├── auth/               # JWTService, PasswordService
 │   ├── cache/              # TTLCache, PermissionCache
 │   ├── database/           # SQLAlchemy repos + UoW
-│   │   └── repositories/   # 11 repositories
+│   │   └── repositories/   # Repository implementations
 │   ├── email/              # SmtpEmailService, notification_factory
 │   ├── events/             # DomainEventBus
 │   ├── logging/            # email_logger, job_logger
 │   ├── metadata/           # JSON reader/writer/validator, model generator
-│   ├── print/              # Print assemblers (WO, PR, PO, Incident)
+│   ├── print/              # Print assemblers
 │   ├── scheduler/          # APScheduler adapter
 │   ├── settings/           # BrandingStore (JSON file)
 │   └── storage/            # LocalStorage / S3 (pluggable)
@@ -78,46 +78,25 @@ backend/app/
 │   ├── dto.py              # PaginatedResult, ActionResult
 │   ├── hooks/              # @before_save, @after_save, @workflow registry
 │   ├── email_notifications/ # Event catalog + dispatcher
-│   ├── utils/              # Shared doc helpers (get_id, get_attr…)
-│   └── services/
-│       ├── entity_service.py          # Generic CRUD orchestrator
-│       ├── base_entity_api.py         # Base class for per-entity APIs
-│       ├── branding_service.py        # Branding (logo, org name)
-│       ├── fetch_from_service.py      # Link field title resolution
-│       ├── tree_service.py            # Hierarchical data
-│       ├── setup_service.py           # First-run initialization
-│       ├── import_export_service.py   # CSV import/export
-│       ├── access_control/            # RBACAppService
-│       ├── auth/                      # AuthAppService
-│       ├── dashboards/                # DashboardAppService
-│       ├── documents/                 # Document ops (14 files)
-│       ├── integrations/              # Audit, error logging, metadata sync
-│       ├── maintenance/               # MaintenanceJobService, constants
-│       ├── notifications/             # Email + Socket.IO notification services
-│       ├── scheduling/                # SchedulerAppService, AppInitializationService
-│       └── workflows/                 # WorkflowAppService, WorkflowProgressService
+│   ├── utils/              # Shared doc helpers
+│   └── services/           # Business service implementations
 │
 ├── modules/                # LAYER 5 — Domain feature units
 │   ├── README.md
-│   ├── core/                # Core framework entities and workflow support
+│   └── core/               # Core framework entities and workflow support
 │
 ├── api/                    # LAYER 6 — HTTP boundary
 │   ├── README.md
 │   ├── dependencies.py     # All FastAPI Depends() factories
 │   ├── router.py           # Route group consolidation
-│   ├── entries/            # Generic entity CRUD kernel (12 routes)
-│   ├── features/           # Product features (search, PM calendar, reports…)
+│   ├── entries/            # Generic entity CRUD kernel
+│   ├── features/           # Product features
 │   ├── system/             # Admin & infrastructure endpoints
 │   └── schemas/            # Pydantic request/response models
 │
 ├── entities/               # Entity metadata loader
-│   ├── __init__.py         # load_all_entities(), feature-flag filtering
-│   └── generator.py        # EntityGenerator (JSON + model scaffolding)
-│
 ├── meta/                   # Metadata registry
-│   └── registry.py         # FieldMeta, NamingMeta, ActionMeta, TabConfig
-│
-└── templates/              # Jinja2 email templates
+└── templates/              # Jinja2 email + print templates
 ```
 
 ---
@@ -179,14 +158,14 @@ The JSON definition drives: API routing, list/detail views, form fields, workflo
 
 Run from `backend/` with the virtualenv active.
 
-| Command                                                           | Description                                    |
-| ----------------------------------------------------------------- | ---------------------------------------------- |
-| `python -m app.forge sync`                                        | Generate models + migration + apply (one step) |
-| `python -m app.forge new-entity NAME --module MOD --fields "..."` | Scaffold new entity                            |
-| `python -m app.forge migrate --status`                            | View pending migrations                        |
-| `python -m app.forge migrate --apply-only`                        | Apply without generating                       |
-| `python -m app.forge migrate --rollback N`                        | Roll back N migrations                         |
-| `python -m app.forge status`                                      | System status (modules, entities, DB)          |
+| Command | Description |
+|---|---|
+| `python -m app.forge sync` | Generate models + migration + apply (one step) |
+| `python -m app.forge new-entity NAME --module MOD --fields "..."` | Scaffold new entity |
+| `python -m app.forge migrate --status` | View pending migrations |
+| `python -m app.forge migrate --apply-only` | Apply without generating |
+| `python -m app.forge migrate --rollback N` | Roll back N migrations |
+| `python -m app.forge status` | System status (modules, entities, DB) |
 
 **Field types:** `string`, `int`, `float`, `boolean`, `date`, `datetime`, `text`, `select`, `multiselect`, `link`, `json`
 
@@ -196,25 +175,25 @@ Run from `backend/` with the virtualenv active.
 
 Each layer has its own README with conventions, rules, and examples:
 
-| Layer          | README                                               |
-| -------------- | ---------------------------------------------------- |
-| Domain         | [domain/README.md](domain/README.md)                 |
-| Core           | [core/README.md](core/README.md)                     |
+| Layer | README |
+|---|---|
+| Domain | [domain/README.md](domain/README.md) |
+| Core | [core/README.md](core/README.md) |
 | Infrastructure | [infrastructure/README.md](infrastructure/README.md) |
-| Application    | [application/README.md](application/README.md)       |
-| Modules        | [modules/README.md](modules/README.md)               |
-| API            | [api/README.md](api/README.md)                       |
+| Application | [application/README.md](application/README.md) |
+| Modules | [modules/README.md](modules/README.md) |
+| API | [api/README.md](api/README.md) |
 
 ---
 
 ## Key Rules (Quick Reference)
 
-| Rule                                  | Detail                                                                                                               |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **No infrastructure in application**  | Application services receive repos/services via constructor injection, never import them directly                    |
-| **No application in infrastructure**  | Infrastructure adapters (email factory, print assemblers) may consume application formatters/resolvers, not services |
-| **Domain has zero imports**           | `domain/` contains only `typing`, `dataclasses`, `abc`                                                               |
-| **All DB access via repositories**    | Never write SQLAlchemy queries outside `infrastructure/database/repositories/`                                       |
-| **All DI wired in `dependencies.py`** | Routes never instantiate services; always use `Depends()`                                                            |
-| **Hooks over if/elif**                | Business logic on save/workflow must use the hook registry                                                           |
-| **One source of truth for utilities** | Shared doc helpers live in `application/utils/doc_utils.py` only                                                     |
+| Rule | Detail |
+|---|---|
+| **No infrastructure in application** | Application services receive repos/services via constructor injection |
+| **No application in infrastructure** | Infrastructure adapters may consume application formatters/resolvers, not services |
+| **Domain has zero imports** | `domain/` contains only `typing`, `dataclasses`, `abc` |
+| **All DB access via repositories** | Never write SQLAlchemy queries outside `infrastructure/database/repositories/` |
+| **All DI wired in `dependencies.py`** | Routes never instantiate services; always use `Depends()` |
+| **Hooks over if/elif** | Business logic on save/workflow must use the hook registry |
+| **One source of truth for utilities** | Shared doc helpers live in `application/utils/doc_utils.py` only |

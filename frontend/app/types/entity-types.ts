@@ -561,6 +561,7 @@ export interface MaintenancePlan extends BaseEntity {
   manufacturer?: string
   manufacturer_name?: string
   model?: string
+  is_active?: boolean
 }
 
 export interface MaintenanceRequest extends BaseEntity {

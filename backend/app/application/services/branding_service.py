@@ -10,8 +10,8 @@ from app.domain.protocols.branding_store import BrandingStoreProtocol
 
 class BrandingService:
     DEFAULTS = {
-        "organization_name": "EAM 2.1",
-        "description": "Asset Management",
+        "organization_name": "My App",
+        "description": "A modular FastAPI + Nuxt application",
         "logo_url": None,
     }
 

@@ -7,10 +7,7 @@ export const useTreeView = () => {
     
     const parentField = entityMeta.fields.find((field: FieldMeta) => 
       field.name === 'parent' || 
-      field.name === 'parent_id' ||
-      field.name === 'parent_asset_class' ||
-      field.name === 'parent_system' ||
-      field.name === 'parent_location'
+      field.name === 'parent_id'
     )
     
     return parentField?.name || null

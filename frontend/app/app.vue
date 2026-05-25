@@ -1,11 +1,3 @@
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap");
-
-.font-domine {
-  font-family: "Domine", serif;
-}
-</style>
-
 <script setup lang="ts">
 import { useAuthStore } from "~/stores/auth";
 import { useTokenRefresh } from "~/composables/useTokenRefresh";
@@ -55,28 +47,32 @@ onUnmounted(() => {
 });
 
 onMounted(() => {
-  // Load persisted accent colors, but force light mode
-  const saved = localStorage.getItem("lgu:theme");
+  // Load persisted theme
+  const saved = localStorage.getItem("app:theme");
   if (saved) {
     try {
       const theme = JSON.parse(saved);
       if (theme.primary) appConfig.ui.colors.primary = theme.primary;
       if (theme.neutral) appConfig.ui.colors.neutral = theme.neutral;
+      if (theme.dark !== undefined) {
+        colorMode.preference = theme.dark ? "dark" : "light";
+        return;
+      }
     } catch {}
   }
-
+  // Default to light mode if no theme saved
   colorMode.preference = "light";
   document.documentElement.classList.remove("dark");
   document.documentElement.classList.add("light");
 });
 
-const title = "Municipality of Consolacion";
-const description = "The central hub for Consolacion.";
+const title = useRuntimeConfig().public.appTitle || "FastAPI Nuxt Starter";
+const description = "A metadata-driven modular application framework";
 
 useSeoMeta({
-  title,
+  title: title as string,
   description,
-  ogTitle: title,
+  ogTitle: title as string,
   ogDescription: description,
 });
 
@@ -104,20 +100,10 @@ watch(
 
       if (!firstPart) return;
 
-      // Check if it's an entity route
-      if (
-        [
-          "asset",
-          "asset_class",
-          "location",
-          "work_order",
-          "maintenance_request",
-          "purchase_order",
-          "purchase_requisition",
-          "item",
-          "vendor",
-        ].includes(firstPart)
-      ) {
+      // Check if it's an entity route (dynamic — boot info provides entity list)
+      const bootEntities = useState<any[]>("boot-entities", () => []);
+      const knownEntities = bootEntities.value.map((e: any) => e.name);
+      if (knownEntities.includes(firstPart)) {
         activityType = "entity_view";
         entityName = firstPart;
         pageLabel = firstPart

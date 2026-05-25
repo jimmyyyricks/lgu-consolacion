@@ -157,12 +157,12 @@ Orchestrates email delivery by:
 
 | Event Type          | Subject Prefix            | Description               |
 | ------------------- | ------------------------- | ------------------------- |
-| `created`           | `[EAM] New:`              | New record created        |
-| `updated`           | `[EAM] Updated:`          | Record updated            |
-| `workflow_changed`  | `[EAM] Status Changed:`   | Status changed            |
-| `workflow_state:*`  | `[EAM] Workflow {State}:` | Specific state transition |
-| `scheduler_created` | `[EAM] Scheduled:`        | Scheduler created         |
-| `below_threshold`   | `[EAM] Low stock:`        | Inventory alert           |
+| `created`           | `New:`              | New record created        |
+| `updated`           | `Updated:`          | Record updated            |
+| `workflow_changed`  | `Status Changed:`   | Status changed            |
+| `workflow_state:*`  | `Workflow {State}:` | Specific state transition |
+| `scheduler_created` | `Scheduled:`        | Scheduler created         |
+| `below_threshold`   | `Low stock:`        | Inventory alert           |
 
 ### Subscription Service API
 

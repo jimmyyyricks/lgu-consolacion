@@ -83,7 +83,7 @@ def render_entity_html(
         children=children or [],
         record_id=record.get("id", ""),
         now=datetime.now().strftime("%Y-%m-%d %H:%M"),
-        branding=branding or {"organization_name": "EAM System", "description": "", "logo_url": None},
+        branding=branding or {"organization_name": "Organization", "description": "", "logo_url": None},
     )
 
 
@@ -106,7 +106,7 @@ async def render_with_assembler(
     template_name = assembler.get_template_name()
     template = env.get_template(template_name)
     context = await assembler.assemble(record, db)
-    context.setdefault("branding", branding or {"organization_name": "EAM System", "description": "", "logo_url": None})
+    context.setdefault("branding", branding or {"organization_name": "Organization", "description": "", "logo_url": None})
     context.setdefault("now", datetime.now().strftime("%Y-%m-%d %H:%M"))
     context.setdefault("record_id", record.get("id", "") if isinstance(record, dict) else "")
     context.setdefault("record", record if isinstance(record, dict) else {})

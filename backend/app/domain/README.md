@@ -11,7 +11,7 @@ The domain layer defines the _language_ of the system: what can go wrong (except
 ```
 domain/
 ├── exceptions.py       # Business exception hierarchy
-└── protocols/          # 15 typed Protocol interfaces
+└── protocols/          # Typed Protocol interfaces
     ├── auth_repository.py
     ├── branding_store.py
     ├── cache_protocol.py
@@ -36,20 +36,19 @@ domain/
 
 All business errors start here. Infrastructure and application layers raise these; the API layer translates them to HTTP responses.
 
-| Exception                                        | When to raise               |
-| ------------------------------------------------ | --------------------------- |
-| `DomainException`                                | Base — never raise directly |
-| `EntityNotFoundError(entity, identifier)`        | Record does not exist       |
-| `ValidationError(message, field_errors)`         | Business rule violation     |
-| `PermissionDeniedError(message, entity, action)` | RBAC check failed           |
-| `DuplicateRecordError(message, details)`         | Unique constraint violated  |
-| `WorkflowError(message, current_state, action)`  | Illegal state transition    |
+| Exception | When to raise |
+|---|---|
+| `DomainException` | Base — never raise directly |
+| `EntityNotFoundError(entity, identifier)` | Record does not exist |
+| `ValidationError(message, field_errors)` | Business rule violation |
+| `PermissionDeniedError(message, entity, action)` | RBAC check failed |
+| `DuplicateRecordError(message, details)` | Unique constraint violated |
+| `WorkflowError(message, current_state, action)` | Illegal state transition |
 
 ```python
-# Raising from an application service or module API
 from app.domain.exceptions import EntityNotFoundError, WorkflowError
 
-raise EntityNotFoundError("work_order", record_id)
+raise EntityNotFoundError("my_entity", record_id)
 raise WorkflowError("Cannot approve from Closed", current_state="Closed", action="Approve")
 ```
 
@@ -64,7 +63,7 @@ Protocols are pure Python `typing.Protocol` interfaces. They describe what a col
 ### Why protocols matter
 
 - Application services depend on protocols, not concrete classes → easy to test with mocks
-- Infrastructure implementations can be swapped (e.g., Redis cache replaces in-memory TTL cache) without touching application code
+- Infrastructure implementations can be swapped without touching application code
 - Circular imports become impossible
 
 ### Key protocols
@@ -78,15 +77,6 @@ class EntityRepositoryProtocol(Protocol):
     async def create(self, entity: str, data: dict, user_id: str) -> Any: ...
     async def update(self, entity: str, record_id: str, data: dict) -> Any: ...
     async def delete(self, entity: str, record_id: str) -> None: ...
-```
-
-#### `WorkflowRepositoryProtocol` — State Machine
-
-```python
-class WorkflowRepositoryProtocol(Protocol):
-    async def get_workflow(self, entity: str) -> dict | None: ...
-    async def get_available_actions(self, entity: str, current_state: str, role: str) -> list[str]: ...
-    async def validate_transition(self, entity: str, from_state: str, action: str) -> bool: ...
 ```
 
 #### `EmailServiceProtocol` — Sending (no SMTP details)
@@ -105,25 +95,17 @@ class CacheProtocol(Protocol):
     def delete(self, key: str) -> None: ...
 ```
 
-#### `BrandingStoreProtocol` — Config Storage
-
-```python
-class BrandingStoreProtocol(Protocol):
-    def load(self) -> dict[str, Any]: ...
-    def save(self, data: dict[str, Any]) -> dict[str, Any]: ...
-```
-
 ---
 
 ## Rules for This Layer
 
-| Rule                                            | Reason                                                                   |
-| ----------------------------------------------- | ------------------------------------------------------------------------ |
-| **No imports from `app.*` except `app.domain`** | Domain must be framework-free                                            |
-| **No SQLAlchemy, FastAPI, Pydantic models**     | Pure Python only                                                         |
-| **Protocols use `typing.Protocol`, not ABC**    | Structural subtyping — implementations don't need to declare inheritance |
-| **Exceptions carry context**                    | Always include entity name, action, or field in the exception            |
-| **No business logic**                           | Domain defines contracts, not algorithms                                 |
+| Rule | Reason |
+|---|---|
+| **No imports from `app.*` except `app.domain`** | Domain must be framework-free |
+| **No SQLAlchemy, FastAPI, Pydantic models** | Pure Python only |
+| **Protocols use `typing.Protocol`, not ABC** | Structural subtyping — implementations don't need to declare inheritance |
+| **Exceptions carry context** | Always include entity name, action, or field in the exception |
+| **No business logic** | Domain defines contracts, not algorithms |
 
 ---
 
@@ -161,8 +143,8 @@ from app.application.services.entity_service import EntityService
 
 async def test_create_entity():
     mock_repo = AsyncMock()
-    mock_repo.create.return_value = {"id": "WO-001", "name": "Test"}
+    mock_repo.create.return_value = {"id": "REC-001", "name": "Test"}
     svc = EntityService(repo=mock_repo, rbac=AsyncMock())
-    result = await svc.create("work_order", {"name": "Test"}, user_id="1")
-    assert result["id"] == "WO-001"
+    result = await svc.create("my_entity", {"name": "Test"}, user_id="1")
+    assert result["id"] == "REC-001"
 ```

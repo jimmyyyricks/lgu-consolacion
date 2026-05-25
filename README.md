@@ -1,134 +1,192 @@
-# LGU Consolacion Website
+# FastAPI Nuxt Starter
 
-A modern municipal website for the **Municipality of Consolacion** built with **Nuxt 4 + Nuxt UI** (frontend), featuring responsive design and comprehensive civic services information.
+A metadata-driven modular application framework built with **FastAPI** (Python) and **Nuxt 4** (Vue 3). Inspired by Frappe/ERPNext architecture — add entities, business logic, hooks, workflows, emails, and more through a modular plugin system.
 
-## Features
+## Architecture Overview
 
-- **Modern Design** — Clean, responsive interface built with Nuxt 4 and Nuxt UI components.
-- **Custom Theme** — Branded color scheme (#F57056 primary coral, #F6B82B secondary golden).
-- **Typography** — Domine font for hero sections with professional municipal appearance.
-- **Responsive Layout** — Mobile-first design that works seamlessly across all devices.
-- **Component Architecture** — Modular Vue components for services, contact, news, and hero sections.
-- **Performance Optimized** — Fast loading with proper font optimization and asset management.
-- **Accessibility** — Semantic HTML5 structure with proper ARIA labels and keyboard navigation.
+```
+┌──────────────────────────────────────────┐
+│  Frontend — Nuxt 4 + Nuxt UI             │
+│  • Dynamic entity pages (list/detail)    │
+│  • Metadata-driven forms and grids       │
+│  • Composable-based API layer            │
+│  • JWT auth with token refresh           │
+├──────────────────────────────────────────┤
+│  Backend — FastAPI (Clean Architecture)  │
+│  • API Layer        — FastAPI routes     │
+│  • Application      — Use-case services  │
+│  • Infrastructure   — DB, email, storage │
+│  • Core             — Config, framework  │
+│  • Domain           — Protocols, errors  │
+│  • Modules          — Feature units      │
+└──────────────────────────────────────────┘
+```
 
-## Prerequisites
+## Key Features
 
-| Dependency | Version | Notes               |
-| ---------- | ------- | ------------------- |
-| Node.js    | ≥ 20    | via nvm recommended |
-| pnpm       | ≥ 10    | `npm i -g pnpm`     |
+- **Metadata-Driven Entities** — Define entities via JSON; CRUD, forms, and lists auto-generate
+- **Hook System** — Decorator-based lifecycle hooks (`@before_save`, `@after_save`, `@workflow`)
+- **Workflow Engine** — State machine with transitions, actions, and progress tracking
+- **Role-Based Access Control** — Granular entity-level permissions
+- **Email Notifications** — Subscription-based email alerts for entity events
+- **Print Templates** — Jinja2-based print/PDF generation per entity
+- **Scheduler** — APScheduler integration for recurring jobs
+- **Audit Trail** — Automatic mutation logging
+- **Import/Export** — CSV-based bulk operations
+- **Entity Editor** — Frappe-like model editor with schema migrations
+- **Generic Endpoints** — All entities share a single CRUD kernel (`/api/entity/{name}/...`)
 
 ## Quick Start
 
-### 1. Clone and install dependencies
+### Prerequisites
+
+| Dependency | Version | Notes |
+|------------|---------|-------|
+| Node.js    | ≥ 20    | via nvm recommended |
+| pnpm       | ≥ 10    | `npm i -g pnpm` |
+| Python     | ≥ 3.11  | |
+| PostgreSQL | ≥ 14    | or SQLite for dev |
+
+### Backend Setup
 
 ```bash
-git clone git@github.com:jimmyyyricks/lgu-consolacion.git
-cd lgu-consolacion
-cd frontend
-pnpm install
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Configure .env
+cp .env.example .env
+# Edit .env with your database URL, secret key, etc.
+
+# Run migrations
+alembic upgrade head
+
+# Start the server
+uvicorn app.main:app --reload --port 8012
 ```
 
-### 2. Start the development server
+### Frontend Setup
 
 ```bash
 cd frontend
+pnpm install
+
+# Configure .env
+cat > .env <<'EOF'
+NODE_ENV=development
+NUXT_PUBLIC_API_URL=http://127.0.0.1:8012/api
+NUXT_PUBLIC_WS_URL=ws://127.0.0.1:8012
+EOF
+
+# Start dev server
 pnpm dev
 ```
 
-The browser will open to `http://localhost:3000` displaying the LGU Consolacion website.
-
-### 3. Build for production
-
-```bash
-cd frontend
-pnpm build
-# Start the production server
-node .output/server/index.mjs
-```
+Visit `http://localhost:3000` — the app redirects to setup on first run.
 
 ## Project Structure
 
 ```
-lgu-consolacion/
+├── backend/
+│   ├── app/
+│   │   ├── api/               # FastAPI routes (entries, features, system)
+│   │   ├── application/       # Business services, hooks, notifications
+│   │   ├── core/              # Config, database, security, framework entities
+│   │   ├── domain/            # Pure Python protocols and exceptions
+│   │   ├── infrastructure/    # DB repos, email, storage, scheduler, cache
+│   │   ├── modules/           # Domain feature units (plugins)
+│   │   ├── meta/              # Metadata registry
+│   │   ├── entities/          # Entity loader
+│   │   └── templates/         # Email and print Jinja2 templates
+│   ├── alembic/               # Database migrations
+│   ├── tests/                 # Test suite
+│   └── requirements.txt
 ├── frontend/
 │   ├── app/
-│   │   ├── components/
-│   │   │   ├── lgu/           # LGU-specific components
-│   │   │   │   ├── LguHero.vue
-│   │   │   │   ├── LguServices.vue
-│   │   │   │   ├── LguContact.vue
-│   │   │   │   └── LguNews.vue
-│   │   │   └── ...
-│   │   ├── layouts/
-│   │   │   └── default.vue    # Main layout with header/footer
-│   │   ├── pages/
-│   │   │   └── index.vue      # Home page
-│   │   └── assets/
-│   │       ├── css/
-│   │       └── images/
-│   ├── public/
-│   │   ├── fonts/             # Custom fonts (Domine)
-│   │   └── images/
+│   │   ├── components/        # Vue components
+│   │   ├── composables/       # Reusable composition functions
+│   │   ├── layouts/           # Layout components
+│   │   ├── middleware/        # Route middleware
+│   │   ├── pages/             # File-based routing
+│   │   ├── plugins/           # Nuxt plugins
+│   │   ├── stores/            # Pinia stores
+│   │   └── types/             # TypeScript types
 │   ├── nuxt.config.ts
-│   ├── app.config.ts
 │   └── package.json
-├── .gitignore
-├── install.sh
 ├── run.sh
-└── README.md
+└── install.sh
 ```
 
-## Components
+## Forge CLI
 
-### LguHero
+The backend includes **Forge**, a CLI toolkit for scaffolding entities, syncing models to the database, and managing migrations. Run from `backend/` with the virtualenv active.
 
-- Main hero section with municipality branding
-- Custom Domine font typography
-- Responsive design with image carousel
-- Call-to-action buttons for services and contact
+```
+python -m app.forge <command> [options]
+```
 
-### LguServices
+### Everyday Workflow
 
-- Comprehensive municipal services display
-- Grid layout with service cards
-- Icons and descriptions for each service
+| Command | Description |
+|---|---|
+| `forge sync` | Push entity JSON → Models → DB in one shot |
+| `forge sync -m "add field"` | Sync with a custom migration label |
+| `forge status` | Show current DB revision |
 
-### LguContact
+### Entity Scaffolding
 
-- Contact information and office details
-- Individual cards for each contact method
-- Phone numbers and address information
+| Command | Description |
+|---|---|
+| `forge new-entity <name> --module <mod> --fields "n:t,n:t"` | Scaffold a new entity with fields |
+| `forge add-field <entity> <field> <type>` | Add a field to an existing entity |
+| `forge update-model <entity>` | Regenerate one model from its JSON |
+| `forge update-model --all` | Regenerate every model (force) |
+| `forge generate-types` | Generate TypeScript interfaces from entity metadata |
 
-### LguNews
+### Migrations
 
-- Latest news and announcements
-- Blog post layout with horizontal orientation
-- "View All News" navigation
+| Command | Description |
+|---|---|
+| `forge migrate` | Generate + apply pending migrations |
+| `forge migrate --status` | Show current revision + history |
+| `forge migrate --rollback [N]` | Roll back N steps (default 1) |
 
-## Customization
+### Utilities
 
-### Colors
+| Command | Description |
+|---|---|
+| `forge seed` | Run seed data |
+| `forge console` | Interactive Python REPL with app context |
 
-The website uses a custom color theme defined in `app.config.ts`:
+### Full Example
 
-- **Primary**: `#F57056` (coral red)
-- **Secondary**: `#F6B82B` (golden yellow)
-- **Neutral**: `slate`
+```bash
+cd backend
+python -m app.forge new-entity invoice --module accounting --fields "number:string,customer:link,amount:float,due_date:date"
+python -m app.forge sync
+```
 
-### Typography
+The JSON definition drives API routing, list/detail views, form fields, workflow, and permissions. No route code is needed for standard CRUD.
 
-- **Domine**: Custom serif font for hero titles
-- **Inter**: System sans-serif for body text
+## Documentation
 
-### Images
-
-- **Hero Images**: Place in `frontend/public/images/`
-- **Logo**: Update favicon and branding assets
+| Layer | README |
+|-------|--------|
+| Backend Overview | [backend/app/README.md](backend/app/README.md) |
+| API Layer | [backend/app/api/README.md](backend/app/api/README.md) |
+| Application Layer | [backend/app/application/README.md](backend/app/application/README.md) |
+| Core Layer | [backend/app/core/README.md](backend/app/core/README.md) |
+| Domain Layer | [backend/app/domain/README.md](backend/app/domain/README.md) |
+| Infrastructure | [backend/app/infrastructure/README.md](backend/app/infrastructure/README.md) |
+| Modules | [backend/app/modules/README.md](backend/app/modules/README.md) |
+| Frontend | [frontend/README.md](frontend/README.md) |
+| Tests | [backend/tests/README_TESTS.md](backend/tests/README_TESTS.md) |
 
 ## Tech Stack
 
-**Frontend:** Nuxt 4, Vue 3, Nuxt UI 4, Pinia, Tailwind CSS 4, VueUse, Nuxt Fonts
+**Backend:** FastAPI, SQLAlchemy (async), Alembic, APScheduler, Jinja2, Pydantic
 
-**Development:** pnpm, TypeScript, ESLint, Playwright (E2E Testing)
+**Frontend:** Nuxt 4, Vue 3, Nuxt UI, Pinia, Tailwind CSS, TypeScript
+
+**Infrastructure:** PostgreSQL, Redis (optional), SMTP, S3 (optional)

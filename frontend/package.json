@@ -23,7 +23,6 @@
     "@iconify-json/simple-icons": "^1.2.67",
     "@internationalized/date": "^3.12.0",
     "@nu-grid/nuxt": "^0.3.1",
-    "@nuxt/image": "^2.0.0",
     "@nuxt/ui": "^4.6.0",
     "@pinia/nuxt": "^0.11.3",
     "@quasar/quasar-ui-qcalendar": "^4.1.2",

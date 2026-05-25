@@ -97,7 +97,6 @@ class ModelGeneratorService:
         if module_display in self.MODULE_DIR_MAP:
             return self.MODULE_DIR_MAP[module_display]
 
-        # Last resort: slugify  "Asset Management" → "asset_management"
         slug = re.sub(r"[^a-zA-Z0-9]+", "_", module_display).strip("_").lower()
         return slug
 

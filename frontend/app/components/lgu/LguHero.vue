@@ -2,8 +2,8 @@
   <div class="space-y-0">
     <!-- Hero Section -->
     <UPageHero
-      headline="Republic of the Philippines"
-      description="Serving the community with excellence, transparency, and dedication to public service. Your partner in building a progressive and sustainable future for all citizens."
+      headline=""
+      description="Serving the community with excellence, transparency, and dedication to public service."
       :ui="{
         root: 'relative ',
         container: 'relative z-10 flex items-center py-8 sm:py-12 lg:py-16',
@@ -34,7 +34,7 @@
           <span
             class="font-bold tracking-tight leading-tight text-gray-900 dark:text-white sm:text-[3rem] lg:text-[4rem] font-domine"
           >
-            Municipality of Consolacion
+            Municipality
           </span>
         </div>
       </template>
@@ -75,12 +75,12 @@ const carouselImages = [
 
 // SEO Meta
 useSeoMeta({
-  title: "Municipality of Consolacion - Official Website",
+  title: "Municipality - Official Website",
   description:
-    "Official website of the Municipality of Consolacion, Cebu. Providing quality public service, transparency, and governance for all citizens.",
-  ogTitle: "Municipality of Consolacion - Official Website",
+    "Official website of the Municipality. Providing quality public service, transparency, and governance for all citizens.",
+  ogTitle: "Municipality - Official Website",
   ogDescription:
-    "Official website of the Municipality of Consolacion, Cebu. Providing quality public service, transparency, and governance for all citizens.",
+    "Official website of the Municipality. Providing quality public service, transparency, and governance for all citizens.",
   ogImage: "/og-image.jpg",
   twitterCard: "summary_large_image",
 });

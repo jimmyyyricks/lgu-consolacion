@@ -87,42 +87,13 @@ HookEntry:
 ```python
 from app.application.hooks.registry import hook_registry
 
-@hook_registry.before_save("asset", priority=0)
-async def asset_before_save(doc: dict, ctx: SaveContext) -> dict:
-    """Modify data before saving asset."""
-    doc["modified_by_hook"] = True
-    return doc
+@hook_registry.before_save("my_entity", priority=0)
+async def my_entity_before_save(doc: dict, ctx: SaveContext) -> dict:
+    """Modify data before saving my_entity."""
 
-@hook_registry.after_save("asset", priority=0)
-async def asset_after_save(doc: Any, ctx: SaveContext) -> Optional[dict]:
-    """Execute after asset is saved."""
-    await send_notification(doc.id)
-    return None
-
-@hook_registry.after_delete("asset", priority=0)
-async def asset_after_delete(doc: Any, ctx: SaveContext) -> Optional[dict]:
-    """Cleanup after asset deletion."""
-    await cleanup_related_records(doc.id)
-    return None
-
-@hook_registry.workflow("purchase_request", priority=0)
-async def purchase_request_workflow(ctx: WorkflowContext) -> dict:
-    """Handle workflow transitions for purchase_request."""
-    if ctx.action == "approve":
-        return {"status": "success", "message": "Approved"}
-    return {"status": "success"}
-```
-
-### Priority System
-
-Hooks execute in priority order (lower number = earlier execution):
-
-```python
-@hook_registry.before_save("asset", priority=-10)  # Executes first
-async def high_priority_hook(doc, ctx):
     ...
 
-@hook_registry.before_save("asset", priority=10)   # Executes later
+@hook_registry.before_save("my_entity", priority=10)   # Executes later
 async def low_priority_hook(doc, ctx):
     ...
 ```
@@ -299,7 +270,7 @@ async def pr_workflow(ctx):
 ### Check Entity Has Hooks
 
 ```python
-has_hooks = hook_registry.has_hooks("asset")
+has_hooks = hook_registry.has_hooks("my_entity")
 # Returns True if any hooks registered for entity
 ```
 

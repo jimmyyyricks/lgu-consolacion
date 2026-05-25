@@ -6,7 +6,7 @@
   >
     <UPageCTA
       title="Contact Us"
-      description="Municipal Hall Building, National Highway, Poblacion, Consolacion, Cebu, Philippines 6001"
+      description="Municipal Hall Building, National Highway, Poblacion"
       x
       :links="[
         {
@@ -45,8 +45,8 @@
 <script setup lang="ts">
 // turn into name: number object
 const contactNumbers = {
-  "Municipal Hall": "(032) 265-7398",
-  "Police Station": "349-6543",
-  "Fire Station": "344-8299",
+  "Municipal Hall": "(032) 123-4567",
+  "Police Station": "(032) 123-4568",
+  "Fire Station": "(032) 123-4569",
 };
 </script>

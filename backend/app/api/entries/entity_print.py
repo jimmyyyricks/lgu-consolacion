@@ -127,7 +127,7 @@ async def _get_branding(db: AsyncSession) -> dict:
         return data
     except Exception:
         pass
-    return {"organization_name": "EAM System", "description": "", "logo_url": None}
+    return {"organization_name": "Organization", "description": "", "logo_url": None}
 
 
 async def _render_html(entity: str, meta, doc: dict, db: AsyncSession) -> str:

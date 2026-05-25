@@ -208,8 +208,8 @@ class WorkOrderAssembler:
                 "total_parts_items": total_parts_all,
             },
             "branding": {
-                "organization_name": "EAM System",
-                "description": "Enterprise Asset Management",
+                "organization_name": "Organization",
+                "description": "",
                 "logo_url": None,
             },
         }

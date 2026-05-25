@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-EAM System Setup Script
+System Setup Script
 ========================
 CLI tool for complete backend bootstrap.
 
@@ -379,5 +379,5 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == "__main__":
-    banner("EAM System Setup")
+    banner("System Setup")
     asyncio.run(main(parse_args()))

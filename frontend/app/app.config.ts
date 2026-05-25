@@ -1,8 +1,7 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'primary',
-      secondary: 'secondary',
+      primary: 'green',
       neutral: 'slate'
     },
     calendar: {

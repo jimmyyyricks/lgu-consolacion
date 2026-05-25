@@ -45,3 +45,4 @@ backend/backups/
 # ── Uploads (runtime) ───────────────────────────────────────
 backend/uploads/
 .schema_cache/
+.vercel

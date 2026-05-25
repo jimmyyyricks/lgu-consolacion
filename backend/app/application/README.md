@@ -36,27 +36,26 @@ application/
     │   └── auth_service.py       # AuthAppService — login, token creation
     ├── dashboards/
     │   └── dashboard_service.py  # DashboardAppService — metrics aggregation
-    ├── documents/                # 14 files — document operations
-    │   ├── document.py           # Backward-compatible facade (re-exports)
+    ├── documents/                # Document operations
     │   ├── document_query.py     # get_doc, get_list, get_value
     │   ├── document_mutation.py  # new_doc, save_doc, delete_doc
     │   ├── document_service.py   # DocumentAppService (CQRS-split)
     │   ├── link_title_service.py # get_link_title, build_link_titles_batch
-    │   ├── naming.py             # ID naming logic (WO-001 series)
+    │   ├── naming.py             # ID naming logic (series-based)
     │   ├── naming_service.py     # NamingAppService
     │   ├── print.py              # Print orchestration
-    │   ├── print_formatters.py   # Display formatting (dates, priority text, qty)
+    │   ├── print_formatters.py   # Display formatting
     │   ├── print_resolver.py     # Link display name resolution for print
     │   ├── query_link.py         # Link options queries
-    │   ├── server_actions.py     # Server-side document action dispatch
+    │   └── server_actions.py     # Server-side document action dispatch
     ├── integrations/
     │   ├── audit.py              # Audit log writer
     │   ├── error_logger.py       # Application error persistence
     │   ├── import_export.py      # Bulk CSV import/export logic
     │   └── metadata_sync_service.py  # Atomic metadata sync orchestration
     ├── maintenance/
-    │   ├── constants.py          # FREQUENCY_DAYS and other maintenance constants
-    │   └── job_service.py        # MaintenanceJobService (scheduler job orchestration)
+    │   ├── constants.py          # Domain-specific constants
+    │   └── job_service.py        # Scheduled job orchestration
     ├── notifications/
     │   ├── email_notification_service.py  # Sends notifications by subscription
     │   ├── notification_subscription_service.py  # Manages user subscriptions
@@ -78,11 +77,8 @@ Data objects passed between layers and returned to the API.
 ```python
 from app.application.dto import PaginatedResult, ActionResult
 
-# PaginatedResult — for list endpoints
 result = PaginatedResult(data=[...], total=42, page=1, page_size=20)
-
-# ActionResult — for mutation endpoints
-result = ActionResult(status="success", message="Work order created", data=record)
+result = ActionResult(status="success", message="Record created", data=record)
 result = ActionResult(status="error", message="Validation failed", errors={"title": "Required"})
 ```
 
@@ -94,10 +90,10 @@ Hooks let modules react to save and workflow events without modifying the generi
 
 ### Context Objects (`context.py`)
 
-| Context           | Available In                  | Key Fields                                                        |
-| ----------------- | ----------------------------- | ----------------------------------------------------------------- |
-| `SaveContext`     | `@before_save`, `@after_save` | `db`, `user`, `entity`, `action` (`create`/`update`), `doc`       |
-| `WorkflowContext` | `@workflow`                   | `db`, `user`, `entity`, `doc`, `action`, `from_state`, `to_state` |
+| Context | Available In | Key Fields |
+|---|---|---|
+| `SaveContext` | `@before_save`, `@after_save` | `db`, `user`, `entity`, `action` (`create`/`update`), `doc` |
+| `WorkflowContext` | `@workflow` | `db`, `user`, `entity`, `doc`, `action`, `from_state`, `to_state` |
 
 ### Registering Hooks (`registry.py`)
 
@@ -105,23 +101,20 @@ Hooks let modules react to save and workflow events without modifying the generi
 from app.application.hooks.registry import hook_registry
 from app.application.hooks.context import SaveContext, WorkflowContext
 
-# Run before any 'asset' is saved
-@hook_registry.before_save("asset")
-async def set_asset_defaults(ctx: SaveContext) -> None:
+@hook_registry.before_save("my_entity")
+async def set_defaults(ctx: SaveContext) -> None:
     if ctx.action == "create" and not ctx.doc.get("status"):
         ctx.doc["status"] = "Active"
 
-# Run when a work_order transitions via "Approve"
-@hook_registry.workflow("work_order", action="Approve")
+@hook_registry.workflow("my_entity", action="Approve")
 async def notify_on_approval(ctx: WorkflowContext) -> None:
-    # Send email, create child records, etc.
     ...
 ```
 
 Hooks accept a `priority` keyword (default `0`). Higher priority runs first.
 
 ```python
-@hook_registry.before_save("work_order", priority=10)
+@hook_registry.before_save("my_entity", priority=10)
 async def high_priority_hook(ctx: SaveContext) -> None:
     ...
 ```
@@ -137,9 +130,9 @@ The catalog maps event IDs to recipient resolution logic and template names. Add
 ```python
 # catalog.py — example entry
 register_notification(
-    catalog_id="work_order.approved",
-    template="work_order_approved.html",
-    subject="Work Order {id} Approved",
+    catalog_id="entity.approved",
+    template="record_approved.html",
+    subject="Record {id} Approved",
     resolve_recipients=lambda doc, db: get_assigned_users(doc, db),
 )
 ```
@@ -149,8 +142,7 @@ register_notification(
 ```python
 from app.application.email_notifications.dispatcher import EmailNotificationDispatcher
 
-# Injected via api/dependencies.py
-await dispatcher.dispatch("work_order.approved", record_id="WO-001", db=db)
+await dispatcher.dispatch("entity.approved", record_id="REC-001", db=db)
 ```
 
 ---
@@ -163,10 +155,10 @@ The generic CRUD orchestrator used by all entity API routes. Handles pagination,
 from app.application.services.entity_service import EntityService
 
 svc = EntityService(repo=entity_repo, rbac=rbac_service)
-record = await svc.get_detail("work_order", "WO-001", user=current_user)
-records, total = await svc.get_list("work_order", filters={}, user=current_user, page=1)
-new_record = await svc.create("work_order", data={"title": "Pump repair"}, user=current_user)
-updated = await svc.update("work_order", "WO-001", data={"status": "In Progress"}, user=current_user)
+record = await svc.get_detail("my_entity", "REC-001", user=current_user)
+records, total = await svc.get_list("my_entity", filters={}, user=current_user, page=1)
+new_record = await svc.create("my_entity", data={"title": "New record"}, user=current_user)
+updated = await svc.update("my_entity", "REC-001", data={"status": "Active"}, user=current_user)
 ```
 
 ---
@@ -178,8 +170,8 @@ Template method base class for per-entity APIs (module `apis/` files). Inherit t
 ```python
 from app.application.services.base_entity_api import BaseEntityAPI, Context
 
-class WorkOrderAPI(BaseEntityAPI):
-    entity = "work_order"
+class MyEntityAPI(BaseEntityAPI):
+    entity = "my_entity"
 
     async def before_save(self, ctx: Context) -> None:
         if ctx.action == "create":
@@ -193,45 +185,15 @@ class WorkOrderAPI(BaseEntityAPI):
 
 ## Shared Utilities (`utils/doc_utils.py`)
 
-Helper functions for working with SQLAlchemy model instances or plain dicts interchangeably. Import from here — do not copy-paste into module files.
+Helper functions for working with SQLAlchemy model instances or plain dicts interchangeably.
 
 ```python
 from app.application.utils.doc_utils import get_id, get_attr, to_float, to_int, display_label, meta_title_value, fmt_qty
 
-record_id = get_id(doc)                          # Works with model instance or dict
-qty = to_float(doc.get("quantity"))              # "1.50" → 1.5, None → 0.0
-label = display_label(doc.get("name"), doc.get("id"))  # Returns first non-empty
-title = meta_title_value("asset", doc)           # Uses MetaRegistry title_field
-qty_str = fmt_qty(1.5000)                        # "1.5" (trims trailing zeros)
-```
-
----
-
-## Maintenance Services (`services/maintenance/`)
-
-### `constants.py`
-
-Shared constants used across maintenance module APIs and API routes.
-
-```python
-from app.application.services.maintenance.constants import FREQUENCY_DAYS
-
-# e.g., FREQUENCY_DAYS = {"Weekly": 7, "Monthly": 30, "Quarterly": 90, "Annually": 365}
-days = FREQUENCY_DAYS["Monthly"]  # 30
-```
-
-### `job_service.py`
-
-Wraps maintenance job orchestration so API routes and schedulers do not import from module internals.
-
-```python
-from app.application.services.maintenance.job_service import MaintenanceJobService
-
-svc = MaintenanceJobService()
-await svc.run_calendar_generation()
-await svc.run_condition_generation()
-await svc.run_interval_generation()
-await svc.test_scheduler_every_minute()
+record_id = get_id(doc)
+qty = to_float(doc.get("quantity"))
+label = display_label(doc.get("name"), doc.get("id"))
+title = meta_title_value("my_entity", doc)
 ```
 
 ---
@@ -243,8 +205,8 @@ from app.application.services.workflows.workflow_service import WorkflowAppServi
 
 svc = WorkflowAppService(workflow_repo=..., entity_repo=..., rbac=...)
 result = await svc.apply_action(
-    entity="work_order",
-    record_id="WO-001",
+    entity="my_entity",
+    record_id="REC-001",
     action="Approve",
     user=current_user,
     db=db,
@@ -255,11 +217,11 @@ result = await svc.apply_action(
 
 ## Rules for This Layer
 
-| Rule                                   | Detail                                                                                                             |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **No direct infrastructure imports**   | All infrastructure is injected — never `from app.infrastructure.database import ...` in a service                  |
-| **No SQLAlchemy queries**              | Use repository protocols, not raw `select()`                                                                       |
-| **No FastAPI**                         | Services must not import `Request`, `Response`, `Depends`, or any FastAPI construct                                |
-| **One responsibility per service**     | EntityService does CRUD; WorkflowService does transitions — not both                                               |
-| **Hooks over conditionals**            | Cross-cutting behavior (notifications, validation, child record creation) belongs in hooks, not in service methods |
-| **Shared utilities in `doc_utils.py`** | Do not define `_get_id`, `_get_attr`, or similar helpers inline in module files                                    |
+| Rule | Detail |
+|---|---|
+| **No direct infrastructure imports** | All infrastructure is injected — never `from app.infrastructure.database import ...` in a service |
+| **No SQLAlchemy queries** | Use repository protocols, not raw `select()` |
+| **No FastAPI** | Services must not import `Request`, `Response`, `Depends`, or any FastAPI construct |
+| **One responsibility per service** | EntityService does CRUD; WorkflowService does transitions — not both |
+| **Hooks over conditionals** | Cross-cutting behavior belongs in hooks, not in service methods |
+| **Shared utilities in `doc_utils.py`** | Do not define helpers inline in module files |

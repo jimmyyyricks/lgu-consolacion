@@ -42,13 +42,13 @@ const clearMetadataCache = () => {
       k.startsWith("meta:") ||
       k.startsWith("entity:") ||
       k.startsWith("model-editor:") ||
-      k.startsWith("lgu_"),
+      k.startsWith("eam_"),
   );
 
   keys.forEach((key) => localStorage.removeItem(key));
 
   toast.add({
-    title: "Metadata cache cleared",
+    title: "Metadata Cache Cleared",
     description: `Cleared ${keys.length} metadata items`,
     color: "success",
   });

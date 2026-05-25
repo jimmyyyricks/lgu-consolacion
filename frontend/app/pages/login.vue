@@ -11,10 +11,10 @@ const isLoading = ref(false);
 const errorMessage = ref("");
 
 const brandingTitle = computed(
-  () => branding.value.organization_name || "LGU Portal",
+  () => branding.value.organization_name || "FastAPI Nuxt Starter",
 );
 const brandingDescription = computed(
-  () => branding.value.description || "Local government services",
+  () => branding.value.description || "A modular application framework",
 );
 const brandingLogoUrl = computed(() => branding.value.logo_url || null);
 

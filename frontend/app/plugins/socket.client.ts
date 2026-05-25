@@ -66,8 +66,11 @@ export default defineNuxtPlugin(() => {
 
       console.info(logPrefix, 'entity:change received', { entity, recordId, payload })
 
+      const userPrefix = authStore.user?.id ? `user:${authStore.user.id}:` : ""
+
       if (entity) {
         cacheStore.invalidatePrefix(`meta:entity:${entity}`)
+        cacheStore.invalidatePrefix(`${userPrefix}meta:entity:v2:${entity}`)
         cacheStore.invalidatePrefix(`entity:list:${entity}:`)
         cacheStore.invalidatePrefix(`entity:options:${entity}:`)
 
@@ -77,6 +80,7 @@ export default defineNuxtPlugin(() => {
       }
 
       cacheStore.invalidatePrefix('meta:list')
+      cacheStore.invalidatePrefix(`${userPrefix}meta:list`)
     })
 
     socket.on('meta:change', (payload: unknown) => {
@@ -85,10 +89,14 @@ export default defineNuxtPlugin(() => {
 
       console.info(logPrefix, 'meta:change received', { scope, payload })
 
+      const userPrefix = authStore.user?.id ? `user:${authStore.user.id}:` : ""
+
       // Conservative invalidation for config changes.
       // This covers entity ordering changes and model-editor metadata edits.
       cacheStore.invalidatePrefix('meta:list')
+      cacheStore.invalidatePrefix(`${userPrefix}meta:list`)
       cacheStore.invalidatePrefix('meta:entity:')
+      cacheStore.invalidatePrefix(`${userPrefix}meta:entity:v2:`)
       cacheStore.invalidatePrefix('model-editor:entities')
       cacheStore.invalidatePrefix('admin:ordering:')
     })

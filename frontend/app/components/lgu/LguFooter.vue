@@ -13,7 +13,7 @@
               <NuxtLink
                 to="#"
                 class="hover:text-gray-50 dark:hover:text-gray-100 transition-colors"
-                >About Consolacion</NuxtLink
+                >About the Municipality</NuxtLink
               >
             </li>
             <li>
@@ -158,8 +158,7 @@
 
       <div class="text-center text-gray-400 dark:text-gray-500">
         <p>
-          &copy; 2024 Municipality of Consolacion, Cebu. All rights reserved. |
-          Republic of the Philippines
+          &copy; 2024 Municipality. All rights reserved.
         </p>
       </div>
     </div>

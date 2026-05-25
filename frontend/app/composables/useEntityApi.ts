@@ -4,6 +4,7 @@
  * Entity CRUD, list, options, workflow actions, document actions.
  */
 import { useCacheStore } from "~/stores/cache";
+import { useAuthStore } from "~/stores/auth";
 import { useApiFetch } from "./useApiFetch";
 import type {
   ActionRequest,
@@ -71,11 +72,16 @@ export const getLinkedTitle = (entity: string, id: string): string | null => {
 export const useEntityApi = () => {
   const { apiFetch, baseURL } = useApiFetch();
   const cache = useCacheStore();
+  const auth = useAuthStore();
+
+  const userCachePrefix = computed(() => {
+    return auth.user?.id ? `user:${auth.user.id}:` : "";
+  });
 
   return {
     async getMeta(): Promise<{ status: string; data: MetaListItem[] }> {
       return cache.fetchCached(
-        "meta:list",
+        `${userCachePrefix.value}meta:list`,
         () =>
           apiFetch<{ status: string; data: MetaListItem[] }>(`${baseURL}/meta`),
         TTL.META_LIST,
@@ -86,7 +92,7 @@ export const useEntityApi = () => {
       entity: string,
     ): Promise<{ status: string; data: EntityMeta }> {
       return cache.fetchCachedWithLocalStorage(
-        `meta:entity:v2:${entity}`,
+        `${userCachePrefix.value}meta:entity:v2:${entity}`,
         () =>
           apiFetch<{ status: string; data: EntityMeta }>(
             `${baseURL}/meta/${entity}`,

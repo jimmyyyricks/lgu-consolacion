@@ -3,6 +3,7 @@ import { CalendarDate } from "@internationalized/date";
 import type { NuGridColumn } from "#nu-grid/types";
 import type { EntityMeta, FieldMeta } from "~/composables/useApiTypes";
 import { evaluateDependsOn } from "~/composables/useFormState";
+import { useAuthStore } from "~/stores/auth";
 
 interface Props {
   parentEntity: string;
@@ -67,8 +68,10 @@ watch(
   { immediate: true },
 );
 
+const auth = useAuthStore();
+const userPrefix = computed(() => auth.user?.id ? `user:${auth.user.id}:` : "");
 const childMeta = computed(() => props.childMeta);
-const cachedMetaKey = computed(() => `meta:entity:v2:${props.childEntity}`);
+const cachedMetaKey = computed(() => `${userPrefix.value}meta:entity:v2:${props.childEntity}`);
 const gridFetchFrom = useGridFetchFrom(childMeta, gridData);
 const linkFilterResolver = useGridLinkFilterResolver(childMeta, {
   parentFormData: parentFormDataRef,
@@ -690,7 +693,11 @@ const columns = computed<NuGridColumn<Record<string, any>>[]>(() => {
       header:
         field.name === "workflow_state" ? "Status" : getColumnHeader(field),
       size: getColumnSize(field),
-      enableEditing: !field.readonly && !field.computed_from,
+      enableEditing: (row: { original: Record<string, any> }) => {
+        if (field.readonly || field.computed_from) return false;
+        const isNewRow = String(row.original?.id).startsWith("__new__");
+        return isNewRow ? props.canAdd : props.editable;
+      },
       enableSorting: false,
       enableResizing: true,
       enableHiding: !!field.list_view_depends_on, // Allow hiding for dynamic columns
@@ -1044,7 +1051,7 @@ watch(
       class="flex flex-wrap items-center gap-2 px-4 py-3 border border-muted rounded-t-lg"
     >
       <UButton
-        v-if="editable && canAdd"
+        v-if="canAdd"
         icon="i-lucide-plus"
         size="md"
         variant="solid"
@@ -1116,7 +1123,7 @@ watch(
               resizeMode: 'shift',
             }"
             :editing="
-              editable
+              (editable || canAdd)
                 ? {
                     enabled: true,
                     startClicks: 'single',

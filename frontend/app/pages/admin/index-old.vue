@@ -25,11 +25,6 @@ const todayDate = today.toLocaleDateString("en-US", dateOptions);
 
 const moduleIcons: Record<string, string> = {
   core: "i-lucide-settings",
-  core_eam: "i-lucide-building-2",
-  asset_management: "i-lucide-box",
-  maintenance_mgmt: "i-lucide-wrench",
-  work_mgmt: "i-lucide-clipboard-list",
-  purchasing_stores: "i-lucide-shopping-cart",
 };
 
 const formatLabel = (str: string) =>
@@ -45,8 +40,8 @@ const entities = computed(() => bootInfo.value?.sidebar?.entities || []);
 const branding = computed(
   () =>
     bootInfo.value?.branding_settings || {
-      organization_name: "EAM System",
-      description: "Enterprise Asset Management",
+      organization_name: "FastAPI Nuxt Starter",
+      description: "A modular application framework",
       logo_url: null,
     },
 );
