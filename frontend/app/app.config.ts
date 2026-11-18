@@ -1,9 +1,36 @@
 export default defineAppConfig({
   ui: {
+    container: {
+      base: 'w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8'
+    },
     colors: {
       primary: 'primary',
       secondary: 'secondary',
+      success: 'success',
+      info: 'primary',
+      error: 'error',
+      warning: 'warning',
       neutral: 'slate'
+    },
+    button: {
+      slots: {
+        base: 'justify-center'
+      }
+    },
+    card: {
+      slots: {
+        root: 'rounded-lg'
+      }
+    },
+    navigationMenu: {
+      slots: {
+        link: 'text-base'
+      }
+    },
+    carousel: {
+      slots: {
+        dot: 'relative flex size-11 items-center justify-center !bg-transparent after:absolute after:size-3 after:rounded-full after:bg-accented data-[state=active]:after:bg-primary focus-visible:outline-3 focus-visible:outline-primary/25'
+      }
     },
     calendar: {
       slots: {

@@ -1,12 +1,8 @@
-import { useAuthStore, type User } from '~/stores/auth'
-import { useCacheStore } from '~/stores/cache'
-import { resetApiFetch } from '~/composables/useApiFetch'
-import { useBootInfo } from '~/composables/useBootInfo'
+import { useAuthStore } from '~/stores/auth'
 
 export const useAuth = () => {
   const authStore = useAuthStore()
-  const cacheStore = useCacheStore()
-  const { boot } = useBootInfo()
+  const config = useRuntimeConfig()
 
   const authState = computed(() => ({
     user: authStore.user,
@@ -17,25 +13,41 @@ export const useAuth = () => {
 
   const login = async (username: string, password: string) => {
     try {
-      const result = await boot(username, password)
-
-      if (result.success) {
-        // Boot API now returns all necessary data (sidebar, workflow_states, branding_settings, allowed_dashboards)
-        // No need for separate prefetch calls
-        return { success: true }
-      }
-      return { success: false, message: result.message || 'Invalid credentials' }
-    } catch (error: any) {
+      const formData = new FormData()
+      formData.append('username', username)
+      formData.append('password', password)
+      const result = await $fetch<{
+        access_token: string
+        refresh_token: string
+        user: {
+          id: string
+          username: string
+          email?: string
+          full_name?: string
+          is_superuser?: boolean
+          roles?: string[]
+        }
+      }>(`${config.public.apiUrl}/auth/login`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      })
+      authStore.setAuth({
+        token: result.access_token,
+        refreshToken: result.refresh_token,
+        user: result.user
+      })
+      return { success: true }
+    } catch (error: unknown) {
+      const detail = (error as { data?: { detail?: string } }).data?.detail
       return {
         success: false,
-        message: error.data?.detail || 'Login failed'
+        message: detail || 'Login failed'
       }
     }
   }
 
   const logout = () => {
-    cacheStore.clear()
-    resetApiFetch()
     authStore.logout()
     if (import.meta.client) {
       navigateTo('/login')

@@ -1,6 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "@nuxt/ui";
-@import "@nu-grid/nuxt/css";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+:root {
+  --ui-header-height: 4.5rem;
+  --ui-container: 80rem;
+}
+
+.font-domine {
+  font-family: "Domine", Georgia, serif;
+}
 
 /* Print-friendly styles (FE#25) */
 @media print {
@@ -81,13 +96,6 @@
     transform: translateX(0);
   } */
 
-  /* Stack form fields vertically */
-  .grid-cols-2,
-  .grid-cols-3,
-  .grid-cols-4 {
-    grid-template-columns: 1fr !important;
-  }
-
   /* Full-width tables with horizontal scroll */
   .overflow-x-auto {
     -webkit-overflow-scrolling: touch;
@@ -101,46 +109,69 @@
     min-width: 44px;
   }
 
-  /* Stack header actions */
-  .flex.gap-2 {
-    flex-wrap: wrap;
-  }
-
-  /* Reduce padding on mobile */
-  .p-6 {
-    padding: 1rem !important;
-  }
-  .px-6 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
 }
 
 /* Custom color palette for Nuxt UI */
 :root {
-  --ui-color-primary-50: #fef2f2;
-  --ui-color-primary-100: #fee2e2;
-  --ui-color-primary-200: #fecaca;
-  --ui-color-primary-300: #fca5a5;
-  --ui-color-primary-400: #f87171;
-  --ui-color-primary-500: #F57056;
-  --ui-color-primary-600: #dc2626;
-  --ui-color-primary-700: #b91c1c;
-  --ui-color-primary-800: #991b1b;
-  --ui-color-primary-900: #7f1d1d;
-  --ui-color-primary-950: #450a0a;
+  --ui-color-primary-50: #f5fafc;
+  --ui-color-primary-100: #ecf4fa;
+  --ui-color-primary-200: #d9eaf4;
+  --ui-color-primary-300: #bcdaec;
+  --ui-color-primary-400: #8cc0df;
+  --ui-color-primary-500: #4096c9;
+  --ui-color-primary-600: #3884b1;
+  --ui-color-primary-700: #307097;
+  --ui-color-primary-800: #265a79;
+  --ui-color-primary-900: #1d445a;
+  --ui-color-primary-950: #132d3c;
 
-  --ui-color-secondary-50: #fefce8;
-  --ui-color-secondary-100: #fef9c3;
-  --ui-color-secondary-200: #fef08a;
-  --ui-color-secondary-300: #fde047;
-  --ui-color-secondary-400: #facc15;
-  --ui-color-secondary-500: #F6B82B;
-  --ui-color-secondary-600: #ca8a04;
-  --ui-color-secondary-700: #a16207;
-  --ui-color-secondary-800: #854d0e;
-  --ui-color-secondary-900: #713f12;
-  --ui-color-secondary-950: #422006;
+  --ui-color-secondary-50: #fef8f6;
+  --ui-color-secondary-100: #fdf0ee;
+  --ui-color-secondary-200: #fce2dc;
+  --ui-color-secondary-300: #f9ccc2;
+  --ui-color-secondary-400: #f5a796;
+  --ui-color-secondary-500: #ef6c50;
+  --ui-color-secondary-600: #d25f46;
+  --ui-color-secondary-700: #b3513c;
+  --ui-color-secondary-800: #8f4130;
+  --ui-color-secondary-900: #6c3124;
+  --ui-color-secondary-950: #482018;
+
+  --ui-color-success-50: #f3faf8;
+  --ui-color-success-100: #e7f5f1;
+  --ui-color-success-200: #cfeae3;
+  --ui-color-success-300: #aadbcf;
+  --ui-color-success-400: #6ec1ac;
+  --ui-color-success-500: #0d9775;
+  --ui-color-success-600: #0b8567;
+  --ui-color-success-700: #0a7158;
+  --ui-color-success-800: #085b46;
+  --ui-color-success-900: #064435;
+  --ui-color-success-950: #042d23;
+
+  --ui-color-warning-50: #fefbf4;
+  --ui-color-warning-100: #fef7e8;
+  --ui-color-warning-200: #fceed2;
+  --ui-color-warning-300: #fae2b0;
+  --ui-color-warning-400: #f7cd77;
+  --ui-color-warning-500: #f2ab1d;
+  --ui-color-warning-600: #d5961a;
+  --ui-color-warning-700: #b68016;
+  --ui-color-warning-800: #916711;
+  --ui-color-warning-900: #6d4d0d;
+  --ui-color-warning-950: #493309;
+
+  --ui-color-error-50: #fef8f6;
+  --ui-color-error-100: #fdf0ee;
+  --ui-color-error-200: #fce2dc;
+  --ui-color-error-300: #f9ccc2;
+  --ui-color-error-400: #f5a796;
+  --ui-color-error-500: #ef6c50;
+  --ui-color-error-600: #d25f46;
+  --ui-color-error-700: #b3513c;
+  --ui-color-error-800: #8f4130;
+  --ui-color-error-900: #6c3124;
+  --ui-color-error-950: #482018;
 }
 
 /* Darker disabled form fields - using Nuxt UI theming in app.config.ts instead */

@@ -208,7 +208,9 @@ Prefer single-file or single-test runs during iteration. Full suites are for the
 
 When the user corrects your approach, append a one-line rule here before ending the session. Write it concretely ("Always use X for Y"), never abstractly ("be careful with Y"). If an existing line already covers the correction, tighten it instead of adding a new one. Remove lines when the underlying issue goes away (model upgrades, refactors, process changes).
 
-- (empty)
+- For page-specific UI sizing, apply size props on component instances; do not change global app config unless global scope is requested.
+- For `UPageHero` action links over dark imagery, set each button's surface and text colors explicitly; avoid white text-only outlines as the default action treatment.
+- For cards, use stock Nuxt UI variants instead of decorative one-sided colored borders.
 
 ---
 

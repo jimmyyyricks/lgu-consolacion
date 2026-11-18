@@ -31,7 +31,7 @@ async def _build_error_log_instance(
         generated_id = await naming_service.generate_id(meta.naming)
 
     return ErrorLog(
-        id=generated_id or f"ERR-{uuid.uuid4()}",
+        id=generated_id or str(uuid.uuid4()),
         status=status,
         title=title,
         message=message,

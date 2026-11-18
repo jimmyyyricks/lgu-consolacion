@@ -6,19 +6,18 @@ from fastapi.routing import APIRoute
 import pytest
 
 
-def test_api_routes_are_registered_under_expected_prefixes():
-    """Assert that the FastAPI application mounts the consolidated backend routes under the expected API namespaces."""
+def test_api_routes_are_registered_for_public_content_and_staff_auth():
     from app.main import fastapi_app
 
     api_paths = [route.path for route in fastapi_app.routes if isinstance(route, APIRoute) and route.path.startswith("/api")]
 
     assert api_paths
-    assert any(path.startswith("/api/entity") for path in api_paths)
+    assert any(path.startswith("/api/content") for path in api_paths)
     assert any(path.startswith("/api/auth") for path in api_paths)
-    assert any(path.startswith("/api/meta") for path in api_paths)
     assert any(path.startswith("/api/health") for path in api_paths)
     assert any(path.startswith("/api/version") for path in api_paths)
-    assert any(path.startswith("/api/features") for path in api_paths)
+    assert not any(path.startswith("/api/entity") for path in api_paths)
+    assert not any(path.startswith("/api/meta") for path in api_paths)
 
 
 def test_api_route_names_are_unique():
@@ -52,23 +51,8 @@ async def test_version_endpoint_exposes_runtime_metadata(client):
 
 
 @pytest.mark.asyncio
-async def test_meta_modules_endpoint_returns_module_metadata(client):
-    """Assert that the modules metadata endpoint exposes the label and icon maps used by the frontend shell."""
-    response = await client.get("/api/meta/modules")
-
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload["status"] == "success"
-    assert "labels" in payload["data"]
-    assert "icons" in payload["data"]
-
-
 @pytest.mark.asyncio
-async def test_meta_list_returns_empty_data_for_anonymous_requests(client):
-    """Assert that anonymous metadata listing requests return a successful empty payload instead of leaking entity definitions."""
+async def test_metadata_endpoint_is_removed(client):
     response = await client.get("/api/meta")
 
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload["status"] == "success"
-    assert payload["data"] == []
+    assert response.status_code == 404

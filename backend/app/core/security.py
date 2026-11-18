@@ -69,6 +69,11 @@ async def get_current_user_from_token(
             user = result.scalar_one_or_none()
             
             if user:
+                if not user.is_active:
+                    raise HTTPException(
+                        status_code=status.HTTP_401_UNAUTHORIZED,
+                        detail="User account is disabled",
+                    )
                 return CurrentUser(
                     id=user.id,
                     username=user.username,

@@ -2,59 +2,54 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-  experimental: {
-    appManifest: false,
-  },
-  
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt', '@pinia/nuxt', '@nu-grid/nuxt', '@nuxt/image', '@nuxt/fonts'],
 
-  icon: {
-    collections: ['lucide', 'simple-icons']
-  },
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@vueuse/nuxt', '@pinia/nuxt', '@nuxt/image', '@nuxt/fonts'],
 
-  
-  colorMode: {
-    preference: 'light',
-    fallback: 'light'
-  },
-
-  ssr: false,
+  ssr: true,
 
   devtools: {
     enabled: process.env.NODE_ENV !== 'production'
   },
 
   css: [
-    '~/assets/css/main.css',
-    '@quasar/quasar-ui-qcalendar/dist/QCalendarVariables.css',
-    '@quasar/quasar-ui-qcalendar/dist/QCalendarMonth.css',
-    '@quasar/quasar-ui-qcalendar/dist/QCalendarDay.css',
-    '@quasar/quasar-ui-qcalendar/dist/QCalendarResource.css',
-    '@quasar/quasar-ui-qcalendar/dist/QCalendarTask.css',
+    '~/assets/css/main.css'
   ],
+
+  colorMode: {
+    preference: 'light',
+    fallback: 'light'
+  },
 
   runtimeConfig: {
     public: {
       apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api'
     }
   },
-  
+
+  routeRules: {
+    '/admin': { ssr: false },
+    '/admin/**': { ssr: false }
+  },
+  experimental: {
+    appManifest: false
+  },
+
+  compatibilityDate: '2025-01-15',
+
   vite: {
     build: {
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks: {
-            'pinia': ['pinia'],
-            'vue': ['vue', 'vue-router'],
-            'utils': ['@vueuse/core', 'scule']
+            pinia: ['pinia'],
+            vue: ['vue', 'vue-router'],
+            utils: ['@vueuse/core', 'scule']
           }
         }
       }
     }
   },
-
-  compatibilityDate: '2025-01-15',
 
   eslint: {
     config: {
@@ -63,5 +58,9 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  icon: {
+    collections: ['lucide', 'simple-icons']
   }
 })

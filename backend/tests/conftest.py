@@ -18,15 +18,7 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 from app.core.framework.models.auth import Role, User
-from app.core.loader import load_modules
 from app.core.security import CurrentUser, get_current_user_from_token, get_password_hash
-from app.entities import load_all_entities
-from app.infrastructure.database.repositories.entity_repository import register_core_models
-
-
-load_modules()
-load_all_entities()
-register_core_models()
 
 
 TEST_DATABASE_URL = os.getenv(

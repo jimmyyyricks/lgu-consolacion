@@ -46,7 +46,7 @@ export const useTokenRefresh = () => {
 
     _refreshTimer = setTimeout(async () => {
       try {
-        const refreshed = await $fetch<{ access_token: string; token_type: string }>(
+        const refreshed = await $fetch<{ access_token: string, token_type: string }>(
           `${baseURL}/auth/refresh`,
           { method: 'POST', credentials: 'include' }
         )

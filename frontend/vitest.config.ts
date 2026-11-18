@@ -5,10 +5,10 @@ export default defineVitestConfig({
     environment: 'nuxt',
     environmentOptions: {
       nuxt: {
-        domEnvironment: 'happy-dom',
-      },
+        domEnvironment: 'happy-dom'
+      }
     },
     include: ['tests/**/*.test.ts', 'tests/**/*.spec.ts'],
-    globals: true,
-  },
+    globals: true
+  }
 })

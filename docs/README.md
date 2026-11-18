@@ -1,84 +1,21 @@
-# EAM System Documentation
+# Documentation
 
-**Last Updated:** 2026-01-29
+Start with the route map. Each site-hierarchy page describes a page group and links to the related navigation or content flow.
 
-## Quick Links
+## Site map
 
-| Document | Description |
-|----------|-------------|
-| [ARCHITECTURE.md](./ARCHITECTURE.md) | System overview and high-level design |
-| [backend/STRUCTURE.md](./backend/STRUCTURE.md) | Backend directory structure |
-| [backend/DOCUMENT_SERVICE.md](./backend/DOCUMENT_SERVICE.md) | Frappe-like document API |
-| [backend/FORGE_GUIDE.md](./backend/FORGE_GUIDE.md) | CLI tool usage |
+- [Site routes](site-routes.md) — route index and entry point to the site hierarchy.
+- [Landing page](site-hierarchy/landing-page.md) — homepage sections and their links.
+- [About Consolacion](site-hierarchy/about-page.md) — overview, municipal offices, and officials.
+- [Header and navigation](site-hierarchy/header-navigation.md) — header, menus, footer, and staff sign-in links.
+- [Services](site-hierarchy/services.md) — service directory and destinations.
+- [Transparency](site-hierarchy/transparency.md) — all public-record categories and detail pages.
+- [News and tourism](site-hierarchy/news-tourism.md) — archives, landing previews, and detail routes.
+- [Staff and CMS](site-hierarchy/staff-cms.md) — sign-in, protected pages, and editorial flow.
 
-## Documentation Structure
+## System notes
 
-```
-docs/
-├── README.md                    # This file
-├── ARCHITECTURE.md              # System architecture overview
-├── backend/
-│   ├── STRUCTURE.md             # Backend directory structure
-│   ├── DOCUMENT_SERVICE.md      # Document service API
-│   ├── FORGE_GUIDE.md           # Forge CLI guide
-│   ├── CODING_STANDARDS.md      # Code style guidelines
-│   └── ENTITY_REFERENCE.md      # Entity metadata reference
-├── frontend/
-│   └── VALIDATION_GUIDE.md      # Frontend validation
-└── suggestions/
-    ├── CLEANUP_REPORT.md        # Recent cleanup actions
-    └── IMPROVEMENTS.md          # Future improvements
-```
-
-## Getting Started
-
-### Backend Setup
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-
-# Run migrations
-./scripts/deploy.sh --migrate
-
-# Seed data
-python -m app.forge seed
-
-# Start server
-uvicorn app.main:app --reload
-```
-
-### Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-## Key Concepts
-
-### 1. Modular Architecture
-Each feature is a self-contained module in `app/modules/{module_name}/`:
-- `models/` - SQLAlchemy models
-- `entities/` - JSON metadata
-- `apis/` - Custom business logic
-
-### 2. Code-First Development
-1. Define SQLAlchemy model
-2. Run `python -m app.forge sync-meta` to generate JSON
-3. Run `python -m app.forge migrate` to update DB
-
-### 3. Generic CRUD
-The `/api/entity/{name}` router handles all entities automatically based on metadata.
-
-## Recent Changes (2026-01-29)
-
-- Consolidated `seed.py` and `seed_eam.py` into single file
-- Merged `workflow.py` and `workflow_db.py` services
-- Merged `rbac.py` and `rbac_db.py` services
-- Made all DB columns nullable for testing flexibility
-- Added `scripts/deploy.sh` for deployment automation
-- Cleaned up unused files and `__pycache__` directories
+- [Business logic](business-logic/public-content.md) — content types, routes, and current data sources.
+- [Design philosophy](design-philosophy/principles.md) — the visual and accessibility patterns in use.
+- [Frontend](frontend/README.md) — Nuxt structure and page composition.
+- [Backend](backend/README.md) — API groups and content persistence.

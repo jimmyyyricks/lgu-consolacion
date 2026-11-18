@@ -24,10 +24,6 @@ class SetupAdminRequest(BaseModel):
     email: EmailStr
     full_name: str = Field(..., min_length=1, max_length=255)
     password: str = Field(..., min_length=6)
-    run_seeds: bool = Field(
-        True,
-        description="When true, seeds roles, workflow states/actions, and reference data after admin creation.",
-    )
 
 
 def _setup_service(db: AsyncSession = Depends(get_db)) -> SetupService:
@@ -60,7 +56,6 @@ async def create_admin(
             email=data.email,
             full_name=data.full_name,
             password=data.password,
-            run_seeds=data.run_seeds,
         )
     except ValueError as exc:
         raise HTTPException(status_code=403, detail=str(exc))
@@ -74,15 +69,5 @@ async def create_admin(
             "full_name": setup_result.admin_full_name,
         },
     }
-
-    if setup_result.seed_summary:
-        response["seed_summary"] = {
-            "total_created": setup_result.seed_summary.total_created,
-            "total_skipped": setup_result.seed_summary.total_skipped,
-            "entities": [
-                {"entity": r.entity, "created": r.created, "skipped": r.skipped}
-                for r in setup_result.seed_summary.results
-            ],
-        }
 
     return response

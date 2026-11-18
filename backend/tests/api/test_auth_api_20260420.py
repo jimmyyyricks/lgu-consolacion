@@ -18,15 +18,13 @@ async def test_login_rejects_invalid_credentials(client):
 
 
 @pytest.mark.asyncio
-async def test_boot_rejects_invalid_credentials(client):
-    """Assert that the boot endpoint enforces the same credential checks as the login endpoint."""
+async def test_metadata_boot_endpoint_is_removed(client):
     response = await client.post(
         "/api/auth/boot",
         data={"username": "missing-user", "password": "bad-password"},
     )
 
-    assert response.status_code == 401
-    assert response.json()["detail"] == "Incorrect username or password"
+    assert response.status_code == 404
 
 
 @pytest.mark.asyncio
@@ -56,12 +54,7 @@ async def test_auth_me_requires_access_or_refresh_token(client):
 
 
 @pytest.mark.asyncio
-async def test_profile_returns_authenticated_user_payload(authenticated_client, authenticated_user):
-    """Assert that the profile handler returns the current user payload when authentication is resolved through the dependency override."""
-    response = await authenticated_client.get("/api/profile")
+async def test_legacy_profile_endpoint_is_removed(client):
+    response = await client.get("/api/profile")
 
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload["status"] == "success"
-    assert payload["data"]["id"] == authenticated_user.id
-    assert payload["data"]["username"] == authenticated_user.username
+    assert response.status_code == 404

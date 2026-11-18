@@ -7,9 +7,9 @@ export function timeAgo(dateStr: string | null | undefined): string {
 
   // Check if the date string has timezone info
   const hasTimezone = dateStr.includes('Z') || dateStr.includes('+00:00') || dateStr.includes('.000Z')
-  
+
   let date: Date
-  
+
   if (hasTimezone) {
     // Timezone-aware date: parse normally
     date = new Date(dateStr)
@@ -17,7 +17,7 @@ export function timeAgo(dateStr: string | null | undefined): string {
     // Naive UTC date: append 'Z' to treat it as UTC
     date = new Date(dateStr + 'Z')
   }
-  
+
   if (isNaN(date.getTime())) return '-'
 
   const now = new Date()

@@ -16,7 +16,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 
 from app.core.framework.models.auth import User
-from app.core.seeds import run_all_seeds, SeedSummary
 
 
 @dataclass
@@ -31,7 +30,6 @@ class SetupResult:
     admin_username: str
     admin_email: str
     admin_full_name: str
-    seed_summary: SeedSummary | None = None
 
 
 class SetupService:
@@ -91,15 +89,7 @@ class SetupService:
         email: str,
         full_name: str,
         password: str,
-        run_seeds: bool = True,
     ) -> SetupResult:
-        """
-        Full first-run pipeline:
-          1. Create superadmin
-          2. Optionally run all seeds (roles, workflow, reference data)
-
-        Raises ValueError if setup is already complete.
-        """
         user = await self.create_superadmin(
             username=username,
             email=email,
@@ -107,13 +97,8 @@ class SetupService:
             password=password,
         )
 
-        seed_summary: SeedSummary | None = None
-        if run_seeds:
-            seed_summary = await run_all_seeds(self._db)
-
         return SetupResult(
             admin_username=user.username,
             admin_email=user.email,
             admin_full_name=user.full_name,
-            seed_summary=seed_summary,
         )

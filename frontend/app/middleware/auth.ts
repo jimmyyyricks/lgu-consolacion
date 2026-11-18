@@ -1,23 +1,23 @@
-import { useAuthStore } from "~/stores/auth";
+import { useAuthStore } from '~/stores/auth'
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
-  const authStore = useAuthStore();
+  const authStore = useAuthStore()
 
   // /setup is a manual fallback — always accessible, no redirect logic
-  if (to.path === "/setup") {
-    return;
+  if (to.path === '/setup') {
+    return
   }
 
   // Login page: redirect away if already authenticated
-  if (to.path === "/login") {
+  if (to.path === '/login') {
     if (authStore.isAuthenticated) {
-      return navigateTo("/");
+      return navigateTo('/admin/content')
     }
-    return;
+    return
   }
 
   // All other routes: require authentication
   if (!authStore.isAuthenticated) {
-    return navigateTo("/login");
+    return navigateTo('/login')
   }
-});
+})

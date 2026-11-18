@@ -1,7 +1,0 @@
-name,creation,modified,modified_by,owner,docstatus,idx,account_name,account_type,_user_tags,_comments,_assign,_liked_by,account_code
-"ACCT-0001','2025-11-16 23:53:42.152817','2025-11-16 23:57:11.825704','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,3,'COS-Biogas','Material',NULL,NULL,NULL,NULL,'5080000040"
-"ACCT-0002','2025-11-16 23:54:24.936250','2025-11-16 23:58:02.393517','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,283,'COS-R&M-Other repairs and maintenance','Material',NULL,NULL,NULL,NULL,'5050000110"
-"ACCT-0003','2025-11-16 23:55:12.074639','2025-11-16 23:57:49.523977','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,3,'COS-Waste Water Treatment','Material',NULL,NULL,NULL,NULL,'5080000330"
-"ACCT-0004','2025-11-16 23:56:07.947955','2025-11-16 23:57:38.602646','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,3,'GAEX-Other Services','Material',NULL,NULL,NULL,NULL,'6055100100"
-"ACCT-0005','2025-11-16 23:56:42.362855','2025-11-16 23:57:23.758632','kbontia@cubeworks.com.ph','kbontia@cubeworks.com.ph',0,130,'COS-R&M-Other equipments','Material',NULL,NULL,NULL,NULL,'5050000100"
-"ACCT-0006','2026-03-03 13:32:58.182534','2026-03-03 13:32:58.182534','glaiza.batalon@metpower-operation.net','glaiza.batalon@metpower-operation.net',0,17,'COS-Safety Gears and Tools','Equipment',NULL,NULL,NULL,NULL,'5080000030"

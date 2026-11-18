@@ -5,7 +5,7 @@ EAM System Setup Script
 CLI tool for complete backend bootstrap.
 
 Usage:
-    # Full bootstrap (database + tables + core seeds + optional first admin)
+    # Full bootstrap (database + tables + canonical roles + optional first admin)
     python scripts/setup_system.py --all
 
     # Full bootstrap with explicit admin credentials
@@ -15,13 +15,13 @@ Usage:
         --admin-full-name "System Administrator" \
         --admin-password "change-me"
 
-    # Leave the system in first-run setup mode (frontend /setup page)
+    # Leave the system in first-run setup mode
     python scripts/setup_system.py --all --skip-admin
 
     # Only create/migrate database tables
     python scripts/setup_system.py --db-only
 
-    # Only run core seed pipeline (tables must already exist)
+    # Only seed staff roles (tables must already exist)
     python scripts/setup_system.py --seed-only
 
     # Only create first admin interactively via the same setup service flow
@@ -256,11 +256,8 @@ def _resolve_admin_credentials(args: argparse.Namespace, *, required: bool) -> A
 # ── Steps ─────────────────────────────────────────────────────────────────────
 
 async def step_init_db(bootstrap_url: str | None) -> None:
-    """Ensure all database tables exist (creates missing tables, no destructive ops)."""
-    from app.core.loader import load_modules
-    from app.entities import load_all_entities
-    from app.infrastructure.metadata.integrity import validate_loaded_metadata_and_models
-    from app.infrastructure.database.repositories.entity_repository import register_core_models
+    """Create missing application tables without modifying existing tables."""
+    from app.core.framework.models import PublicContent, Role, User
     from app.core.database import init_db
     from app.core.config import settings
 
@@ -269,26 +266,17 @@ async def step_init_db(bootstrap_url: str | None) -> None:
         bootstrap_url=bootstrap_url,
     )
 
-    step("Loading modules and entity metadata...")
-    load_modules()
-    load_all_entities()
-    register_core_models()
-
-    step("Validating entity metadata against loaded models...")
-    validate_loaded_metadata_and_models()
-    ok("Metadata and model integrity verified.")
-
-    step("Initialising database tables...")
+    step("Creating missing application tables...")
     await init_db()
     ok("Database tables ready.")
 
 
 async def step_seed(db) -> None:
-    """Run the full modular core seed pipeline."""
-    from app.core.seeds import run_all_seeds
-    step("Running seed pipeline...")
-    summary = await run_all_seeds(db)
-    ok(f"Seeding complete — {summary.total_created} records created, {summary.total_skipped} skipped.")
+    """Ensure canonical staff roles exist."""
+    from app.core.seeds.roles import seed_roles
+    step("Seeding staff roles...")
+    result = await seed_roles(db)
+    ok(f"Roles ready — {result.created} created, {result.skipped} already present.")
 
 
 async def step_superadmin(db, credentials: AdminCredentials | None) -> None:

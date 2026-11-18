@@ -1,4 +1,4 @@
-import { useAuthStore } from '~/stores/auth'
+import { useAuthStore, type User } from '~/stores/auth'
 
 export default defineNuxtPlugin(async () => {
   const authStore = useAuthStore()
@@ -11,7 +11,7 @@ export default defineNuxtPlugin(async () => {
     try {
       // Single request: /auth/me validates access token OR falls back to
       // refresh cookie, returning user + optional new_token in one round-trip.
-      const response = await $fetch<{ status: string; user: any; new_token?: string }>(`${baseURL}/auth/me`, {
+      const response = await $fetch<{ status: string, user: User, new_token?: string }>(`${baseURL}/auth/me`, {
         headers: {
           Authorization: `Bearer ${authStore.token}`
         },

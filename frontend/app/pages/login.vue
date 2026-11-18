@@ -1,110 +1,94 @@
 <script setup lang="ts">
-import { useBrandingSettings } from "~/composables/useBrandingSettings";
+const { login } = useAuth()
+const router = useRouter()
 
-const { login } = useAuth();
-const router = useRouter();
-const { branding, refreshBrandingSettings } = useBrandingSettings();
-
-const username = ref("");
-const password = ref("");
-const isLoading = ref(false);
-const errorMessage = ref("");
-
-const brandingTitle = computed(
-  () => branding.value.organization_name || "LGU Portal",
-);
-const brandingDescription = computed(
-  () => branding.value.description || "Local government services",
-);
-const brandingLogoUrl = computed(() => branding.value.logo_url || null);
+const username = ref('')
+const password = ref('')
+const isLoading = ref(false)
+const errorMessage = ref('')
 
 const handleLogin = async (user?: string, pass?: string) => {
-  const loginUsername = user || username.value;
-  const loginPassword = pass || password.value;
+  const loginUsername = user || username.value
+  const loginPassword = pass || password.value
 
   if (!loginUsername || !loginPassword) {
-    errorMessage.value = "Please enter username and password";
-    return;
+    errorMessage.value = 'Please enter username and password'
+    return
   }
 
-  isLoading.value = true;
-  errorMessage.value = "";
+  isLoading.value = true
+  errorMessage.value = ''
 
   try {
-    const result = await login(loginUsername, loginPassword);
+    const result = await login(loginUsername, loginPassword)
     if (result.success) {
-      router.push("/");
+      router.push('/admin/content')
     } else {
-      errorMessage.value = result.message || "Login failed";
+      errorMessage.value = result.message || 'Login failed'
     }
-  } catch (_error) {
-    errorMessage.value = "An error occurred during login";
+  } catch {
+    errorMessage.value = 'An error occurred during login'
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
-};
-
-onMounted(() => {
-  refreshBrandingSettings();
-});
+}
 
 definePageMeta({
-  title: "Login",
-  layout: false,
-});
+  title: 'Login',
+  layout: false
+})
+
+useSeoMeta({ robots: 'noindex, nofollow' })
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-background p-6">
-    <div class="w-[420px] max-w-md p-8 border border-accented rounded-lg">
+  <div class="flex min-h-[80vh] items-center justify-center bg-muted/30 p-4 sm:p-6">
+    <UCard class="w-full max-w-md">
       <!-- Branding Header -->
-      <div class="flex flex-col items-center mb-8">
+      <div class="mb-8 flex flex-col items-center text-center">
         <img
-          v-if="brandingLogoUrl"
-          :src="brandingLogoUrl"
-          alt="Organization logo"
-          class="w-14 h-14 rounded-lg object-contain mb-3"
-        />
-        <div
-          v-else
-          class="w-14 h-14 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-3"
+          src="/images/lacion seal.jpg"
+          alt="Municipality of Consolacion seal"
+          class="mb-4 size-16 rounded-full object-cover"
         >
-          <svg
-            class="w-8 h-8"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M9 11h6M9 15h6" />
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-foreground">{{ brandingTitle }}</h2>
-        <p class="text-sm text-muted-foreground mt-0.5">
-          {{ brandingDescription }}
+        <h1 class="font-domine text-2xl font-semibold text-highlighted">
+          Staff sign in
+        </h1>
+        <p class="mt-1 text-sm text-muted">
+          Municipality of Consolacion
         </p>
       </div>
 
-      <form class="space-y-4" @submit.prevent="() => handleLogin()">
-        <UFormField label="Username">
+      <form
+        class="space-y-4"
+        @submit.prevent="handleLogin()"
+      >
+        <UFormField
+          label="Username"
+          size="lg"
+        >
           <UInput
             v-model="username"
             type="text"
             placeholder="Enter your username"
             :disabled="isLoading"
             required
+            size="lg"
             class="w-full"
           />
         </UFormField>
 
-        <UFormField label="Password">
+        <UFormField
+          label="Password"
+          size="lg"
+        >
           <UInput
             v-model="password"
             type="password"
             placeholder="Enter your password"
             :disabled="isLoading"
             required
+            size="lg"
             class="w-full"
           />
         </UFormField>
@@ -126,6 +110,6 @@ definePageMeta({
           Sign In
         </UButton>
       </form>
-    </div>
+    </UCard>
   </div>
 </template>

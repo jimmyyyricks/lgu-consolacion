@@ -8,15 +8,15 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     headless: true,
     screenshot: 'only-on-failure',
-    trace: 'on-first-retry',
+    trace: 'on-first-retry'
   },
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: true,
-    timeout: 120_000,
+    timeout: 120_000
   },
   projects: [
-    { name: 'chromium', use: { browserName: 'chromium' } },
-  ],
+    { name: 'chromium', use: { browserName: 'chromium' } }
+  ]
 })
