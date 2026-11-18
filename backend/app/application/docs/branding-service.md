@@ -17,7 +17,7 @@
 
 ## Agent Entry
 
-**Purpose**: The Branding Service manages application branding configuration including organization name, description, and logo upload. It provides a simple interface for customizing the EAM application appearance.
+**Purpose**: The Branding Service manages application branding configuration including organization name, description, and logo upload. It provides a simple interface for customizing the application appearance.
 
 **When to Read**:
 
@@ -43,7 +43,7 @@
 
 ## Overview
 
-The Branding Service manages application branding configuration including organization name, description, and logo upload. It provides a simple interface for customizing the EAM application appearance.
+The Branding Service manages application branding configuration including organization name, description, and logo upload. It provides a simple interface for customizing the application appearance.
 
 ## Architecture {#architecture}
 
@@ -61,15 +61,15 @@ The Branding Service manages application branding configuration including organi
 Branding Configuration:
 {
   "organization_name": "Acme Corp",
-  "description": "Enterprise Asset Management",
+  "description": "A modular application framework",
   "logo_url": "/uploads/branding/logo-a1b2c3d4.png"
 }
 ```
 
 **Default Values:**
 
-- `organization_name`: "EAM 2.1"
-- `description`: "Asset Management"
+- `organization_name`: "My App"
+- `description`: "A modular application framework"
 - `logo_url`: None
 
 ## Core Operations {#core-operations}
@@ -88,7 +88,7 @@ Returns merged branding configuration (defaults + stored values).
 branding = service.get_branding()
 # {
 #   "organization_name": "Acme Corp",
-#   "description": "Custom EAM Instance",
+#   "description": "Custom Instance",
 #   "logo_url": "/uploads/branding/logo-a1b2c3d4.png"
 # }
 ```
@@ -160,7 +160,7 @@ Deletes all logo files and clears logo_url from configuration.
 ```json
 {
   "organization_name": "Acme Corp",
-  "description": "Enterprise Asset Management",
+  "description": "A modular application framework",
   "logo_url": "/uploads/branding/logo-a1b2c3d4.png"
 }
 ```
@@ -187,7 +187,7 @@ curl -X POST http://localhost:8000/api/v1/admin/branding/logo \
 ```json
 {
   "organization_name": "Acme Corp",
-  "description": "Enterprise Asset Management",
+  "description": "A modular application framework",
   "logo_url": "/uploads/branding/logo-e5f6g7h8.png"
 }
 ```
@@ -201,7 +201,7 @@ curl -X POST http://localhost:8000/api/v1/admin/branding/logo \
 export const useBrandingStore = defineStore("branding", {
   state: () => ({
     config: {
-      organization_name: "EAM 2.1",
+      organization_name: "My App",
       description: "Asset Management",
       logo_url: null,
     } as BrandingConfig,

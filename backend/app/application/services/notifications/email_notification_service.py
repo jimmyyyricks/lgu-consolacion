@@ -311,5 +311,5 @@ class EmailNotificationService:
             lines.append(f"  {field['label']}: {field['value']}")
         lines.append("-" * 40)
         lines.append("")
-        lines.append("This is an automated notification from the EAM System.")
+        lines.append("This is an automated notification from the system.")
         return "\n".join(lines)

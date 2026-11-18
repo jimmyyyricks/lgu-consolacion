@@ -16,7 +16,7 @@ core/
 ├── base_model.py       # BaseModel ORM class (id, created_at, updated_at)
 ├── exceptions.py       # HTTP exception classes (404, 400, 403, 409, 500)
 ├── error_handlers.py   # @handle_api_errors decorator, safe_dict_response()
-├── feature_flags.py    # is_po_enabled(), PO_ENTITIES constant
+├── feature_flags.py    # Runtime feature toggles
 ├── loader.py           # load_modules() — dynamic import of all modules
 ├── sanitization.py     # sanitize_string(), sanitize_dict() (XSS prevention)
 ├── seed.py             # run_seeds() facade
@@ -28,10 +28,10 @@ core/
 │   └── models/         # SQLAlchemy models: User, Role, WorkflowState, etc.
 └── seeds/
     ├── __init__.py     # run_all_seeds() — ordered orchestrator
-    ├── roles.py        # SystemManager, Technician, Viewer
-    ├── permissions.py  # RBAC matrix (30 operational + 6 admin entities)
-    ├── workflow_states.py  # 38 states with Nuxt UI color codes
-    ├── workflow_actions.py # 45+ action verbs (Approve, Reject, Submit…)
+    ├── roles.py        # Default system roles
+    ├── permissions.py  # RBAC matrix
+    ├── workflow_states.py  # Workflow states with Nuxt UI color codes
+    ├── workflow_actions.py # Action verbs (Approve, Reject, Submit…)
     ├── users.py        # Superadmin creation
     ├── workflows.py    # Entity workflow configurations
     └── request_activity_types.py
@@ -46,23 +46,19 @@ Settings are loaded once via Pydantic's `BaseSettings`. All environment variable
 ```python
 from app.core.config import settings
 
-# Access config anywhere
 db_url = settings.DATABASE_URL
 smtp_host = settings.SMTP_HOST
-debug_mode = settings.DEBUG
 ```
 
 **Key settings:**
 
-| Setting                   | Default  | Description                           |
-| ------------------------- | -------- | ------------------------------------- |
-| `DATABASE_URL`            | required | PostgreSQL async URL                  |
-| `SECRET_KEY`              | required | JWT signing key                       |
-| `PURCHASE_ORDER_ENABLED`  | `True`   | Feature flag for PO module            |
-| `RUN_SEEDS`               | `True`   | Run idempotent seeds on startup       |
-| `STORAGE_BACKEND`         | `local`  | `local` or `s3`                       |
-| `SMTP_HOST` / `SMTP_PORT` | optional | Email sending config                  |
-| `DEVELOPER_MODE`          | `False`  | Allow editing core framework entities |
+| Setting | Default | Description |
+|---|---|---|
+| `DATABASE_URL` | required | PostgreSQL async URL |
+| `SECRET_KEY` | required | JWT signing key |
+| `RUN_SEEDS` | `True` | Run idempotent seeds on startup |
+| `STORAGE_BACKEND` | `local` | `local` or `s3` |
+| `SMTP_HOST` / `SMTP_PORT` | optional | Email sending config |
 
 ---
 
@@ -71,7 +67,6 @@ debug_mode = settings.DEBUG
 Sets up the async SQLAlchemy engine. Use `get_db()` as a FastAPI dependency for per-request sessions.
 
 ```python
-# In route handlers (via Depends)
 from app.core.database import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
@@ -109,8 +104,8 @@ All SQLAlchemy models inherit from `BaseModel`. Do not use SQLAlchemy's `Base` d
 ```python
 from app.core.base_model import BaseModel
 
-class WorkOrder(BaseModel):
-    __tablename__ = "work_order"
+class MyEntity(BaseModel):
+    __tablename__ = "my_entity"
     title = Column(String)
     status = Column(String, default="Draft")
 ```
@@ -123,20 +118,20 @@ class WorkOrder(BaseModel):
 
 Map domain exceptions to HTTP responses. Used in `api/` error handling.
 
-| Class                 | HTTP Status |
-| --------------------- | ----------- |
-| `NotFoundError`       | 404         |
-| `BadRequestError`     | 400         |
-| `UnauthorizedError`   | 401         |
-| `ForbiddenError`      | 403         |
-| `ConflictError`       | 409         |
-| `InternalServerError` | 500         |
+| Class | HTTP Status |
+|---|---|
+| `NotFoundError` | 404 |
+| `BadRequestError` | 400 |
+| `UnauthorizedError` | 401 |
+| `ForbiddenError` | 403 |
+| `ConflictError` | 409 |
+| `InternalServerError` | 500 |
 
 ```python
 from app.core.exceptions import NotFoundError, ForbiddenError
 
-raise NotFoundError("Work order not found")
-raise ForbiddenError("You do not have permission to approve this")
+raise NotFoundError("Record not found")
+raise ForbiddenError("You do not have permission")
 ```
 
 ---
@@ -151,8 +146,6 @@ from app.core.error_handlers import handle_api_errors
 @router.post("/entity/{entity_name}")
 @handle_api_errors
 async def create_entity(...):
-    # DomainException subclasses become 4xx responses
-    # Uncaught exceptions become 500
     ...
 ```
 
@@ -163,35 +156,33 @@ async def create_entity(...):
 Toggles feature availability at runtime based on environment variables.
 
 ```python
-from app.core.feature_flags import is_po_enabled, PO_ENTITIES
+from app.core.feature_flags import is_feature_enabled
 
-if is_po_enabled():
-    # Purchase Order module is active
+if is_feature_enabled("my_feature"):
+    # Feature is active
     ...
 ```
-
-Currently gating: Purchase Order module (`PURCHASE_ORDER_ENABLED=False` hides PO entities from menus and API routes).
 
 ---
 
 ## Framework (`framework/`)
 
-The framework package contains the core entity models that ship with the system. These are protected — they cannot be overwritten by module entity JSON files, and require `DEVELOPER_MODE=1` to modify.
+The framework package contains the core entity models that ship with the system. These are protected — they cannot be overwritten by module entity JSON files.
 
 **Core models exported by `framework/__init__.py`:**
 
-| Model              | Table               | Purpose                        |
-| ------------------ | ------------------- | ------------------------------ |
-| `User`             | `user`              | System users                   |
-| `Role`             | `role`              | RBAC roles                     |
-| `EntityPermission` | `entity_permission` | Role → Entity → Action matrix  |
-| `WorkflowState`    | `workflow_state`    | All possible document states   |
-| `WorkflowAction`   | `workflow_action`   | All possible workflow verbs    |
-| `Workflow`         | `workflow`          | Entity workflow configurations |
-| `AuditLog`         | `audit_log`         | Record of all mutations        |
-| `ErrorLog`         | `error_log`         | Application error log          |
-| `Attachment`       | `attachment`        | File attachments               |
-| `Notification`     | `notification`      | User notification inbox        |
+| Model | Table | Purpose |
+|---|---|---|
+| `User` | `user` | System users |
+| `Role` | `role` | RBAC roles |
+| `EntityPermission` | `entity_permission` | Role → Entity → Action matrix |
+| `WorkflowState` | `workflow_state` | All possible document states |
+| `WorkflowAction` | `workflow_action` | All possible workflow verbs |
+| `Workflow` | `workflow` | Entity workflow configurations |
+| `AuditLog` | `audit_log` | Record of all mutations |
+| `ErrorLog` | `error_log` | Application error log |
+| `Attachment` | `attachment` | File attachments |
+| `Notification` | `notification` | User notification inbox |
 
 ---
 
@@ -209,21 +200,14 @@ Execution order (enforced by `run_all_seeds()`):
 6. Workflows
 7. Request activity types
 
-```python
-# Seeds run automatically on startup if RUN_SEEDS=True (see main.py)
-# To run manually:
-async with async_session_maker() as db:
-    await run_seeds(db)
-```
-
 ---
 
 ## Rules for This Layer
 
-| Rule                                   | Detail                                                       |
-| -------------------------------------- | ------------------------------------------------------------ |
-| **No business logic**                  | Core is infrastructure, not domain logic                     |
-| **Config is read-only at runtime**     | Never mutate `settings` after startup                        |
-| **Framework models are protected**     | Do not add business logic methods to core models             |
-| **Seeds must be idempotent**           | Use `get_or_create` patterns; never `INSERT` without a check |
-| **Serialization is presentation-free** | `record_to_dict()` should not apply display formatting       |
+| Rule | Detail |
+|---|---|
+| **No business logic** | Core is infrastructure, not domain logic |
+| **Config is read-only at runtime** | Never mutate `settings` after startup |
+| **Framework models are protected** | Do not add business logic methods to core models |
+| **Seeds must be idempotent** | Use `get_or_create` patterns; never `INSERT` without a check |
+| **Serialization is presentation-free** | `record_to_dict()` should not apply display formatting |

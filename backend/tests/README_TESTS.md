@@ -2,7 +2,7 @@
 
 ## Scope
 
-This suite is organized around the current backend architecture rather than end-to-end workflow scenarios.
+This suite is organized around the backend architecture rather than end-to-end workflow scenarios.
 
 Covered groups:
 
@@ -12,23 +12,13 @@ Covered groups:
 - `schemas/`: Pydantic request and payload validation.
 - `infrastructure/`: Settings, middleware, application wiring, and mount configuration.
 
-Excluded on purpose:
-
-- Business logic orchestration tests.
-- Workflow lifecycle and operational flow tests.
-- Large end-to-end process suites.
-
 ## Environment Requirements
 
 The suite uses a real local PostgreSQL database.
 
-By default, the shared fixtures use:
+By default, the shared fixtures use a configurable connection string. Override with:
 
-- `postgresql+asyncpg://eam_f0bca4fc7e9b:McWGzwqJFnwzM30QrJKMxpCo8eldtctmsu8lE2KFxw@localhost:5432/eam_f0bca4fc7e9b`
-
-You can override that connection string with:
-
-- `EAM_TEST_DATABASE_URL`
+- `EAM_TEST_DATABASE_URL` environment variable
 
 The backend imports metadata and models dynamically during fixture bootstrap, so the application code must be importable from the backend root.
 

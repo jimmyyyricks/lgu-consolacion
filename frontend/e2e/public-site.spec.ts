@@ -378,7 +378,9 @@ test('static ordinance archive filters titles and years locally', async ({ page 
       | null)?.__vueParentComponent
   ))
 
-  const titleLink = page.getByRole('link', { name: /ORDINANCE NO\. 35/ })
+  const titleLink = page.getByRole('link', {
+    name: /PROVIDING A COMPREHENSIVE YOUTH WELFARE/,
+  })
   const fullTitle = await titleLink.innerText()
   await expect(titleLink).toHaveCSS('text-overflow', 'ellipsis')
   await expect.poll(() => titleLink.evaluate(element => element.scrollWidth > element.clientWidth)).toBeTruthy()
@@ -389,10 +391,12 @@ test('static ordinance archive filters titles and years locally', async ({ page 
 
   const searchInput = page.getByRole('textbox', { name: 'Search public records' })
   await searchInput.fill('youth welfare')
-  await expect(page.getByRole('link', { name: /ORDINANCE NO\. 35/ })).toBeVisible()
+  await expect(
+    page.getByRole('link', { name: /PROVIDING A COMPREHENSIVE YOUTH WELFARE/ }),
+  ).toBeVisible()
   await page.getByRole('button', { name: 'Filter by publication year' }).click()
   await page.getByRole('option', { name: '2024' }).click()
   await page.getByRole('link', { name: /Providing a comprehensive Youth Welfare/i }).click()
-  await expect(page.getByRole('dialog')).toContainText('ORDINANCE NO. 35')
+  await expect(page.getByRole('dialog')).toContainText('PROVIDING A COMPREHENSIVE YOUTH WELFARE')
   await expect(page.getByRole('dialog')).toContainText('PDF preview unavailable')
 })

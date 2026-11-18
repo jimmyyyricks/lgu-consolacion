@@ -8,8 +8,8 @@ Each module owns its SQLAlchemy models, entity JSON metadata, business-specific 
 
 ## Available Modules
 
-| Module | Domain    | Key Entities                                                          |
-| ------ | --------- | --------------------------------------------------------------------- |
+| Module | Domain | Key Entities |
+|---|---|---|
 | `core` | Framework | User, Role, EntityPermission, WorkflowState, WorkflowAction, AuditLog |
 
 ---
@@ -25,7 +25,7 @@ Every module follows the same layout:
 ├── workflow_router.py      # Workflow action dispatch (if the module has workflows)
 ├── models/                 # SQLAlchemy ORM model files (one entity per file)
 │   ├── __init__.py         # Imports and registers all models
-│   └── {entity}.py         # e.g., work_order.py, asset.py
+│   └── {entity}.py         # e.g., my_entity.py
 ├── entities/               # Entity JSON metadata (if customized beyond defaults)
 │   └── {entity}/
 │       └── {entity}.json
@@ -53,18 +53,16 @@ MODULE_LOAD_ORDER = [
 Each model file defines one SQLAlchemy model. Keep models pure — no methods, no business logic.
 
 ```python
-# modules/work_mgmt/models/work_order.py
-from sqlalchemy import Column, String, Float, ForeignKey
+# modules/my_module/models/my_entity.py
+from sqlalchemy import Column, String, ForeignKey
 from app.core.base_model import BaseModel
 
-class WorkOrder(BaseModel):
-    __tablename__ = "work_order"
+class MyEntity(BaseModel):
+    __tablename__ = "my_entity"
 
     title = Column(String)
     status = Column(String, default="Draft")
-    priority = Column(String)
-    assigned_to = Column(String, ForeignKey("employee.id"))
-    estimated_hours = Column(Float)
+    assigned_to = Column(String, ForeignKey("user.id"))
 ```
 
 All models are collected in `models/__init__.py` and auto-registered with the entity repository at startup.
@@ -105,21 +103,20 @@ async def on_my_entity_submitted(ctx: WorkflowContext) -> None:
 Defines which API function handles each workflow action for entities in this module.
 
 ```python
-# modules/work_mgmt/workflow_router.py
+# modules/my_module/workflow_router.py
 from app.application.utils.doc_utils import get_id, get_attr
 
 WORKFLOW_ROUTES = {
-    "work_order": {
+    "my_entity": {
         "Submit":  handle_submit,
         "Approve": handle_approve,
-        "Start":   handle_start,
-        "Complete": handle_complete,
+        "Reject":  handle_reject,
         "Cancel":  handle_cancel,
     }
 }
 
 async def handle_submit(doc, action, db, user):
-    work_order_id = get_id(doc)
+    entity_id = get_id(doc)
     # validate, update status, notify
     ...
 ```
@@ -136,7 +133,7 @@ Business-specific logic that doesn't fit in hooks goes here. These are plain asy
 # modules/<module>/apis/my_entity.py
 from app.application.utils.doc_utils import get_id, get_attr
 
-async def calculate_entity_score(entity_id: str, db) -> dict:
+async def calculate_score(entity_id: str, db) -> dict:
     """Compute derived values for this entity."""
     record = await get_doc("my_entity", entity_id, db)
     return {"score": compute_score(record)}
@@ -173,6 +170,7 @@ Module APIs are called from:
    ```python
    # models/my_entity.py
    from app.core.base_model import BaseModel
+
    class MyEntity(BaseModel):
        __tablename__ = "my_entity"
        name = Column(String)
@@ -209,12 +207,11 @@ from app.modules.other_module.models.other_entity import OtherEntity  # ❌
 
 ## Rules for This Layer
 
-| Rule                                                                    | Detail                                                                                |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| **Models are pure**                                                     | No methods, no business logic in model files                                          |
-| **Hooks over inline logic**                                             | Business reactions go in `hooks.py`, not in route handlers                            |
-| **Use `doc_utils` for common helpers**                                  | Never redefine `_get_id`, `_get_attr`, `_to_float` locally                            |
-| **No cross-module model imports**                                       | Use `get_doc`/`get_list` for cross-module data access                                 |
-| **Module APIs are called by hooks/workflow_router**                     | Not directly by route handlers                                                        |
-| **No FastAPI in module APIs**                                           | Module API functions are plain async functions — no `Request`, `Depends`, or `router` |
-| **Constants belong in `application/services/maintenance/constants.py`** | Shared constants (e.g., `FREQUENCY_DAYS`) must not be defined inside module API files |
+| Rule | Detail |
+|---|---|
+| **Models are pure** | No methods, no business logic in model files |
+| **Hooks over inline logic** | Business reactions go in `hooks.py`, not in route handlers |
+| **Use `doc_utils` for common helpers** | Never redefine helpers locally |
+| **No cross-module model imports** | Use `get_doc`/`get_list` for cross-module data access |
+| **Module APIs are called by hooks/workflow_router** | Not directly by route handlers |
+| **No FastAPI in module APIs** | Module API functions are plain async functions |

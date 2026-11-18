@@ -110,7 +110,7 @@ class IncidentAssembler:
                 "preventive_action": record.get("preventive_action", ""),
             },
             "photos": photo_attachments,
-            "branding": {"organization_name": "EAM System"},
+            "branding": {"organization_name": "Organization"},
             "now": datetime.now().strftime("%Y-%m-%d %H:%M"),
             "record_id": incident_id,
             "record": record,

@@ -15,7 +15,7 @@ from typing import Optional
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Enterprise Asset Management"
+    PROJECT_NAME: str = "FastAPI Nuxt Starter"
     VERSION: str = "2.0.0"
     API_PREFIX: str = "/api"
     RUN_SEEDS: bool = False
@@ -59,7 +59,7 @@ class Settings(BaseSettings):
     SMTP_USERNAME: Optional[str] = None
     SMTP_PASSWORD: Optional[str] = None
     EMAIL_FROM_ADDRESS: Optional[str] = None
-    EMAIL_FROM_NAME: str = "EAM Notifications"
+    EMAIL_FROM_NAME: str = "App Notifications"
     EMAIL_ENABLED: bool = True
 
     # Deep links in notification emails (no trailing slash)

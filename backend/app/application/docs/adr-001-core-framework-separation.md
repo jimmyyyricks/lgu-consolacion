@@ -7,7 +7,7 @@
 
 ## Context
 
-The EAM FastAPI backend had core infrastructure entities scattered across multiple locations:
+The FastAPI backend had core infrastructure entities scattered across multiple locations:
 - `app/models/` — Auth, Workflow, Infrastructure models
 - `app/core/` — Some base classes
 - No clear ownership rules for what qualifies as "core" vs "module-specific"
