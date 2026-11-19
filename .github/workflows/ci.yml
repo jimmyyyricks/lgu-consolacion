@@ -59,6 +59,10 @@ jobs:
         run: |
           echo "EAM_TEST_ADMIN_PASSWORD=$(python -c 'import secrets; print(secrets.token_urlsafe(32))')" >> "$GITHUB_ENV"
 
+      - name: Apply database migrations
+        working-directory: backend
+        run: python -m alembic upgrade head
+
       - name: Initialize test database
         working-directory: backend
         run: |
