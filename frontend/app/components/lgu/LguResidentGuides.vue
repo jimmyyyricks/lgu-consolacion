@@ -8,26 +8,26 @@ interface QuickLink {
 
 const guides: QuickLink[] = [
   {
-    label: "Find a municipal service",
+    label: "Find a Municipal Service",
     description:
       "Browse services and useful links for residents and businesses.",
     to: "/#services",
     icon: "i-lucide-search",
   },
   {
-    label: "Get a municipal form",
+    label: "Get a Municipal Form",
     description: "Open forms published by municipal offices.",
     to: "/transparency/forms",
     icon: "i-lucide-file-down",
   },
   {
-    label: "Read a public notice",
+    label: "Read a Public Notice",
     description: "Check current municipal updates and public actions.",
     to: '/about/actions',
     icon: "i-lucide-megaphone",
   },
   {
-    label: "Access public records",
+    label: "Access Public Records",
     description: "Browse ordinances, resolutions, disclosures, and more.",
     to: "/transparency",
     icon: "i-lucide-files",
@@ -38,9 +38,9 @@ const guides: QuickLink[] = [
 <template>
   <UPageSection
     id="resident-guides"
-    title="Resident guides"
+    title="Resident Guides"
     description="Clear starting points for common municipal information and services."
-    aria-label="Resident guides"
+    aria-label="Resident Guides"
     class="bg-muted/40"
     :ui="{
       container: 'gap-7 py-12 sm:gap-8 sm:py-14 lg:py-16',

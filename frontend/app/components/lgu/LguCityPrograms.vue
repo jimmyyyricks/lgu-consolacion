@@ -4,13 +4,13 @@ const citizenCharterUrl = '/about#citizens-charter'
 const programs = [
   {
     name: 'Government Internship Program',
-    category: 'Public employment',
+    category: 'Public Employment',
     description: 'A 3–6 month work opportunity for young people interested in public service.',
     icon: 'i-lucide-briefcase-business'
   },
   {
     name: 'Special Program for Employment of Students',
-    category: 'Student employment',
+    category: 'Student Employment',
     description: 'Student employment assistance listed in the municipal Citizen\'s Charter.',
     icon: 'i-lucide-graduation-cap'
   },
@@ -26,7 +26,7 @@ const programs = [
 <template>
   <LguSection
     id="city-programs"
-    title="Municipal programs"
+    title="Municipal Programs"
     description="Employment and livelihood initiatives listed in the Consolacion Citizen's Charter."
   >
     <template #actions>
@@ -69,7 +69,7 @@ const programs = [
             trailing-icon="i-lucide-arrow-up-right"
             class="px-0"
           >
-            Program details
+            Program Details
           </UButton>
         </template>
       </UPageCard>

@@ -67,7 +67,7 @@ import { headerNavigation, siteRoutes } from "~/utils/site-navigation";
         :to="siteRoutes.login"
         class="mt-3 flex min-h-11 items-center px-3 text-sm font-medium text-primary-700 transition-colors duration-150 hover:text-primary-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-700 dark:text-primary-300 dark:hover:text-primary-200 motion-reduce:transition-none"
       >
-        Staff sign in
+        Staff Sign In
       </NuxtLink>
     </template>
   </UHeader>

@@ -11,7 +11,7 @@ useSeoMeta({
 <template>
   <LguPublicContentArchive
     kind="government_action"
-    title="Government actions"
+    title="Government Actions"
     description="Official announcements and actions from the municipal government."
   />
 </template>

@@ -22,7 +22,7 @@ const stockImages = [
             id="tourism-heading"
             class="font-domine text-3xl font-semibold text-highlighted"
           >
-            Tourism and local experiences
+            Tourism and Local Experiences
           </h2>
           <p class="mt-2 leading-7 text-toned">
             Heritage and cultural highlights identified in municipal and provincial information.
@@ -43,14 +43,14 @@ const stockImages = [
         class="mt-6"
         color="error"
         variant="subtle"
-        title="Tourism information is temporarily unavailable"
+        title="Tourism Information Is Temporarily Unavailable"
       />
       <UAlert
         v-else-if="!pending && !data?.length"
         class="mt-6"
         color="neutral"
         variant="subtle"
-        title="No tourism entries are available"
+        title="No Tourism Entries Are Available"
         description="Contact the Municipal Tourism Office to confirm visitor information."
       />
       <div
@@ -65,7 +65,7 @@ const stockImages = [
           <div class="relative h-48">
             <img
               :src="item.image_url || stockImages[index]"
-              :alt="item.image_url ? item.title : 'Illustrative stock photo'"
+              :alt="item.image_url ? item.title : 'Illustrative Stock Photo'"
               loading="lazy"
               class="size-full object-cover"
             >
@@ -73,7 +73,7 @@ const stockImages = [
               v-if="!item.image_url"
               class="absolute bottom-3 right-3 rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-white"
             >
-              Illustrative stock photo
+              Illustrative Stock Photo
             </span>
           </div>
           <div class="p-5">

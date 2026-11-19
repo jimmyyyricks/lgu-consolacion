@@ -83,7 +83,7 @@ export const headerNavigation = [
 
 export const footerColumns = [
   {
-    label: 'Services and information',
+    label: 'Services and Information',
     children: [
       { label: 'All Services and Links', to: `${siteRoutes.home}#services` },
       { label: 'Forms and Applications', to: siteRoutes.forms },
@@ -102,7 +102,7 @@ export const footerColumns = [
     ]
   },
   {
-    label: 'Public records',
+    label: 'Public Records',
     children: [
       { label: 'Transparency Portal', to: siteRoutes.transparency },
       { label: 'Ordinances and Resolutions', to: siteRoutes.ordinances },

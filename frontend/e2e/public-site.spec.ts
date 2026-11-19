@@ -5,74 +5,91 @@ test('home page presents news, services, updates, tourism and public records', a
   expect(response?.ok()).toBeTruthy()
   expect(await page.content()).toContain('Municipality of Consolacion')
   const carouselSection = page.locator('section[aria-labelledby="news-carousel-heading"]')
-  const carousel = carouselSection.getByRole('region', { name: 'Sangguniang Bayan activity notices' })
+  const carousel = carouselSection.getByRole('region', { name: 'Latest Updates from the LGU' })
   await expect(carousel).toBeVisible()
   const slideCount = await carousel.locator('[data-slot="item"]').count()
   await expect(carousel.getByText(/Committee meeting on/).first()).toBeVisible()
   await expect(carouselSection.getByText(`1 of ${slideCount}`, { exact: true })).toBeVisible()
+  const updates = carouselSection.getByRole('complementary', { name: 'Other Updates' })
+  const updateLinks = updates.getByRole('link')
+  const updateLinkCount = await updateLinks.count()
+  expect(updateLinkCount).toBeGreaterThanOrEqual(2)
+  expect(updateLinkCount).toBeLessThanOrEqual(4)
+  await expect(updates).toBeVisible()
   if (slideCount > 1) {
     await carousel.locator('[data-slot="next"]').click()
     await expect(carouselSection.getByText(`2 of ${slideCount}`, { exact: true })).toBeVisible()
   }
-  await expect(page.getByRole('heading', { name: 'Services and useful links' })).toBeVisible()
-  await expect(page.getByRole('textbox', { name: 'Search services and links' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Weather and reminders' })).toBeVisible()
-  await expect(page.getByText('Live weather updates are not available on this site yet.')).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Tourism in Consolacion' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Government and planning updates' })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Public records' }).first()).toBeVisible()
+  const statusSection = page.getByRole('region', { name: 'Consolacion at a Glance' })
+  await expect(statusSection.getByRole('heading', { name: 'Consolacion at a Glance' })).toBeVisible()
+  const columns = statusSection.locator('div.grid').first()
+  const weather = columns.locator(':scope > *').nth(0)
+  const tourism = columns.locator(':scope > *').nth(1)
+  await expect(weather.locator('iframe[title="Map of the Consolacion Government Center, Cebu"]')).toBeVisible()
+  await expect(weather.getByRole('group', { name: 'Current Weather Conditions' })).toBeVisible()
+  const mapUrl = await weather.locator('iframe').getAttribute('src')
+  expect(mapUrl).toContain('10.37583%2C123.957206')
+  const weatherBounds = await weather.boundingBox()
+  const tourismBounds = await tourism.boundingBox()
+  expect(weatherBounds).not.toBeNull()
+  expect(tourismBounds).not.toBeNull()
+  expect(weatherBounds!.width).toBeCloseTo(tourismBounds!.width, 0)
+  await statusSection.scrollIntoViewIfNeeded()
+  await expect(page.getByRole('heading', { name: 'Services and Links' })).toBeVisible()
+  await expect(page.getByRole('textbox', { name: 'Search Services and Links' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Public Records' }).first()).toBeVisible()
 
   await page.goto('/transparency/ordinances')
   await expect(page.getByRole('heading', { name: 'Municipal Ordinances' })).toBeVisible()
-  await expect(page.getByRole('textbox', { name: 'Search public records' })).toBeVisible()
-  await expect(page.getByText('Static title index')).toBeVisible()
+  await expect(page.getByRole('textbox', { name: 'Search Public Records' })).toBeVisible()
+  await expect(page.getByText('Static Title Index')).toBeVisible()
   await page.getByRole('link', { name: /ORDINANCE NO\. 35/ }).click()
   const preview = page.getByRole('dialog')
   await expect(preview).toContainText('ORDINANCE NO. 35')
-  await expect(preview).toContainText('PDF preview unavailable')
+  await expect(preview).toContainText('PDF Preview Unavailable')
   await preview.getByRole('button', { name: 'Close' }).click()
-  await page.getByRole('textbox', { name: 'Search public records' }).fill('youth welfare')
+  await page.getByRole('textbox', { name: 'Search Public Records' }).fill('youth welfare')
   await expect(page.getByRole('link', { name: /ORDINANCE NO\. 35/ })).toBeVisible()
-  await page.getByRole('button', { name: 'Filter by publication year' }).click()
+  await page.getByRole('button', { name: 'Filter by Publication Year' }).click()
   await page.getByRole('option', { name: '2024' }).click()
   await expect(page.getByRole('link', { name: /ORDINANCE NO\. 35/ })).toBeVisible()
   await page.goto('/transparency/resolutions')
   await expect(page.getByRole('heading', { name: 'Municipal Resolutions' })).toBeVisible()
   await expect(page.getByRole('link', { name: /TRAFFIC AIDE I/ })).toBeVisible()
   await page.getByRole('link', { name: 'Forms', exact: true }).click()
-  await expect(page.getByRole('heading', { name: 'Downloadable forms' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Downloadable Forms' })).toBeVisible()
 
   await page.goto('/tourism')
   await expect(page.getByRole('heading', { name: 'Tourism in Consolacion' })).toBeVisible()
-  await expect(page.getByRole('textbox', { name: 'Search tourism stories' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Local guides and community stories' })).toBeVisible()
+  await expect(page.getByRole('textbox', { name: 'Search Tourism Stories' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Local Guides and Community Stories' })).toBeVisible()
 })
 
 test('homepage presents quick links and community actions separately from About content', async ({ page }) => {
   await page.goto('/')
 
-  const quickLinks = page.getByRole('region', { name: 'Quick links' })
-  await expect(quickLinks.getByRole('link', { name: 'Find a municipal service' })).toHaveAttribute('href', '/#services')
-  await expect(quickLinks.getByRole('link', { name: 'Get a municipal form' })).toHaveAttribute('href', '/transparency/forms')
-  await expect(quickLinks.getByRole('link', { name: 'Read a public notice' })).toHaveAttribute('href', '/about/actions')
-  await expect(quickLinks.getByRole('link', { name: 'Access public records' })).toHaveAttribute('href', '/transparency')
-  await expect(page.getByRole('heading', { name: 'Resident guides' })).toHaveCount(0)
+  const quickLinks = page.getByRole('region', { name: 'Quick Links' })
+  await expect(quickLinks.getByRole('link', { name: 'Find a Municipal Service' })).toHaveAttribute('href', '/#services')
+  await expect(quickLinks.getByRole('link', { name: 'Get a Municipal Form' })).toHaveAttribute('href', '/transparency/forms')
+  await expect(quickLinks.getByRole('link', { name: 'Read a Public Notice' })).toHaveAttribute('href', '/about/actions')
+  await expect(quickLinks.getByRole('link', { name: 'Access Public Records' })).toHaveAttribute('href', '/transparency')
+  await expect(page.getByRole('heading', { name: 'Resident Guides' })).toHaveCount(0)
   const hero = page.locator('section').filter({ has: page.getByRole('heading', { name: 'Welcome to Consolacion' }) })
   expect(await hero.evaluate((element) => {
     const description = element.querySelector('[data-slot="description"]')!
-    const cards = element.querySelector('[role="region"][aria-label="Quick links"]')!
+    const cards = element.querySelector('[role="region"][aria-label="Quick Links"]')!
     const actions = element.querySelector('[data-slot="links"]')!
     return Boolean(
       (description.compareDocumentPosition(cards) & Node.DOCUMENT_POSITION_FOLLOWING)
       && (cards.compareDocumentPosition(actions) & Node.DOCUMENT_POSITION_FOLLOWING)
     )
   })).toBeTruthy()
-  await expect(page.getByRole('heading', { name: 'Municipal programs' })).toHaveCount(0)
+  await expect(page.getByRole('heading', { name: 'Municipal Programs' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'A Message from the Vice Mayor' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'Sangguniang Bayan Members' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'Objectives' })).toHaveCount(0)
   await expect(page.getByRole('heading', { name: 'People\'s Corner' })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Email the municipal government' })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: 'Email the Municipal Government' })).toHaveAttribute(
     'href',
     'mailto:info@consolacion.gov.ph'
   )
@@ -94,7 +111,7 @@ test('homepage fills the first screen and offers a scroll-to-top button', async 
     const bottom = await hero.evaluate(element => element.getBoundingClientRect().bottom)
     expect(bottom).toBeGreaterThanOrEqual(899)
 
-    const backToTop = page.getByRole('button', { name: 'Scroll to top' })
+    const backToTop = page.getByRole('button', { name: 'Scroll to Top' })
     await expect(backToTop).toHaveCount(0)
     await page.evaluate(() => window.scrollTo(0, 800))
     await expect(backToTop).toBeVisible()
@@ -112,7 +129,7 @@ test('homepage fills the first screen and offers a scroll-to-top button', async 
         | (HTMLElement & { __vueParentComponent?: unknown })
         | null)?.__vueParentComponent
     ))
-    const backToTop = page.getByRole('button', { name: 'Scroll to top' })
+    const backToTop = page.getByRole('button', { name: 'Scroll to Top' })
     await expect(backToTop).toHaveCount(0)
     await page.evaluate(() => window.scrollTo(0, 800))
     await expect(backToTop).toBeVisible()
@@ -128,7 +145,7 @@ test('About page provides linked municipal tabs', async ({ page }) => {
   await expect(aboutLink).toHaveAttribute('href', '/about')
   await aboutLink.click()
 
-  const tabs = page.getByRole('navigation', { name: 'About Consolacion sections' })
+  const tabs = page.getByRole('navigation', { name: 'About Consolacion Sections' })
   const tabRoutes = [
     ['Citizen\'s Charter', '/about'],
     ['Office of the Mayor', '/about/mayor'],
@@ -150,7 +167,7 @@ test('About page provides linked municipal tabs', async ({ page }) => {
 
   await tabs.getByRole('link', { name: 'Office of the Mayor' }).click()
   await expect(page.getByRole('heading', { name: 'Office of the Mayor' })).toBeVisible()
-  await expect(page.getByText('Municipal Hall, Fourth floor')).toBeVisible()
+  await expect(page.getByText('Municipal Hall, Fourth Floor')).toBeVisible()
   await expect(page.getByText('239-2908')).toBeVisible()
 
   await tabs.getByRole('link', { name: 'Office of the Vice Mayor' }).click()
@@ -171,11 +188,11 @@ test('About has separate Citizen\'s Charter and Office Directory pages', async (
   await expect(page.getByRole('heading', { name: 'Mission' })).toHaveCount(1)
   await expect(page.getByRole('heading', { name: 'Mandate' })).toHaveCount(1)
   await expect(page.getByRole('heading', { name: 'Objectives' })).toHaveCount(1)
-  await expect(page.getByRole('heading', { name: 'Development goal' })).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Service pledge' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Development Goal' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Service Pledge' })).toBeVisible()
 
   await page.goto('/about/office-directory')
-  await expect(page.getByRole('heading', { name: 'Office directory' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Office Directory' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Police Station' })).toBeVisible()
   await expect(
     page.locator('#main-content').getByRole('link', { name: 'info@consolacion.gov.ph' })
@@ -195,7 +212,7 @@ test('Services is absent from the header and Transparency categories remain avai
   await expect(page).toHaveURL(/\/transparency$/)
   await expect(page.getByRole('heading', { name: 'Transparency Portal' })).toBeVisible()
 
-  const recordNavigation = page.getByRole('navigation', { name: 'Public record categories' })
+  const recordNavigation = page.getByRole('navigation', { name: 'Public Record Categories' })
   const transparencyLinks = [
     ['Ordinances', '/transparency/ordinances'],
     ['Resolutions', '/transparency/resolutions'],
@@ -242,14 +259,14 @@ test('header and footer share navigation destinations', async ({ page }) => {
 
   const homeHref = await page.locator('header [data-slot="title"]').getAttribute('href')
   await expect(footer.getByRole('link', { name: 'Municipality of Consolacion' })).toHaveAttribute('href', homeHref!)
-  const loginHref = await footer.getByRole('link', { name: 'Staff sign in' }).getAttribute('href')
-  await expect(page.getByRole('link', { name: 'Staff sign in' }).first()).toHaveAttribute('href', loginHref!)
+  const loginHref = await footer.getByRole('link', { name: 'Staff Sign In' }).getAttribute('href')
+  await expect(page.getByRole('link', { name: 'Staff Sign In' }).first()).toHaveAttribute('href', loginHref!)
 
   await page.setViewportSize({ width: 390, height: 844 })
   await page.getByRole('button', { name: 'Open menu' }).click()
   const mobileMenu = page.getByRole('dialog')
   await expect(mobileMenu).toBeVisible()
-  await expect(mobileMenu.getByRole('link', { name: 'Staff sign in' })).toHaveAttribute('href', loginHref!)
+  await expect(mobileMenu.getByRole('link', { name: 'Staff Sign In' })).toHaveAttribute('href', loginHref!)
 })
 
 test('header provides Home and News links on desktop and mobile', async ({ page }) => {
@@ -264,7 +281,7 @@ test('header provides Home and News links on desktop and mobile', async ({ page 
 
   await newsLink.click()
   await expect(page).toHaveURL(/\/news$/)
-  await expect(page.getByRole('heading', { name: 'News and announcements' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'News and Announcements' })).toBeVisible()
 
   await page.setViewportSize({ width: 390, height: 844 })
   await page.waitForFunction(() => Boolean(
@@ -285,12 +302,12 @@ test('public navigation links share the Transparency tab font size', async ({ pa
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto('/transparency')
 
-  const transparencyTabs = page.getByRole('navigation', { name: 'Public record categories' })
+  const transparencyTabs = page.getByRole('navigation', { name: 'Public Record Categories' })
   await expect(transparencyTabs.getByRole('link', { name: 'Overview', exact: true })).toHaveCSS('font-size', '14px')
   await expect(page.locator('header nav').first().getByRole('link', { name: 'About', exact: true })).toHaveCSS('font-size', '14px')
 
   await page.goto('/about')
-  const aboutTabs = page.getByRole('navigation', { name: 'About Consolacion sections' })
+  const aboutTabs = page.getByRole('navigation', { name: 'About Consolacion Sections' })
   await expect(aboutTabs.getByRole('link', { name: 'Office of the Mayor', exact: true })).toHaveCSS('font-size', '14px')
 
   await page.setViewportSize({ width: 390, height: 844 })
@@ -301,28 +318,28 @@ test('public navigation links share the Transparency tab font size', async ({ pa
   ))
   await page.getByRole('button', { name: 'Open menu' }).click()
   await expect(page.getByRole('link', { name: 'About', exact: true })).toHaveCSS('font-size', '14px')
-  await expect(page.getByRole('link', { name: 'Staff sign in' }).last()).toHaveCSS('font-size', '14px')
+  await expect(page.getByRole('link', { name: 'Staff Sign In' }).last()).toHaveCSS('font-size', '14px')
 })
 
 test('public section navigation marks the current page and detail category', async ({ page }) => {
   const routes = [
-    ['/about', 'About Consolacion sections', 'Citizen\'s Charter'],
-    ['/about/mayor', 'About Consolacion sections', 'Office of the Mayor'],
-    ['/about/vice-mayor', 'About Consolacion sections', 'Office of the Vice Mayor'],
-    ['/about/officials', 'About Consolacion sections', 'Municipal Officials'],
-    ['/about/office-directory', 'About Consolacion sections', 'Office Directory'],
-    ['/about/actions', 'About Consolacion sections', 'Government Actions'],
-    ['/about/actions/clup-2024-2033-adoption', 'About Consolacion sections', 'Government Actions'],
-    ['/transparency', 'Public record categories', 'Overview'],
-    ['/transparency/ordinances', 'Public record categories', 'Ordinances'],
-    ['/transparency/resolutions', 'Public record categories', 'Resolutions'],
-    ['/transparency/executive-orders', 'Public record categories', 'Executive Orders'],
-    ['/transparency/memorandums', 'Public record categories', 'Memoranda'],
-    ['/transparency/full-disclosure', 'Public record categories', 'Full Disclosure'],
-    ['/transparency/bids-awards', 'Public record categories', 'Bids and Awards'],
-    ['/transparency/forms', 'Public record categories', 'Forms'],
-    ['/transparency/document/ordinance-35-2024?kind=ordinance', 'Public record categories', 'Ordinances'],
-    ['/transparency/document/resolution-99-2024?kind=resolution', 'Public record categories', 'Resolutions']
+    ['/about', 'About Consolacion Sections', 'Citizen\'s Charter'],
+    ['/about/mayor', 'About Consolacion Sections', 'Office of the Mayor'],
+    ['/about/vice-mayor', 'About Consolacion Sections', 'Office of the Vice Mayor'],
+    ['/about/officials', 'About Consolacion Sections', 'Municipal Officials'],
+    ['/about/office-directory', 'About Consolacion Sections', 'Office Directory'],
+    ['/about/actions', 'About Consolacion Sections', 'Government Actions'],
+    ['/about/actions/clup-2024-2033-adoption', 'About Consolacion Sections', 'Government Actions'],
+    ['/transparency', 'Public Record Categories', 'Overview'],
+    ['/transparency/ordinances', 'Public Record Categories', 'Ordinances'],
+    ['/transparency/resolutions', 'Public Record Categories', 'Resolutions'],
+    ['/transparency/executive-orders', 'Public Record Categories', 'Executive Orders'],
+    ['/transparency/memorandums', 'Public Record Categories', 'Memoranda'],
+    ['/transparency/full-disclosure', 'Public Record Categories', 'Full Disclosure'],
+    ['/transparency/bids-awards', 'Public Record Categories', 'Bids and Awards'],
+    ['/transparency/forms', 'Public Record Categories', 'Forms'],
+    ['/transparency/document/ordinance-35-2024?kind=ordinance', 'Public Record Categories', 'Ordinances'],
+    ['/transparency/document/resolution-99-2024?kind=resolution', 'Public Record Categories', 'Resolutions']
   ] as const
 
   for (const [path, navigation, label] of routes) {
@@ -354,7 +371,7 @@ test('mobile navigation works without horizontal overflow', async ({ page }) => 
   await expect(page.getByRole('link', { name: 'About', exact: true })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Tourism', exact: true })).toBeVisible()
   await page.getByRole('link', { name: 'About', exact: true }).click()
-  const aboutTabs = page.getByRole('navigation', { name: 'About Consolacion sections' })
+  const aboutTabs = page.getByRole('navigation', { name: 'About Consolacion Sections' })
   await expect(aboutTabs).toBeVisible()
   expect(await aboutTabs.locator('..').evaluate(element => element.scrollWidth > element.clientWidth)).toBeTruthy()
   expect(
@@ -362,7 +379,7 @@ test('mobile navigation works without horizontal overflow', async ({ page }) => 
   ).toBeTruthy()
 
   await page.goto('/transparency')
-  const transparencyTabs = page.getByRole('navigation', { name: 'Public record categories' })
+  const transparencyTabs = page.getByRole('navigation', { name: 'Public Record Categories' })
   expect(await transparencyTabs.locator('..').evaluate(element => element.scrollWidth > element.clientWidth)).toBeTruthy()
   await transparencyTabs.getByRole('link', { name: 'Forms', exact: true }).click()
   await expect(page).toHaveURL(/\/transparency\/forms$/)
@@ -389,14 +406,14 @@ test('static ordinance archive filters titles and years locally', async ({ page 
   await expect(titleTooltip).toBeVisible()
   await expect(titleTooltip).toContainText(fullTitle)
 
-  const searchInput = page.getByRole('textbox', { name: 'Search public records' })
+  const searchInput = page.getByRole('textbox', { name: 'Search Public Records' })
   await searchInput.fill('youth welfare')
   await expect(
     page.getByRole('link', { name: /PROVIDING A COMPREHENSIVE YOUTH WELFARE/ }),
   ).toBeVisible()
-  await page.getByRole('button', { name: 'Filter by publication year' }).click()
+  await page.getByRole('button', { name: 'Filter by Publication Year' }).click()
   await page.getByRole('option', { name: '2024' }).click()
   await page.getByRole('link', { name: /Providing a comprehensive Youth Welfare/i }).click()
   await expect(page.getByRole('dialog')).toContainText('PROVIDING A COMPREHENSIVE YOUTH WELFARE')
-  await expect(page.getByRole('dialog')).toContainText('PDF preview unavailable')
+  await expect(page.getByRole('dialog')).toContainText('PDF Preview Unavailable')
 })

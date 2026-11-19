@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getStaticPublicContentBySlug } from '~/utils/static-public-content'
+import { titleCaseLabel } from '~/utils/title-case'
 
 const props = defineProps<{
   slug: string
@@ -35,12 +36,12 @@ useSeoMeta({
           icon="i-lucide-arrow-left"
           class="mb-6 px-0"
         >
-          Back to record list
+          Back to Record List
         </UButton>
 
         <article class="mx-auto max-w-4xl">
           <div class="flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-            <span>{{ content.kind.replaceAll("_", " ") }}</span>
+            <span>{{ titleCaseLabel(content.kind) }}</span>
             <span v-if="content.document_number">{{ content.document_number }}</span>
             <span v-if="content.category">{{ content.category }}</span>
             <time
@@ -70,7 +71,7 @@ useSeoMeta({
             class="mt-10"
           >
             <h2 class="mb-4 font-domine text-2xl font-semibold text-highlighted">
-              Official document
+              Official Document
             </h2>
             <LguDrivePdfPreview
               :file-id="content.drive_file_id"

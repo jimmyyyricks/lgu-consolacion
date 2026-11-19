@@ -53,7 +53,7 @@ onUnmounted(cancelRefresh);
       to="#main-content"
       class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[100] focus-visible:flex focus-visible:min-h-11 focus-visible:items-center focus-visible:bg-primary-700 focus-visible:px-4 focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
     >
-      Skip to main content
+      Skip to Main Content
     </NuxtLink>
     <LguUtilityBar />
     <LguHeader />
@@ -68,11 +68,11 @@ onUnmounted(cancelRefresh);
           <UContainer class="py-16">
             <UAlert
               color="error"
-              title="This page could not be displayed"
+              title="This Page Could Not Be Displayed"
               :description="error?.message || 'Please try again.'"
             />
             <UButton class="mt-4" size="lg" @click="clearError">
-              Try again
+              Try Again
             </UButton>
           </UContainer>
         </template>
@@ -91,7 +91,7 @@ onUnmounted(cancelRefresh);
       <UButton
         v-if="y > 300"
         icon="i-lucide-arrow-up"
-        aria-label="Scroll to top"
+        aria-label="Scroll to Top"
         size="lg"
         class="fixed right-6 bottom-6 z-40 size-11 rounded-full"
         @click="scrollToTop"

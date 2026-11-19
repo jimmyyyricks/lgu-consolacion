@@ -8,7 +8,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
 
 <template>
   <section
-    aria-label="Featured news and events"
+    aria-label="Featured News and Events"
     aria-roledescription="carousel"
     class="grid min-h-[calc(100svh-var(--ui-header-height))] overflow-hidden bg-default lg:grid-cols-[1.05fr_0.95fr]"
   >
@@ -26,7 +26,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
             v-if="!activeSlide?.image_url"
             class="rounded-full bg-black/50 px-3 py-1.5 text-xs font-medium text-white"
           >
-            Illustrative stock photo
+            Illustrative Stock Photo
           </span>
         </div>
         <span class="text-sm font-medium text-white">
@@ -66,7 +66,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
           trailing-icon="i-lucide-arrow-right"
           size="lg"
         >
-          Read this update
+          Read This Update
         </UButton>
 
         <div class="flex flex-wrap items-center gap-1">
@@ -74,7 +74,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
             v-for="(slide, index) in slides"
             :key="slide.id"
             type="button"
-            :aria-label="`Go to featured story ${index + 1}`"
+            :aria-label="`Go to Featured Story ${index + 1}`"
             :aria-pressed="activeIndex === index"
             class="flex size-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             @click="activeIndex = index"
@@ -89,7 +89,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
             color="neutral"
             variant="outline"
             size="lg"
-            aria-label="Previous featured story"
+            aria-label="Previous Featured Story"
             @click="activeIndex = (activeIndex + slides.length - 1) % slides.length"
           />
           <UButton
@@ -97,7 +97,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
             color="neutral"
             variant="outline"
             size="lg"
-            aria-label="Next featured story"
+            aria-label="Next Featured Story"
             @click="activeIndex = (activeIndex + 1) % slides.length"
           />
         </div>
@@ -110,7 +110,7 @@ const activeSlide = computed(() => slides[activeIndex.value])
       <UAlert
         color="neutral"
         variant="subtle"
-        title="Featured updates are being prepared"
+        title="Featured Updates Are Being Prepared"
         description="Check back for verified news and event announcements."
       />
     </div>

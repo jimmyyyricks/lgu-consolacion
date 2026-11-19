@@ -12,7 +12,7 @@ useSeoMeta({
 <template>
   <UPage>
     <UPageHeader
-      title="Office directory"
+      title="Office Directory"
       description="Telephone numbers listed by the Municipality of Consolacion. Confirm details with the office before relying on them."
       :ui="{
         title: 'font-domine text-3xl font-semibold sm:text-4xl',

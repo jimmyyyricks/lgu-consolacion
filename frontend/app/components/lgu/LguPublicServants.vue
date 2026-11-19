@@ -61,7 +61,7 @@ onBeforeUnmount(() => {
           item: 'basis-4/5 sm:basis-1/2 lg:basis-1/3',
           container: 'ms-0'
         }"
-        aria-label="Consolacion public servants"
+        aria-label="Consolacion Public Servants"
       >
         <template #default="{ item }">
           <UCard
@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
       </UCarousel>
       <div
         role="group"
-        aria-label="Officials carousel controls"
+        aria-label="Officials Carousel Controls"
         class="absolute bottom-0 right-0 flex h-11 items-center gap-2"
       >
         <UButton
@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
           variant="outline"
           size="md"
           square
-          aria-label="Previous officials"
+          aria-label="Previous Officials"
           class="static size-11 translate-y-0"
           @click="carousel?.emblaApi?.scrollPrev()"
         />
@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
           variant="outline"
           size="md"
           square
-          aria-label="Next officials"
+          aria-label="Next Officials"
           class="static size-11 translate-y-0"
           @click="carousel?.emblaApi?.scrollNext()"
         />

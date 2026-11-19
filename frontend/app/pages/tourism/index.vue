@@ -54,10 +54,10 @@ useSeoMeta({
               size="lg"
               trailing-icon="i-lucide-arrow-down"
             >
-              Explore local stories
+              Explore Local Stories
             </UButton>
             <UButton to="/news" size="lg" color="neutral" variant="outline">
-              What's happening
+              What's Happening
             </UButton>
           </div>
           <p class="mt-5 text-base text-success-900">
@@ -94,7 +94,7 @@ useSeoMeta({
               id="local-guides-heading"
               class="font-domine text-3xl font-semibold leading-tight text-highlighted sm:text-4xl"
             >
-              Local guides and community stories
+              Local Guides and Community Stories
             </h2>
             <p class="mt-3 max-w-2xl text-base leading-7 text-toned sm:text-lg">
               Explore heritage and cultural highlights identified in municipal
@@ -104,8 +104,8 @@ useSeoMeta({
           <UInput
             v-model="search"
             icon="i-lucide-search"
-            placeholder="Search local stories"
-            aria-label="Search tourism stories"
+            placeholder="Search Local Stories"
+            aria-label="Search Tourism Stories"
             size="lg"
             class="w-full sm:max-w-xs"
           />
@@ -116,13 +116,13 @@ useSeoMeta({
           class="mt-8"
           color="error"
           variant="subtle"
-          title="Tourism information is temporarily unavailable"
+          title="Tourism Information Is Temporarily Unavailable"
           description="Please try again later."
         />
         <div
           v-else-if="pending"
           class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          aria-label="Loading tourism stories"
+          aria-label="Loading Tourism Stories"
         >
           <USkeleton v-for="item in 3" :key="item" class="h-96 w-full" />
         </div>
@@ -144,7 +144,7 @@ useSeoMeta({
                     item.image_url || stockImages[index % stockImages.length]
                   "
                   :alt="
-                    item.image_url ? item.title : 'Illustrative stock photo'
+                    item.image_url ? item.title : 'Illustrative Stock Photo'
                   "
                   loading="lazy"
                   class="absolute inset-0 size-full object-cover transition duration-300 hover:scale-105"
@@ -153,7 +153,7 @@ useSeoMeta({
                   v-if="!item.image_url"
                   class="absolute bottom-3 left-3 rounded-full bg-default/95 px-3 py-1.5 text-sm font-medium text-toned"
                 >
-                  Illustrative photo
+                  Illustrative Photo
                 </span>
               </template>
 
@@ -179,7 +179,7 @@ useSeoMeta({
                 :to="publicContentPath(item)"
                 class="mt-5 inline-flex items-center gap-2 font-medium text-primary hover:underline"
               >
-                Read the story
+                Read the Story
                 <UIcon name="i-lucide-arrow-right" class="size-4" />
               </NuxtLink>
             </UCard>
@@ -192,8 +192,8 @@ useSeoMeta({
           variant="subtle"
           :title="
             search
-              ? 'No stories match your search'
-              : 'No tourism entries are available'
+              ? 'No Stories Match Your Search'
+              : 'No Tourism Entries Are Available'
           "
           description="Contact the Municipal Tourism Office to confirm visitor information."
         />
@@ -213,7 +213,7 @@ useSeoMeta({
             id="visitor-info-heading"
             class="font-domine text-2xl font-semibold text-highlighted sm:text-3xl"
           >
-            Visitor information and events
+            Visitor Information and Events
           </h2>
           <p class="mt-2 leading-7 text-toned">
             Check official news and public notices for current community events
@@ -222,7 +222,7 @@ useSeoMeta({
         </div>
         <div class="flex flex-wrap gap-3">
           <UButton to="/news" trailing-icon="i-lucide-arrow-right" size="lg">
-            News and events
+            News and Events
           </UButton>
           <UButton
             to="/about/actions"
@@ -230,7 +230,7 @@ useSeoMeta({
             variant="outline"
             size="lg"
           >
-            Public notices
+            Public Notices
           </UButton>
         </div>
       </UContainer>

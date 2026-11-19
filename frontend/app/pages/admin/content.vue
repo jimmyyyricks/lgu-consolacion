@@ -4,6 +4,7 @@ import type {
   PublicContentKind
 } from '~/composables/usePublicContent'
 import { useAuthStore } from '~/stores/auth'
+import { titleCaseLabel } from '~/utils/title-case'
 
 definePageMeta({ middleware: 'auth' })
 
@@ -179,10 +180,10 @@ onMounted(loadRecords)
     <header class="flex flex-wrap items-end justify-between gap-4">
       <div>
         <p class="text-sm font-semibold uppercase tracking-normal text-primary">
-          Staff workspace
+          Staff Workspace
         </p>
         <h1 class="mt-2 font-domine text-3xl font-semibold text-highlighted">
-          Public content
+          Public Content
         </h1>
         <p class="mt-2 max-w-2xl leading-7 text-toned">
           Prepare verified news, government actions, tourism information, and public records.
@@ -195,7 +196,7 @@ onMounted(loadRecords)
         size="lg"
         @click="clearForm"
       >
-        New record
+        New Record
       </UButton>
     </header>
 
@@ -203,14 +204,14 @@ onMounted(loadRecords)
       v-if="errorMessage"
       color="error"
       variant="subtle"
-      title="Content could not be saved or loaded"
+      title="Content Could Not Be Saved or Loaded"
       :description="String(errorMessage)"
     />
 
     <UCard>
       <template #header>
         <h2 class="font-domine text-xl font-semibold text-highlighted">
-          {{ editingSlug ? "Edit record" : "Create a record" }}
+          {{ editingSlug ? "Edit Record" : "Create a Record" }}
         </h2>
       </template>
 
@@ -220,7 +221,7 @@ onMounted(loadRecords)
         @submit="save()"
       >
         <UFormField
-          label="Content type"
+          label="Content Type"
           name="kind"
           size="lg"
           required
@@ -247,7 +248,7 @@ onMounted(loadRecords)
           />
         </UFormField>
         <UFormField
-          label="Document number"
+          label="Document Number"
           name="document_number"
           size="lg"
         >
@@ -269,7 +270,7 @@ onMounted(loadRecords)
           />
         </UFormField>
         <UFormField
-          label="Record date"
+          label="Record Date"
           name="record_date"
           size="lg"
         >
@@ -281,7 +282,7 @@ onMounted(loadRecords)
           />
         </UFormField>
         <UFormField
-          label="Story image"
+          label="Story Image"
           name="image_url"
           size="lg"
           description="Use a local path such as /images/story.jpg or a secure HTTPS image URL."
@@ -297,7 +298,7 @@ onMounted(loadRecords)
           <img
             v-if="state.image_url"
             :src="state.image_url"
-            alt="Story image preview"
+            alt="Story Image Preview"
             class="mt-3 max-h-48 w-full rounded-md border border-default object-cover"
           >
         </UFormField>
@@ -310,11 +311,11 @@ onMounted(loadRecords)
           <UCheckbox
             v-model="state.featured"
             size="lg"
-            label="Feature this news or event on the homepage"
+            label="Feature This News or Event on the Homepage"
           />
         </UFormField>
         <UFormField
-          label="Public Google Drive PDF link"
+          label="Public Google Drive PDF Link"
           name="drive_url"
           size="lg"
         >
@@ -343,7 +344,7 @@ onMounted(loadRecords)
           />
         </UFormField>
         <UFormField
-          label="Additional text"
+          label="Additional Text"
           name="body"
           size="lg"
           class="sm:col-span-2"
@@ -362,7 +363,7 @@ onMounted(loadRecords)
             size="lg"
             :loading="saving"
           >
-            Save draft
+            Save Draft
           </UButton>
           <UButton
             type="button"
@@ -389,7 +390,7 @@ onMounted(loadRecords)
           id="content-records-heading"
           class="font-domine text-2xl font-semibold text-highlighted"
         >
-          Existing records
+          Existing Records
         </h2>
         <UButton
           icon="i-lucide-refresh-cw"
@@ -397,7 +398,7 @@ onMounted(loadRecords)
           variant="ghost"
           size="lg"
           :loading="loading"
-          aria-label="Refresh records"
+          aria-label="Refresh Records"
           @click="loadRecords"
         />
       </div>
@@ -405,7 +406,7 @@ onMounted(loadRecords)
         v-if="!loading && !records.length && !errorMessage"
         color="neutral"
         variant="subtle"
-        title="No content has been added yet"
+        title="No Content Has Been Added Yet"
         description="Create a draft above. Drafts are not visible on the public website."
       />
       <div
@@ -419,7 +420,7 @@ onMounted(loadRecords)
         >
           <div class="min-w-0">
             <p class="text-xs uppercase tracking-wide text-muted">
-              {{ item.kind.replaceAll("_", " ") }} · {{ item.status }}<span v-if="item.featured"> · featured</span>
+              {{ titleCaseLabel(item.kind) }} · {{ titleCaseLabel(item.status) }}<span v-if="item.featured"> · Featured</span>
             </p>
             <h3 class="mt-1 font-medium text-highlighted">
               {{ item.title }}

@@ -23,7 +23,7 @@ const stockImages = [
             id="latest-news-heading"
             class="font-domine text-3xl font-semibold text-highlighted"
           >
-            News and events
+            News and Events
           </h2>
         </div>
         <UButton
@@ -32,7 +32,7 @@ const stockImages = [
           size="lg"
           trailing-icon="i-lucide-arrow-right"
         >
-          All news
+          All News
         </UButton>
       </div>
 
@@ -42,12 +42,12 @@ const stockImages = [
             v-if="error"
             color="error"
             variant="subtle"
-            title="News is temporarily unavailable"
+            title="News Is Temporarily Unavailable"
           />
           <div
             v-else-if="pending"
             class="space-y-4"
-            aria-label="Loading news"
+            aria-label="Loading News"
           >
             <USkeleton
               v-for="item in 3"
@@ -67,7 +67,7 @@ const stockImages = [
               <div class="relative h-44">
                 <img
                   :src="item.image_url || stockImages[index]"
-                  :alt="item.image_url ? item.title : 'Illustrative stock photo'"
+                  :alt="item.image_url ? item.title : 'Illustrative Stock Photo'"
                   loading="lazy"
                   class="size-full object-cover"
                 >
@@ -75,7 +75,7 @@ const stockImages = [
                   v-if="!item.image_url"
                   class="absolute bottom-3 right-3 rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-white"
                 >
-                  Illustrative stock photo
+                  Illustrative Stock Photo
                 </span>
               </div>
               <div class="p-4 sm:p-5">
@@ -106,7 +106,7 @@ const stockImages = [
             v-else
             color="neutral"
             variant="subtle"
-            title="No other news has been published"
+            title="No Other News Has Been Published"
           />
         </div>
 

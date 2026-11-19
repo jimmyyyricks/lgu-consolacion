@@ -121,7 +121,7 @@ const goToLogin = () => {
             />
           </UFormField>
 
-          <UFormField label="Username" required hint="Min 3 characters">
+          <UFormField label="Username" required hint="Min 3 Characters">
             <UInput
               v-model="form.username"
               placeholder="admin"
@@ -130,11 +130,11 @@ const goToLogin = () => {
             />
           </UFormField>
 
-          <UFormField label="Password" required hint="Min 6 characters">
+          <UFormField label="Password" required hint="Min 6 Characters">
             <UInput
               v-model="form.password"
               type="password"
-              placeholder="Enter a strong password"
+              placeholder="Enter a Strong Password"
               :disabled="isLoading"
               class="w-full"
             />
@@ -148,7 +148,7 @@ const goToLogin = () => {
             <UInput
               v-model="form.confirm_password"
               type="password"
-              placeholder="Re-enter your password"
+              placeholder="Re-enter Your Password"
               :disabled="isLoading"
               class="w-full"
             />

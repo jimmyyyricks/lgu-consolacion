@@ -19,6 +19,7 @@ The suite uses a real local PostgreSQL database.
 By default, the shared fixtures use a configurable connection string. Override with:
 
 - `EAM_TEST_DATABASE_URL` environment variable
+- `EAM_TEST_ADMIN_PASSWORD` environment variable to match the bootstrapped `Administrator` account
 
 The backend imports metadata and models dynamically during fixture bootstrap, so the application code must be importable from the backend root.
 

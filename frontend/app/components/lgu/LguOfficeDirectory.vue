@@ -4,6 +4,7 @@ import {
   municipalInformation,
   municipalOfficeDirectory,
 } from "~/utils/municipal-information";
+import { titleCaseLabel } from "~/utils/title-case";
 
 const hotlineGroup = "Emergency and community services";
 const hotlines = municipalOfficeDirectory.filter(
@@ -18,7 +19,7 @@ const telephoneHref = (phone: string) => `tel:${phone.replace(/[^0-9+]/g, "")}`;
 </script>
 
 <template>
-  <section aria-label="Office directory">
+  <section aria-label="Office Directory">
     <UContainer class="py-8 sm:py-12">
       <UPageGrid class="mb-7 gap-4 sm:grid-cols-3">
         <UCard variant="outline">
@@ -53,7 +54,7 @@ const telephoneHref = (phone: string) => `tel:${phone.replace(/[^0-9+]/g, "")}`;
             id="emergency-hotlines-heading"
             class="font-domine text-2xl font-semibold text-highlighted"
           >
-            Emergency and community hotlines
+            Emergency and Community Hotlines
           </h2>
           <p class="mt-2 leading-7 text-toned">
             Select a number to call the listed municipal or community service.
@@ -105,7 +106,7 @@ const telephoneHref = (phone: string) => `tel:${phone.replace(/[^0-9+]/g, "")}`;
             :id="`directory-${group.replaceAll(' ', '-')}`"
             class="mb-3 font-domine text-xl font-semibold text-highlighted"
           >
-            {{ group }}
+            {{ titleCaseLabel(group) }}
           </h2>
           <div
             class="max-h-144 overflow-auto rounded-lg border border-default bg-default"

@@ -34,8 +34,8 @@ const matchingServices = computed(() => {
         <UInput
           v-model="search"
           icon="i-lucide-search"
-          placeholder="Search services and links"
-          aria-label="Search services and links"
+          placeholder="Search Services and Links"
+          aria-label="Search Services and Links"
           size="lg"
           class="w-full sm:w-72"
         />
@@ -75,7 +75,7 @@ const matchingServices = computed(() => {
       v-else
       color="neutral"
       variant="subtle"
-      title="No matching service or link"
+      title="No Matching Service or Link"
       description="Try a different search term."
     />
   </UPageSection>

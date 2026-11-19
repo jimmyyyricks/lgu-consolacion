@@ -19,7 +19,7 @@ const openUrl = computed(
   >
     <iframe
       :src="previewUrl"
-      :title="`${title} PDF preview`"
+      :title="`${title} PDF Preview`"
       loading="lazy"
       referrerpolicy="no-referrer"
       class="h-[70vh] min-h-96 w-full rounded-md border border-default bg-muted"

@@ -22,26 +22,26 @@ const feedbackEmail = "mailto:info@consolacion.gov.ph";
         <UPageCard
           to="/#services"
           icon="i-lucide-life-buoy"
-          title="Find a service"
+          title="Find a Service"
           variant="outline"
           class="[&>a]:absolute [&>a]:inset-0"
         >
           <template #title>
             <h3>
-              Find a service
+              Find a Service
             </h3>
           </template>
         </UPageCard>
         <UPageCard
           to="/transparency"
           icon="i-lucide-files"
-          title="Request public information"
+          title="Request Public Information"
           variant="outline"
           class="[&>a]:absolute [&>a]:inset-0"
         >
           <template #title>
             <h3>
-              Request public information
+              Request Public Information
             </h3>
           </template>
         </UPageCard>
@@ -60,7 +60,7 @@ const feedbackEmail = "mailto:info@consolacion.gov.ph";
             color="neutral"
             size="lg"
           >
-            Email the municipal government
+            Email the Municipal Government
           </UButton>
           <UButton
             :to="citizenCharterUrl"

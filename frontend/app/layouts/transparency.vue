@@ -7,7 +7,7 @@
       <UContainer class="w-full overflow-x-auto">
         <UNavigationMenu
           :items="navigationItems"
-          aria-label="Public record categories"
+          aria-label="Public Record Categories"
           highlight
           class="w-max"
           :ui="{

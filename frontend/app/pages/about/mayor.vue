@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { citizensCharter, municipalInformation, municipalOfficeDirectory } from '~/utils/municipal-information'
+import { titleCaseLabel } from '~/utils/title-case'
 
 definePageMeta({ layout: 'about' })
 
@@ -25,12 +26,12 @@ useSeoMeta({
       <UContainer class="py-8 sm:py-12">
         <UCard v-if="office" variant="outline" class="max-w-2xl">
           <h2 class="font-domine text-xl font-semibold text-highlighted">
-            Office contact
+            Office Contact
           </h2>
           <dl class="mt-4 space-y-3 leading-7">
             <div>
               <dt class="font-medium text-highlighted">Location</dt>
-              <dd class="text-toned">Municipal Hall, {{ office.group }}</dd>
+              <dd class="text-toned">Municipal Hall, {{ titleCaseLabel(office.group) }}</dd>
             </div>
             <div>
               <dt class="font-medium text-highlighted">Telephone</dt>
@@ -39,7 +40,7 @@ useSeoMeta({
               </dd>
             </div>
             <div>
-              <dt class="font-medium text-highlighted">Office hours</dt>
+              <dt class="font-medium text-highlighted">Office Hours</dt>
               <dd class="text-toned">
                 {{ municipalInformation.officeHours }}
               </dd>
@@ -62,13 +63,13 @@ useSeoMeta({
             trailing-icon="i-lucide-arrow-right"
             class="mt-6"
           >
-            View office directory
+            View Office Directory
           </UButton>
         </UCard>
       </UContainer>
       <LguSection
         id="mayor-charter-services"
-        title="Citizen's Charter services"
+        title="Citizen's Charter Services"
         description="The 2026 Charter lists these services under the Office of the Municipal Mayor."
       >
         <template #actions>
@@ -80,7 +81,7 @@ useSeoMeta({
             size="lg"
             trailing-icon="i-lucide-arrow-up-right"
           >
-            Full procedures
+            Full Procedures
           </UButton>
         </template>
         <ul class="grid gap-3 sm:grid-cols-2">

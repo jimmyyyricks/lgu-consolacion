@@ -88,7 +88,7 @@ import { footerColumns, siteRoutes } from "~/utils/site-navigation";
         :to="siteRoutes.login"
         class="min-h-11 content-center underline-offset-4 hover:text-white hover:underline"
       >
-        Staff sign in
+        Staff Sign In
       </NuxtLink>
     </template>
   </UFooter>

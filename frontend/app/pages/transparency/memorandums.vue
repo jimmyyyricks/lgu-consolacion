@@ -5,7 +5,7 @@ definePageMeta({ layout: 'transparency' })
 <template>
   <LguPublicContentArchive
     kind="memorandum"
-    title="Municipal memoranda"
+    title="Municipal Memoranda"
     description="Browse published municipal memoranda."
   />
 </template>

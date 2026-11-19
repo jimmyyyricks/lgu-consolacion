@@ -28,7 +28,7 @@ import {
       <UPageGrid class="gap-4 sm:grid-cols-1 lg:grid-cols-2">
         <UCard variant="outline">
           <h3 class="font-domine text-2xl font-semibold text-highlighted">
-            Development goal
+            Development Goal
           </h3>
           <p class="mt-3 leading-7 text-toned">
             {{ municipalInformation.developmentGoal }}
@@ -43,7 +43,7 @@ import {
 
         <UCard variant="outline">
           <h3 class="font-domine text-2xl font-semibold text-highlighted">
-            Service pledge
+            Service Pledge
           </h3>
           <p class="mt-3 leading-7 text-toned">
             {{ citizensCharter.servicePledgeIntro }}
@@ -67,11 +67,11 @@ import {
       <UPageGrid class="mt-4 gap-4 lg:grid-cols-2">
         <UCard variant="outline">
           <h3 class="font-domine text-xl font-semibold text-highlighted">
-            Visit or contact the Municipal Hall
+            Visit or Contact the Municipal Hall
           </h3>
           <dl class="mt-4 space-y-3 leading-7">
             <div>
-              <dt class="font-medium text-highlighted">Office hours</dt>
+              <dt class="font-medium text-highlighted">Office Hours</dt>
               <dd class="text-toned">
                 {{ municipalInformation.officeHours }}
               </dd>
@@ -110,7 +110,7 @@ import {
           :ui="{ body: 'flex h-full flex-col items-start' }"
         >
           <h3 class="font-domine text-xl font-semibold text-highlighted">
-            Services across municipal offices
+            Services Across Municipal Offices
           </h3>
           <p class="mt-3 flex-1 leading-7 text-toned">
             {{ citizensCharter.otherServicesSummary }}
@@ -123,19 +123,19 @@ import {
             size="lg"
             class="mt-5"
           >
-            View the full Charter
+            View the Full Charter
           </UButton>
         </UCard>
       </UPageGrid>
 
       <UCard variant="outline" class="mt-4">
         <h3 class="font-domine text-xl font-semibold text-highlighted">
-          Feedback and complaints
+          Feedback and Complaints
         </h3>
         <div class="mt-4 grid gap-5 leading-7 text-toned lg:grid-cols-3">
           <div>
             <h4 class="font-semibold text-highlighted">
-              Submit feedback or a complaint
+              Submit Feedback or a Complaint
             </h4>
             <p class="mt-2">
               {{ citizensCharter.feedback.dropBox }}
@@ -154,13 +154,13 @@ import {
             </p>
           </div>
           <div>
-            <h4 class="font-semibold text-highlighted">Feedback process</h4>
+            <h4 class="font-semibold text-highlighted">Feedback Process</h4>
             <p class="mt-2">
               {{ citizensCharter.feedback.feedbackProcess }}
             </p>
           </div>
           <div>
-            <h4 class="font-semibold text-highlighted">Complaint process</h4>
+            <h4 class="font-semibold text-highlighted">Complaint Process</h4>
             <p class="mt-2">
               {{ citizensCharter.feedback.complaintProcess }}
             </p>

@@ -59,11 +59,11 @@ const columns: TableColumn<PublicContentItem>[] = [
   },
 ];
 const yearOptions = computed(() => [
-  { label: "All years", value: 0 },
+  { label: "All Years", value: 0 },
   ...years.value.map((value) => ({ label: String(value), value })),
 ]);
 const pageSizeOptions = [10, 20, 50].map((value) => ({
-  label: `${value} per page`,
+  label: `${value} per Page`,
   value,
 }));
 const pageCount = computed(() => Math.ceil(total.value / pageSize.value));
@@ -134,8 +134,8 @@ useSeoMeta({
           <UInput
             v-model="searchInput"
             icon="i-lucide-search"
-            placeholder="Search records"
-            aria-label="Search public records"
+            placeholder="Search Records"
+            aria-label="Search Public Records"
             size="lg"
             class="w-full sm:w-72"
           />
@@ -143,8 +143,8 @@ useSeoMeta({
             v-model="selectedYear"
             :items="yearOptions"
             value-key="value"
-            aria-label="Filter by publication year"
-            placeholder="All years"
+            aria-label="Filter by Publication Year"
+            placeholder="All Years"
             size="lg"
             class="w-full sm:w-32"
           />
@@ -159,14 +159,14 @@ useSeoMeta({
           class="mb-5"
           color="neutral"
           variant="subtle"
-          title="Static title index"
+          title="Static Title Index"
           description="These entries contain titles transcribed from the legacy site. Original documents are not attached; contact the Sangguniang Bayan Office for official copies."
         />
         <UAlert
           v-if="error"
           color="error"
           variant="subtle"
-          title="Records are temporarily unavailable"
+          title="Records Are Temporarily Unavailable"
           description="Please try again later."
         />
         <UTable
@@ -243,7 +243,7 @@ useSeoMeta({
               :items="pageSizeOptions"
               value-key="value"
               :search-input="false"
-              aria-label="Records per page"
+              aria-label="Records per Page"
               size="lg"
               class="w-full sm:w-36"
             />
@@ -252,13 +252,13 @@ useSeoMeta({
               :total="total"
               :items-per-page="pageSize"
               :disabled="pending"
-              aria-label="Public record pages"
+              aria-label="Public Record Pages"
             />
           </div>
         </div>
         <UModal
           v-model:open="previewOpen"
-          :title="selectedRecord?.title || 'Public record'"
+          :title="selectedRecord?.title || 'Public Record'"
           :description="selectedRecord?.summary || undefined"
           :ui="{
             content: 'w-[calc(100vw-2rem)] max-w-5xl',
@@ -276,7 +276,7 @@ useSeoMeta({
                 v-else
                 color="neutral"
                 variant="subtle"
-                title="PDF preview unavailable"
+                title="PDF Preview Unavailable"
                 description="This record does not have a Google Drive file attached."
               />
             </div>

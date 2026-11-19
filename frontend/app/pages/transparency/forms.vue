@@ -5,7 +5,7 @@ definePageMeta({ layout: 'transparency' })
 <template>
   <LguPublicContentArchive
     kind="form"
-    title="Downloadable forms"
+    title="Downloadable Forms"
     description="Browse official municipal forms made available for public use."
   />
 </template>

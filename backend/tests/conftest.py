@@ -132,6 +132,7 @@ async def authenticated_client(client: AsyncClient, authenticated_user: User) ->
 
 ADMIN_USERNAME = "Administrator"
 ADMIN_PASSWORD = "yTonJATR"
+ADMIN_PASSWORD = os.getenv("EAM_TEST_ADMIN_PASSWORD", ADMIN_PASSWORD)
 
 
 @pytest_asyncio.fixture

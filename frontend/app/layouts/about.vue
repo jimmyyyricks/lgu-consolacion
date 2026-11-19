@@ -7,7 +7,7 @@
       <UContainer class="w-full overflow-x-auto">
         <UNavigationMenu
           :items="navigationItems"
-          aria-label="About Consolacion sections"
+          aria-label="About Consolacion Sections"
           highlight
           class="w-max"
           :ui="{

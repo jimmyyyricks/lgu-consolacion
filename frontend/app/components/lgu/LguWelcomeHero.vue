@@ -4,25 +4,25 @@ import municipalHallImage from '~/assets/consolacion-govt.jpg'
 
 const quickLinks = [
   {
-    label: 'Find a municipal service',
+    label: 'Find a Municipal Service',
     description: 'Browse services and useful links for residents and businesses.',
     to: '/#services',
     icon: 'i-lucide-search'
   },
   {
-    label: 'Get a municipal form',
+    label: 'Get a Municipal Form',
     description: 'Open forms published by municipal offices.',
     to: '/transparency/forms',
     icon: 'i-lucide-file-down'
   },
   {
-    label: 'Read a public notice',
+    label: 'Read a Public Notice',
     description: 'Check current municipal updates and public actions.',
     to: '/about/actions',
     icon: 'i-lucide-megaphone'
   },
   {
-    label: 'Access public records',
+    label: 'Access Public Records',
     description: 'Browse ordinances, resolutions, disclosures, and more.',
     to: '/transparency',
     icon: 'i-lucide-files'
@@ -31,19 +31,19 @@ const quickLinks = [
 
 const quickActions: ButtonProps[] = [
   {
-    label: 'Services and links',
+    label: 'Services and Links',
     to: '/#services',
     ui: { base: 'bg-primary-700 text-white hover:bg-primary-800' }
   },
   {
-    label: 'Government updates',
+    label: 'Government Updates',
     to: '/about/actions',
     color: 'neutral',
     variant: 'outline',
     ui: { base: 'bg-white text-primary-950 hover:bg-primary-50' }
   },
   {
-    label: 'Public records',
+    label: 'Public Records',
     to: '/transparency',
     color: 'neutral',
     ui: { base: 'bg-neutral-900 text-white hover:bg-neutral-800' }
@@ -95,7 +95,7 @@ const quickActions: ButtonProps[] = [
       <div
         id="resident-guides"
         role="region"
-        aria-label="Quick links"
+        aria-label="Quick Links"
       >
         <UPageGrid class="gap-4 lg:grid-cols-4">
           <UPageCard

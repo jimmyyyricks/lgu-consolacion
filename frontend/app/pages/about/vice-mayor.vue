@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { citizensCharter, municipalInformation, municipalOfficeDirectory } from '~/utils/municipal-information'
+import { titleCaseLabel } from '~/utils/title-case'
 
 definePageMeta({ layout: 'about' })
 
@@ -25,13 +26,13 @@ useSeoMeta({
       <UContainer class="py-8 sm:py-12">
         <UCard v-if="office" variant="outline" class="mb-8 max-w-2xl">
           <h2 class="font-domine text-xl font-semibold text-highlighted">
-            Office contact
+            Office Contact
           </h2>
           <dl class="mt-4 grid gap-4 sm:grid-cols-3">
             <div>
               <dt class="font-medium text-highlighted">Location</dt>
               <dd class="mt-1 text-toned">
-                Municipal Hall, {{ office.group }}
+                Municipal Hall, {{ titleCaseLabel(office.group) }}
               </dd>
             </div>
             <div>
@@ -41,7 +42,7 @@ useSeoMeta({
               </dd>
             </div>
             <div>
-              <dt class="font-medium text-highlighted">Office hours</dt>
+              <dt class="font-medium text-highlighted">Office Hours</dt>
               <dd class="mt-1 text-toned">
                 {{ municipalInformation.officeHours }}
               </dd>
@@ -53,14 +54,14 @@ useSeoMeta({
             trailing-icon="i-lucide-arrow-right"
             class="mt-6"
           >
-            View office directory
+            View Office Directory
           </UButton>
         </UCard>
       </UContainer>
       <LguMayorsDesk />
       <LguSection
         id="vice-mayor-charter-services"
-        title="Citizen's Charter services"
+        title="Citizen's Charter Services"
         description="The 2026 Charter groups these external services under the Office of the Municipal Vice-Mayor and the Sangguniang Bayan."
       >
         <template #actions>
@@ -72,7 +73,7 @@ useSeoMeta({
             size="lg"
             trailing-icon="i-lucide-arrow-up-right"
           >
-            Full procedures
+            Full Procedures
           </UButton>
         </template>
         <ul class="grid gap-3 sm:grid-cols-2">

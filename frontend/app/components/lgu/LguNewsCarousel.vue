@@ -23,78 +23,70 @@ const stockImages = [
           id="news-carousel-heading"
           class="font-domine text-3xl font-semibold leading-tight text-highlighted sm:text-4xl"
         >
-          Sangguniang Bayan activity notices
+          Latest Updates from the LGU
         </h2>
         <UButton
           to="/news"
-          variant="link"
+          variant="outline"
           trailing-icon="i-lucide-arrow-right"
           size="lg"
-          class="text-primary-700 dark:text-primary-300"
         >
-          All news
+          All News
         </UButton>
       </div>
     </template>
 
-    <div class="min-w-0">
-      <UAlert
-        v-if="error"
-        color="error"
-        variant="subtle"
-        title="News is temporarily unavailable"
-      />
-      <UCard
-        v-else-if="pending && !slides.length"
-        aria-label="Loading latest news"
-        variant="outline"
-        :ui="{ body: 'grid gap-5 sm:grid-cols-2' }"
-      >
-        <USkeleton class="h-56 sm:h-72" />
-        <div class="space-y-4 py-4">
-          <USkeleton class="h-4 w-28" />
-          <USkeleton class="h-10 w-full" />
-          <USkeleton class="h-20 w-full" />
-        </div>
-      </UCard>
-      <UAlert
-        v-else-if="!slides.length"
-        color="neutral"
-        variant="subtle"
-        title="No news has been published yet"
-      />
-      <div
-        v-else
-        class="relative"
-      >
-        <UCarousel
-          :items="slides"
-          :ui="{
-            root: 'relative pb-12',
-            item: 'px-0',
-            container: 'ms-0',
-            controls: 'absolute bottom-0 right-0 flex h-11 items-center',
-            arrows: 'flex gap-2',
-            prev: 'static size-11 translate-y-0',
-            next: 'static size-11 translate-y-0'
-          }"
-          :prev="{ size: 'md', square: true, disabled: false }"
-          :next="{ size: 'md', square: true, disabled: false }"
-          :loop="slides.length > 1"
-          :arrows="slides.length > 1"
-          aria-label="Sangguniang Bayan activity notices"
-          @select="activeIndex = $event"
+    <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-8">
+      <div class="min-w-0">
+        <UAlert
+          v-if="error"
+          color="error"
+          variant="subtle"
+          title="News Is Temporarily Unavailable"
+        />
+        <UCard
+          v-else-if="pending && !slides.length"
+          aria-label="Loading Latest News"
+          variant="outline"
+          :ui="{ body: 'p-0' }"
         >
-          <template #default="{ item, index }">
-            <UCard
-              as="article"
-              variant="outline"
-              :ui="{ body: 'grid p-0 sm:p-0 lg:min-h-[24rem] lg:grid-cols-[1.05fr_0.95fr]' }"
-            >
-              <div class="relative min-h-56 bg-muted sm:min-h-72 lg:min-h-full">
+          <USkeleton class="aspect-[4/3] w-full" />
+        </UCard>
+        <UAlert
+          v-else-if="!slides.length"
+          color="neutral"
+          variant="subtle"
+          title="No News Has Been Published Yet"
+        />
+        <div
+          v-else
+          class="relative"
+        >
+          <UCarousel
+            :items="slides"
+            :ui="{
+              root: 'relative',
+              item: 'pe-4',
+              container: 'ms-0',
+              controls: 'absolute right-6 top-6 flex items-center',
+              arrows: 'flex gap-16',
+              prev: 'static size-8 translate-y-0',
+              next: 'static size-8 translate-y-0'
+            }"
+            prev-icon="i-lucide-arrow-left"
+            next-icon="i-lucide-arrow-right"
+            :prev="{ color: 'neutral', size: 'sm', square: true }"
+            :next="{ color: 'neutral', size: 'sm', square: true }"
+            :loop="slides.length > 1"
+            :arrows="slides.length > 1"
+            aria-label="Latest Updates from the LGU"
+            @select="activeIndex = $event"
+          >
+            <template #default="{ item, index }">
+              <article class="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted">
                 <img
                   :src="item.image_url || stockImages[index % stockImages.length]"
-                  :alt="item.image_url ? item.title : 'Illustrative stock photo'"
+                  :alt="item.image_url ? item.title : 'Illustrative Stock Photo'"
                   :fetchpriority="index === 0 ? 'high' : undefined"
                   :loading="index === 0 ? 'eager' : 'lazy'"
                   class="absolute inset-0 size-full object-cover"
@@ -103,43 +95,53 @@ const stockImages = [
                   v-if="!item.image_url"
                   color="neutral"
                   variant="solid"
-                  class="absolute bottom-4 left-4"
+                  class="absolute left-6 top-6"
                 >
-                  Illustrative stock photo
+                  Illustrative Stock Photo
                 </UBadge>
-              </div>
-              <div class="flex flex-col justify-center px-5 py-6 sm:px-7 lg:px-8">
-                <div class="flex flex-wrap items-center gap-3 text-muted">
-                  <time
-                    v-if="publicContentDate(item.record_date)"
-                    :datetime="item.record_date || undefined"
+                <div
+                  aria-hidden="true"
+                  class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
+                />
+                <div class="absolute inset-x-0 bottom-0 p-6 text-left text-white">
+                  <div class="flex flex-wrap items-center gap-3 text-sm text-white/80">
+                    <time
+                      v-if="publicContentDate(item.record_date)"
+                      :datetime="item.record_date || undefined"
+                    >
+                      {{ publicContentDate(item.record_date) }}
+                    </time>
+                    <span v-if="item.category">{{ item.category }}</span>
+                  </div>
+                  <h3 class="mt-2 font-domine text-xl font-semibold leading-snug sm:text-2xl">
+                    {{ item.title }}
+                  </h3>
+                  <p class="mt-2 line-clamp-2 leading-6 text-white/90">
+                    {{ item.summary }}
+                  </p>
+                  <UButton
+                    :to="publicContentPath(item)"
+                    trailing-icon="i-lucide-arrow-right"
+                    size="md"
+                    class="mt-3 w-fit bg-white text-neutral-950 hover:bg-neutral-100"
                   >
-                    {{ publicContentDate(item.record_date) }}
-                  </time>
-                  <span v-if="item.category">{{ item.category }}</span>
+                    Read This Update
+                  </UButton>
                 </div>
-                <h3 class="mt-4 font-domine text-xl font-semibold leading-snug text-highlighted">
-                  {{ item.title }}
-                </h3>
-                <p class="mt-4 line-clamp-4 leading-7 text-toned">
-                  {{ item.summary }}
-                </p>
-                <UButton
-                  :to="publicContentPath(item)"
-                  trailing-icon="i-lucide-arrow-right"
-                  size="lg"
-                  class="mt-5 w-fit bg-primary-700 text-white hover:bg-primary-800"
-                >
-                  Read this update
-                </UButton>
-              </div>
-            </UCard>
-          </template>
-        </UCarousel>
-        <span class="absolute bottom-0 left-0 flex h-11 items-center text-muted">
-          {{ activeIndex + 1 }} of {{ slides.length }}
-        </span>
+              </article>
+            </template>
+          </UCarousel>
+          <span
+            v-if="slides.length > 1"
+            aria-live="polite"
+            aria-atomic="true"
+            class="absolute right-16 top-6 z-10 rounded-md bg-black/60 px-2 py-1 text-sm font-medium tabular-nums text-white"
+          >
+            {{ activeIndex + 1 }} of {{ slides.length }}
+          </span>
+        </div>
       </div>
+      <LguActions />
     </div>
   </UPageSection>
 </template>

@@ -7,13 +7,13 @@ export interface PublicServiceLink {
 
 export const publicServiceLinks: PublicServiceLink[] = [
   {
-    label: 'Forms and applications',
+    label: 'Forms and Applications',
     description: 'Browse downloadable municipal forms.',
     to: '/transparency/forms',
     icon: 'i-lucide-file-down'
   },
   {
-    label: 'Government updates',
+    label: 'Government Updates',
     description: 'Read current public notices and actions.',
     to: '/about/actions',
     icon: 'i-lucide-megaphone'
@@ -31,25 +31,25 @@ export const publicServiceLinks: PublicServiceLink[] = [
     icon: 'i-lucide-file-check-2'
   },
   {
-    label: 'Bids and awards',
+    label: 'Bids and Awards',
     description: 'Review procurement notices and awards.',
     to: '/transparency/bids-awards',
     icon: 'i-lucide-briefcase-business'
   },
   {
-    label: 'Full disclosure',
+    label: 'Full Disclosure',
     description: 'Access municipal disclosure documents.',
     to: '/transparency/full-disclosure',
     icon: 'i-lucide-landmark'
   },
   {
-    label: 'News and announcements',
+    label: 'News and Announcements',
     description: 'See recent municipal news and events.',
     to: '/news',
     icon: 'i-lucide-newspaper'
   },
   {
-    label: 'Tourism information',
+    label: 'Tourism Information',
     description: 'Explore visitor information and local stories.',
     to: '/tourism',
     icon: 'i-lucide-map'

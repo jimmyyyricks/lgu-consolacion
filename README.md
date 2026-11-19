@@ -10,3 +10,4 @@ The official website for the Municipality of Consolacion, Cebu. It provides muni
 - Package managers: pnpm (frontend), pip (backend)
 
 See [`docs/`](docs/) for project documentation. The website route map is in [`docs/site-routes.md`](docs/site-routes.md).
+Production build and server deployment instructions are in [`docs/deployment.md`](docs/deployment.md).

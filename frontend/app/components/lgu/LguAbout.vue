@@ -5,7 +5,7 @@ import { municipalInformation } from "~/utils/municipal-information";
 <template>
   <section
     id="about"
-    aria-label="Municipal vision, mission, mandate and objectives"
+    aria-label="Municipal Vision, Mission, Mandate, and Objectives"
     class="bg-muted/40"
   >
     <UContainer class="py-6 sm:py-8 lg:py-10">

@@ -52,7 +52,7 @@ useSeoMeta({ robots: 'noindex, nofollow' })
           class="mb-4 size-16 rounded-full object-cover"
         >
         <h1 class="font-domine text-2xl font-semibold text-highlighted">
-          Staff sign in
+          Staff Sign In
         </h1>
         <p class="mt-1 text-sm text-muted">
           Municipality of Consolacion
@@ -70,7 +70,7 @@ useSeoMeta({ robots: 'noindex, nofollow' })
           <UInput
             v-model="username"
             type="text"
-            placeholder="Enter your username"
+            placeholder="Enter Your Username"
             :disabled="isLoading"
             required
             size="lg"
@@ -85,7 +85,7 @@ useSeoMeta({ robots: 'noindex, nofollow' })
           <UInput
             v-model="password"
             type="password"
-            placeholder="Enter your password"
+            placeholder="Enter Your Password"
             :disabled="isLoading"
             required
             size="lg"
